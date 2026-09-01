@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Расписание 2611-1 и 266-2 · 1 семестр 26/27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#101315; --card:#171b1e; --raise:#1e2327;
+    --ink:#e7ecee; --muted:#8d979d; --line:#2b3236;
+    --lecture:#5aa2f0; --seminar:#3fc39b; --practice:#e2a13c;
+    --online:#ff7a45; --today:#20272b; --ok:#3fc39b; --warn:#e2a13c; --radius:8px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;font-size:13px;line-height:1.4}
+  .wrap{max-width:1000px;margin:0 auto;padding:20px 12px 44px}
+
+  .tabs{display:flex;gap:4px;padding:3px;background:var(--card);border:1px solid var(--line);
+    border-radius:999px;width:max-content;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{appearance:none;border:0;background:transparent;color:var(--muted);cursor:pointer;
+    font-family:"IBM Plex Mono",monospace;font-size:13px;padding:5px 14px;border-radius:999px;white-space:nowrap}
+  .tab[aria-selected="true"]{background:var(--raise);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+  .tab:focus-visible{outline:2px solid var(--lecture);outline-offset:2px}
+  .tabs.days{margin-top:14px}
+  .tabs.days .tab{padding:5px 12px;font-size:12.5px}
+  .tab .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--practice);
+    margin-left:5px;vertical-align:middle}
+
+  .group{font-family:"IBM Plex Mono",monospace;font-size:clamp(30px,8vw,52px);font-weight:500;
+    letter-spacing:-.03em;line-height:.95;margin:16px 0 0}
+  .hero p{margin:8px 0 0;max-width:58ch;color:var(--muted);font-size:12.5px}
+  .stream{display:inline-block;margin-top:10px;padding:2px 9px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);font-family:"IBM Plex Mono",monospace;
+    font-size:11.5px;color:var(--muted)}
+
+  .status{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:11.5px;color:var(--muted)}
+  .status .led{width:6px;height:6px;border-radius:50%;background:var(--muted);flex:0 0 auto}
+  .status.live .led{background:var(--ok)} .status.stale .led{background:var(--warn)}
+  .status.load .led{background:var(--lecture);animation:pulse 1s infinite alternate}
+  @keyframes pulse{from{opacity:.3}to{opacity:1}}
+  .status button,.status a{appearance:none;border:1px solid var(--line);background:var(--card);
+    color:var(--muted);border-radius:5px;padding:2px 8px;font:inherit;font-size:11px;
+    cursor:pointer;text-decoration:none}
+  .status button:hover,.status a:hover{color:var(--ink)}
+
+  .legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:14px 0 10px;font-size:11.5px;color:var(--muted)}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .swatch{width:3px;height:12px;border-radius:2px;display:inline-block}
+  .onlinekey{color:var(--online);border:1px solid var(--online);border-radius:4px;padding:1px 6px;
+    font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.04em}
+
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .dayhead{padding:9px 12px;border-bottom:1px solid #3b444a;font-size:12px;font-weight:600}
+  .dayhead span{font-weight:400;color:var(--muted);margin-left:6px}
+  .row{display:flex;gap:10px;padding:8px 12px;border-bottom:1px solid var(--line)}
+  .row:last-child{border-bottom:none}
+  .row .t{flex:0 0 62px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:500;padding-top:3px}
+  .row .t small{display:block;color:var(--muted);font-weight:400;font-size:10.5px;margin-top:1px}
+  .row .c{flex:1;min-width:0}
+  .row.gap .t{color:var(--muted);font-weight:400}
+  .row.gap .c{padding-top:3px;color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:12px}
+  .free{padding:20px 12px;color:var(--muted);font-size:12.5px}
+
+  .scroller{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{border-collapse:separate;border-spacing:0;width:100%;min-width:760px}
+  th,td{vertical-align:top;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+  th:last-child,td:last-child{border-right:none}
+  tr:last-child th,tr:last-child td{border-bottom:none}
+  thead th{position:sticky;top:0;z-index:3;background:var(--card);padding:9px 11px;text-align:left;
+    font-size:12px;font-weight:600;border-bottom:1px solid #3b444a}
+  thead th .full{display:block;font-weight:400;font-size:10.5px;color:var(--muted)}
+  th.corner,td.time{position:sticky;left:0;z-index:2;background:var(--card);
+    width:76px;min-width:76px;box-shadow:1px 0 0 var(--line)}
+  thead th.corner{z-index:4}
+  td.time{padding:9px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:500;white-space:nowrap}
+  td.time small{display:block;color:var(--muted);font-weight:400;font-size:10.5px;margin-top:1px}
+  td.slot{padding:6px;min-width:140px}
+  td.empty{background:repeating-linear-gradient(135deg,transparent,transparent 8px,rgba(141,151,157,.06) 8px,rgba(141,151,157,.06) 9px)}
+  td.is-today,thead th.is-today{background:var(--today)}
+  .todaydot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--practice);margin-left:5px;vertical-align:middle}
+
+  .class{border-left:3px solid var(--line);padding:6px 8px;border-radius:0 5px 5px 0;background:var(--raise)}
+  .class + .class{margin-top:6px}
+  .class .kind{font-family:"IBM Plex Mono",monospace;font-size:10px}
+  .class .name{font-size:12.5px;font-weight:600;margin:1px 0 2px;line-height:1.25}
+  .class .who{font-size:12px}
+  .class .when{font-size:11px;color:var(--muted);margin-top:2px}
+  .l{border-left-color:var(--lecture)} .l .kind{color:var(--lecture)}
+  .s{border-left-color:var(--seminar)} .s .kind{color:var(--seminar)}
+  .p{border-left-color:var(--practice)} .p .kind{color:var(--practice)}
+  .class.online{border-left-color:var(--online);background:rgba(255,122,69,.12);
+    box-shadow:inset 0 0 0 1px rgba(255,122,69,.45)}
+  .badge{display:inline-block;margin-bottom:3px;padding:2px 7px;border-radius:4px;
+    background:var(--online);color:#1a0d06;font-family:"IBM Plex Mono",monospace;
+    font-size:10.5px;font-weight:500;letter-spacing:.06em}
+  .cfoot{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:4px}
+  .stream-note{font-size:11px;color:var(--muted)}
+  .join{display:inline-block;color:var(--online);background:transparent;text-decoration:none;
+    border:1px solid var(--online);border-radius:4px;padding:1px 6px;
+    font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.04em}
+  .join:hover{background:rgba(255,122,69,.14)}
+
+  .notes{margin-top:18px;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .note{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:11px 13px}
+  .note h2{margin:0 0 4px;font-size:12.5px;font-weight:600}
+  .note p{margin:0;font-size:11.5px;color:var(--muted)}
+  .note a{color:var(--lecture)}
+  footer{margin-top:18px;font-size:11px;color:var(--muted)}
+
+  @media (max-width:640px){
+    .wrap{padding:16px 8px 36px}
+    th.corner,td.time{width:64px;min-width:64px}
+    td.slot{min-width:132px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="tabs" role="tablist" aria-label="Группа" id="groupTabs">
+    <button class="tab" role="tab" aria-selected="true" data-key="2611-1">2611-1</button>
+    <button class="tab" role="tab" aria-selected="false" data-key="266-2">266-2</button>
+  </div>
+
+  <div class="tabs days" role="tablist" aria-label="День недели" id="dayTabs"></div>
+
+  <header class="hero">
+    <h1 class="group" id="groupName">2611-1</h1>
+    <p>Расписание первого семестра 2026/27, только пары выбранной подгруппы. Английский не включён — он идёт по языковым группам.</p>
+    <span class="stream" id="groupMeta"></span>
+    <div class="status" id="status">
+      <i class="led"></i><span id="statusText">Загрузка…</span>
+      <button id="refresh" type="button">Обновить</button>
+      <a id="sheetLink" target="_blank" rel="noopener">Таблица</a>
+    </div>
+  </header>
+
+  <div class="legend">
+    <span><i class="swatch" style="background:var(--lecture)"></i>Лекция</span>
+    <span><i class="swatch" style="background:var(--seminar)"></i>Семинар</span>
+    <span><i class="swatch" style="background:var(--practice)"></i>Практика</span>
+    <span><i class="onlinekey">ОНЛАЙН</i>идти никуда не нужно</span>
+  </div>
+
+  <div class="panel" id="panel"></div>
+  <div class="notes" id="notes"></div>
+
+  <footer>Данные тянутся напрямую из таблицы «Расписание ПМИ и ЭАД, 1 семестр 26/27». Аудитории и переносы — в <a href="https://ruz.hse.ru/" style="color:var(--lecture)">РУЗ</a>.</footer>
+</div>
+
+<script>
+/* ------------------------------------------------------------------ настройки */
+var SHEET_ID = "1kgwKRON2tOFtIgcf0OeoHC3WhT6H4s9F4sEtsgYBVbA";
+var GID      = "1526534829";              // вкладка с актуальным расписанием
+var SHEET_URL = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/edit?gid=" + GID;
+
+/* Единственный источник, в котором есть объединения ячеек (colspan) и ссылки:
+   выгрузка всей книги в zip с HTML-версиями листов. htmlview/pubhtml теперь отдают
+   пустую JS-оболочку, csv и gviz теряют объединения — по ним поток восстановить нельзя. */
+var SRC_ZIP = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/export?format=zip";
+
+/* Google отдаёт Access-Control-Allow-Origin, только если браузер прислал настоящий
+   Origin. У страницы, открытой двойным кликом (file://), Origin = null, и запрос
+   режется. Варианты, если нужна живая загрузка из локального файла:
+   1) отдать папку любым http-сервером (см. заметку «Живые данные» внизу страницы);
+   2) вписать сюда адрес веб-приложения Apps Script — оно отдаёт JSON с ACAO: *
+      и работает даже из file://. Код приложения — в комментарии ниже. */
+var APPS_SCRIPT_URL = "";                 // напр. "https://script.google.com/macros/s/AKfy.../exec"
+var PROXY = "";                           // необязательный CORS-прокси, префикс перед URL-encoded адресом
+
+/*  Apps Script (Расширения → Apps Script → Развернуть → Веб-приложение,
+    доступ «Все»); вставьте полученный /exec-адрес в APPS_SCRIPT_URL:
+
+function doGet() {
+  var GID = 1526534829;
+  var ss = SpreadsheetApp.openById("1kgwKRON2tOFtIgcf0OeoHC3WhT6H4s9F4sEtsgYBVbA");
+  var sh = null;
+  ss.getSheets().forEach(function (s) { if (s.getSheetId() === GID) sh = s; });
+  var rng  = sh.getDataRange();
+  var vals = rng.getDisplayValues();
+  var rich = rng.getRichTextValues();
+  var grid = vals.map(function (row, r) {
+    return row.map(function (v, c) {
+      var url = null, rt = rich[r][c];
+      if (rt) rt.getRuns().forEach(function (run) { if (!url && run.getLinkUrl()) url = run.getLinkUrl(); });
+      return { t: v, h: url ? [url] : [] };
+    });
+  });
+  sh.getMergedRanges().forEach(function (m) {          // разворачиваем объединения
+    var r0 = m.getRow() - 1, c0 = m.getColumn() - 1, v = grid[r0][c0];
+    for (var r = 0; r < m.getNumRows(); r++)
+      for (var c = 0; c < m.getNumColumns(); c++) grid[r0 + r][c0 + c] = v;
+  });
+  return ContentService.createTextOutput(JSON.stringify({ grid: grid }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+*/
+
+var GROUPS = {
+  "2611-1": {meta:"Поток МП · БПМИ2611 · РУЗ: группа 6, подгруппа 13"},
+  "266-2":  {meta:"Поток МП · БПМИ266 · РУЗ: группа 1, подгруппа 3"}
+};
+
+var TIMES = [
+  ["9:30","10:50","9.30"],["11:10","12:30","11.10"],["13:00","14:20","13.00"],
+  ["14:40","16:00","14.40"],["16:20","17:40","16.20"],["18:10","19:30","18.10"],["19:40","21:00","19.40"]
+];
+var DAYS = [["ПН","понедельник"],["ВТ","вторник"],["СР","среда"],["ЧТ","четверг"],["ПТ","пятница"],["СБ","суббота"]];
+var KIND = {l:"Лекция", s:"Семинар", p:"Практика"};
+var SKIP = /^(английский( язык)?|язык)$/i;
+
+
+/* --------------------------------------------- резервная копия (снимок 01.09) */
+var SNAPSHOT_DATE = "01.09";
+var SNAPSHOT = {
+  "2611-1":[
+    [1,0,{k:"l",n:"Линейная алгебра и геометрия",w:"Авдеев",d:"С 07.09"}],
+    [2,0,{k:"l",n:"Дискретная математика",w:"Вялый",d:"С 07.09"}],
+    [4,0,{k:"s",n:"Дискретная математика",w:"Зайцева А.Т.",d:"С 07.09"}],
+    [5,0,{k:"s",n:"Дискретная математика",w:"Зайцева А.Т.",d:"14.09, 21.09"}],
+    [6,0,{k:"l",n:"Инструменты промышленной разработки",w:"Шитов",d:"С 07.09",on:1}],
+    [3,1,{k:"l",n:"Математический анализ",w:"Промыслов В.В.",d:"29.09, 13.10, 03.11, 17.11, 01.12"}],
+    [4,1,{k:"s",n:"Математический анализ",w:"Промыслов П.В.",d:"29.09, 13.10, 03.11, 17.11, 01.12"}],
+    [5,1,{k:"p",n:"Язык программирования Python",w:"Дацковский",d:"С 08.09"}],
+    [6,1,{k:"p",n:"Язык программирования Python",w:"Дацковский",d:"С 08.09"}],
+    [0,2,{k:"l",n:"Язык программирования Python",w:"Хайбулин",d:"С 02.09 · Очно в R401+Трансляция  (просмотр трансляции в R301 или из любого удобного места)",url:"https://telemost.360.yandex.ru/j/4413751397",st:1}],
+    [1,2,{k:"s",n:"История России",w:"Смагулов",d:"группа _34 · С 09.09"}],
+    [2,2,{k:"s",n:"Математический анализ",w:"Промыслов П.В.",d:"30.09, 14.10"}],
+    [6,2,{k:"l",n:"Основы российской государственности",w:"Зая",d:"23.09, 30.09, 07.10",on:1}],
+    [2,3,{k:"s",n:"Линейная алгебра и геометрия",w:"Киктева",d:"С 10.09"}],
+    [3,3,{k:"s",n:"Основы российской государственности",w:"Аристова",d:"группа _35 · С 10.09"}],
+    [4,3,{k:"s",n:"Дискретная математика",w:"Зайцева А.Т.",d:"С 10.09"}],
+    [0,4,{k:"l",n:"Язык программирования Python",w:"Хайбулин",d:"C 11.09"}],
+    [1,4,{k:"l",n:"Математический анализ",w:"Промыслов В.В.",d:"С 25.09"}],
+    [1,4,{k:"l",n:"Дискретная математика",w:"Вялый М.Н.",d:"11.09, 18.09"}],
+    [2,4,{k:"s",n:"Основы российской государственности",w:"Аристова",d:"группа _35 · 11.09, 18.09, 25.09"}],
+    [0,5,{k:"l",n:"Язык программирования Python",w:"Хайбулин",d:"05.09 · Очно+Трансляция Очно в R401+Трансляция",url:"https://telemost.360.yandex.ru/j/4413751397",st:1}]
+  ],
+  "266-2":[
+    [1,0,{k:"l",n:"Линейная алгебра и геометрия",w:"Авдеев",d:"С 07.09"}],
+    [2,0,{k:"l",n:"Дискретная математика",w:"Вялый",d:"С 07.09"}],
+    [3,0,{k:"s",n:"Линейная алгебра и геометрия",w:"Авдеев",d:"С 07.09"}],
+    [6,0,{k:"l",n:"Инструменты промышленной разработки",w:"Шитов",d:"С 07.09",on:1}],
+    [3,1,{k:"l",n:"Математический анализ",w:"Промыслов В.В.",d:"29.09, 13.10, 03.11, 17.11, 01.12"}],
+    [4,1,{k:"s",n:"Математический анализ",w:"Промыслов В.В.",d:"29.09, 13.10, 03.11, 17.11, 01.12"}],
+    [6,1,{k:"s",n:"История России",w:"Калинин",d:"группа _29 · С 08.09"}],
+    [0,2,{k:"l",n:"Язык программирования Python",w:"Хайбулин",d:"С 02.09 · Очно в R401+Трансляция  (просмотр трансляции в R301 или из любого удобного места)",url:"https://telemost.360.yandex.ru/j/4413751397",st:1}],
+    [1,2,{k:"s",n:"Дискретная математика",w:"Соколов",d:"15.09, 22.09"}],
+    [2,2,{k:"s",n:"Дискретная математика",w:"Соколов",d:"С 09.09"}],
+    [5,2,{k:"l",n:"Основы российской государственности",w:"Зая",d:"23.09, 30.09, 07.10",on:1}],
+    [4,3,{k:"p",n:"Язык программирования Python",w:"Панькова",d:"С 10.09"}],
+    [5,3,{k:"p",n:"Язык программирования Python",w:"Панькова",d:"С 10.09"}],
+    [0,4,{k:"l",n:"Язык программирования Python",w:"Хайбулин",d:"C 11.09"}],
+    [1,4,{k:"l",n:"Математический анализ",w:"Промыслов В.В.",d:"С 25.09"}],
+    [1,4,{k:"l",n:"Дискретная математика",w:"Вялый М.Н.",d:"11.09, 18.09"}],
+    [2,4,{k:"s",n:"Математический анализ",w:"Промыслов В.В.",d:"С 25.09"}],
+    [3,4,{k:"s",n:"Основы российской государственности",w:"Шишаев",d:"группа _30 · С 07.09"}],
+    [0,5,{k:"l",n:"Язык программирования Python",w:"Хайбулин",d:"05.09 · Очно+Трансляция Очно в R401+Трансляция",url:"https://telemost.360.yandex.ru/j/4413751397",st:1}],
+    [2,5,{k:"s",n:"Основы российской государственности",w:"Шишаев",d:"группа _30 · 03.10, 10.10, 17.10"}]
+  ]
+};
+
+
+/* ------------------------------------------------------------------ состояние */
+var today = new Date().getDay();
+var curGroup = "2611-1";
+var curDay = (today >= 1 && today <= 6) ? today - 1 : 0;
+var ITEMS = SNAPSHOT;
+var SOURCE = {state:"snapshot", when:null, why:null};
+var LOCAL_FILE = location.protocol === "file:";
+
+/* ------------------------------------------------------------------- загрузка */
+function withTimeout(url, ms, as){
+  var ctl = typeof AbortController !== "undefined" ? new AbortController() : null;
+  var timer = setTimeout(function(){ if (ctl) ctl.abort(); }, ms || 25000);
+  return fetch(url, ctl ? {signal:ctl.signal} : {}).then(function(r){
+    clearTimeout(timer);
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return as === "buf" ? r.arrayBuffer() : r.text();
+  }, function(e){ clearTimeout(timer); throw e; });
+}
+
+/* --- минимальный распаковщик zip: центральный каталог + inflate через DecompressionStream */
+function inflateRaw(bytes){
+  if (typeof DecompressionStream === "undefined")
+    return Promise.reject(new Error("браузер без DecompressionStream"));
+  var s = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+  return new Response(s).arrayBuffer().then(function(b){ return new Uint8Array(b); });
+}
+
+function zipOpen(buf){
+  var u = new Uint8Array(buf), dv = new DataView(buf), eocd = -1;
+  var stop = Math.max(0, u.length - 66000);
+  for (var i = u.length - 22; i >= stop; i--){ if (dv.getUint32(i, true) === 0x06054b50){ eocd = i; break; } }
+  if (eocd < 0) throw new Error("это не zip");
+  var n = dv.getUint16(eocd + 10, true), p = dv.getUint32(eocd + 16, true), list = [], dec = new TextDecoder("utf-8");
+  for (var k = 0; k < n; k++){
+    if (dv.getUint32(p, true) !== 0x02014b50) break;
+    var nameLen = dv.getUint16(p + 28, true);
+    list.push({
+      name:   dec.decode(u.subarray(p + 46, p + 46 + nameLen)),
+      method: dv.getUint16(p + 10, true),
+      csize:  dv.getUint32(p + 20, true),
+      lho:    dv.getUint32(p + 42, true)
+    });
+    p += 46 + nameLen + dv.getUint16(p + 30, true) + dv.getUint16(p + 32, true);
+  }
+  return {u:u, dv:dv, list:list};
+}
+
+function zipRead(z, e){
+  var p = e.lho;
+  if (z.dv.getUint32(p, true) !== 0x04034b50) return Promise.reject(new Error("битая запись zip"));
+  var start = p + 30 + z.dv.getUint16(p + 26, true) + z.dv.getUint16(p + 28, true);
+  var data = z.u.subarray(start, start + e.csize);
+  return (e.method === 0 ? Promise.resolve(data) : inflateRaw(data))
+    .then(function(out){ return new TextDecoder("utf-8").decode(out); });
+}
+
+/* из выгрузки книги достаём HTML именно нашего листа: Google проставляет gid
+   в id строковых заголовков (<th id="1526534829R5">) */
+function sheetFromZip(buf){
+  var z = zipOpen(buf);
+  var htmls = z.list.filter(function(e){ return /\.html?$/i.test(e.name); });
+  var i = 0;
+  function step(fallback){
+    if (i >= htmls.length){
+      if (fallback) return fallback;
+      throw new Error("нужный лист не найден в выгрузке");
+    }
+    return zipRead(z, htmls[i++]).then(function(t){
+      if (t.indexOf('id="' + GID + 'R') >= 0) return t;
+      if (!fallback && t.indexOf("2611-1") >= 0 && t.indexOf("266-2") >= 0) fallback = t;
+      return step(fallback);
+    }, function(){ return step(fallback); });
+  }
+  return Promise.resolve(step(null));
+}
+
+function fromZipUrl(url){
+  return withTimeout(url, 40000, "buf").then(sheetFromZip).then(parseSheet);
+}
+function fromAppsScript(url){
+  return withTimeout(url, 25000).then(function(t){
+    var o = JSON.parse(t);
+    if (!o || !o.grid) throw new Error("Apps Script вернул не то");
+    return parseGrid(o.grid.map(function(row){
+      return row.map(function(c){
+        if (c == null) return null;
+        return {text: String(c.t == null ? "" : c.t).replace(/\u00a0/g, " ").trim(), hrefs: c.h || []};
+      });
+    }));
+  });
+}
+
+/* честный порядок: своё веб-приложение → прямой запрос к Google → прокси */
+function loadLive(){
+  var chain = [];
+  if (APPS_SCRIPT_URL) chain.push(function(){ return fromAppsScript(APPS_SCRIPT_URL); });
+  chain.push(function(){ return fromZipUrl(SRC_ZIP); });
+  if (PROXY) chain.push(function(){ return fromZipUrl(PROXY + encodeURIComponent(SRC_ZIP)); });
+
+  var i = 0, firstErr = null;
+  function next(){
+    if (i >= chain.length) return Promise.reject(firstErr || new Error("источники недоступны"));
+    return chain[i++]().catch(function(e){ if (!firstErr) firstErr = e; return next(); });
+  }
+  return next();
+}
+
+/* --------------------------------------------------------------------- разбор */
+/* сетка с разворачиванием colspan/rowspan: значение объединённой ячейки лежит
+   только в левой верхней клетке, поэтому простой forward-fill по пустым нельзя —
+   он затащил бы в колонку чужие пары. */
+function gridFromTable(table){
+  var grid = [], busy = {};
+  var trs = table.querySelectorAll("tr");
+  for (var r = 0; r < trs.length; r++){
+    var kids = trs[r].children, c = 0;
+    for (var k = 0; k < kids.length; k++){
+      var cell = kids[k];
+      if (cell.tagName === "TH") continue;          // заголовки строк Google, не данные
+      while (busy[r + ":" + c]) c++;
+      var cs = parseInt(cell.getAttribute("colspan") || 1, 10);
+      var rs = parseInt(cell.getAttribute("rowspan") || 1, 10);
+      var tmp = document.createElement("div");
+      tmp.innerHTML = cell.innerHTML.replace(/<br\s*\/?>/gi, "\n");
+      var hrefs = [], as = cell.querySelectorAll("a[href]");
+      for (var ai = 0; ai < as.length; ai++) hrefs.push(as[ai].getAttribute("href"));
+      var val = {text: (tmp.textContent || "").replace(/\u00a0/g, " ").trim(), hrefs: hrefs};
+      for (var ri = 0; ri < rs; ri++){
+        for (var ci = 0; ci < cs; ci++){
+          grid[r + ri] = grid[r + ri] || [];
+          grid[r + ri][c + ci] = val;
+          busy[(r + ri) + ":" + (c + ci)] = 1;
+        }
+      }
+      c += cs;
+    }
+  }
+  return grid;
+}
+
+function cellAt(grid, r, c){
+  return (grid[r] && grid[r][c] && grid[r][c].text) ? grid[r][c] : null;
+}
+
+function slotIndex(txt){
+  var m = String(txt).replace(/:/g, ".").match(/(\d{1,2}\.\d{2})/);
+  if (!m) return -1;
+  for (var i = 0; i < TIMES.length; i++) if (TIMES[i][2] === m[1]) return i;
+  return -1;
+}
+
+function parseCard(raw, hrefs){
+  var text = String(raw).replace(/\r/g, "").replace(/[ \t]*\n[ \t]*/g, "\n").trim();
+
+  var url = null;
+  for (var h = 0; hrefs && h < hrefs.length; h++){
+    if (/^https?:/i.test(hrefs[h]) && !/ruz\.hse\.ru/i.test(hrefs[h])){ url = hrefs[h]; break; }
+  }
+  if (!url){ var bare = text.match(/https?:\/\/[^\s)]+/); if (bare) url = bare[0]; }
+
+  var lines = text.replace(/https?:\/\/[^\s)]+/g, " ").split("\n")
+    .map(function(s){ return s.replace(/\s{2,}/g, " ").trim(); }).filter(Boolean);
+  if (!lines.length) return null;
+
+  var head = lines[0], k = "s";
+  var m = head.match(/^\[([^\]]+)\]\s*/);
+  if (m){
+    var tag = m[1].toUpperCase();
+    k = tag === "Л" ? "l" : (tag.charAt(0) === "П" ? "p" : "s");
+    head = head.slice(m[0].length).trim();
+  }
+  var rest = lines.slice(1);
+  var who = rest.length ? rest.shift() : "";
+
+  var on = 0;
+  for (var i = 0; i < lines.length; i++) if (/^онлайн$/i.test(lines[i])) on = 1;
+  if (!on && /онлайн/i.test(text) && !/трансляц/i.test(text)) on = 1;
+  var st = (!on && /трансляц/i.test(text)) ? 1 : 0;
+
+  var out = [];
+  for (var j = 0; j < rest.length; j++){
+    var s = rest[j].replace(/^очно\s*\+\s*трансляция\s*/i, "").trim();
+    if (!s || /^онлайн$/i.test(s)) continue;
+    var g = s.match(/^\d{2}_\d{2}_.*?_(\d+)$/);          // код группы в РУЗ → «группа _NN»
+    out.push(g ? "группа _" + g[1] : s);
+  }
+
+  var card = {k:k, n:head, w:who, d:out.join(" · ")};
+  if (url) card.url = url;
+  if (on) card.on = 1;
+  if (st) card.st = 1;
+  return card;
+}
+
+function parseGrid(grid){
+  var names = Object.keys(GROUPS), out = {}, cols = {}, headRow = -1;
+
+  for (var r = 0; r < grid.length && headRow < 0; r++){
+    if (!grid[r]) continue;
+    for (var c = 0; c < grid[r].length; c++){
+      var v = cellAt(grid, r, c);
+      if (v && names.indexOf(v.text) >= 0) headRow = r;
+    }
+    if (headRow === r){
+      for (var c2 = 0; c2 < grid[r].length; c2++){
+        var v2 = cellAt(grid, r, c2);
+        if (v2 && names.indexOf(v2.text) >= 0 && cols[v2.text] === undefined) cols[v2.text] = c2;
+      }
+    }
+  }
+  if (headRow < 0) throw new Error("нет строки с подгруппами");
+
+  var dayCol = -1, timeCol = -1;
+  for (var r3 = headRow + 1; r3 < grid.length; r3++){
+    if (!grid[r3]) continue;
+    for (var c3 = 0; c3 < 8; c3++){
+      var v3 = cellAt(grid, r3, c3);
+      if (!v3) continue;
+      if (dayCol < 0 && /^(ПН|ВТ|СР|ЧТ|ПТ|СБ)$/.test(v3.text)) dayCol = c3;
+      if (timeCol < 0 && /^\d{1,2}[.:]\d{2}\s*[-–]/.test(v3.text) && slotIndex(v3.text) >= 0) timeCol = c3;
+    }
+    if (dayCol >= 0 && timeCol >= 0) break;
+  }
+  if (dayCol < 0 || timeCol < 0) throw new Error("не нашёл колонки дня и времени");
+
+  names.forEach(function(n){ out[n] = []; });
+  var day = -1, slot = -1, seen = {};
+
+  for (var r4 = headRow + 1; r4 < grid.length; r4++){
+    if (!grid[r4]) continue;
+    var dv = cellAt(grid, r4, dayCol);
+    if (dv){ for (var di = 0; di < DAYS.length; di++) if (DAYS[di][0] === dv.text) day = di; }
+    var tv = cellAt(grid, r4, timeCol);
+    if (tv && slotIndex(tv.text) >= 0) slot = slotIndex(tv.text);
+    if (day < 0 || slot < 0) continue;
+
+    names.forEach(function(n){
+      var col = cols[n];
+      if (col === undefined) return;
+      var cv = cellAt(grid, r4, col);
+      if (!cv) return;
+      if (SKIP.test(cv.text.replace(/\s+/g, " ").trim())) return;
+      var key = n + "|" + day + "|" + slot + "|" + cv.text;
+      if (seen[key]) return;
+      seen[key] = 1;
+      var card = parseCard(cv.text, cv.hrefs);
+      if (card) out[n].push([slot, day, card]);
+    });
+  }
+  if (!names.some(function(n){ return out[n].length; })) throw new Error("колонки нашлись, но пар в них нет");
+  return out;
+}
+
+function parseSheet(html){
+  var doc = new DOMParser().parseFromString(html, "text/html");
+  var tables = Array.prototype.slice.call(doc.querySelectorAll("table"));
+  if (!tables.length) throw new Error("в выгрузке нет таблицы");
+  tables.sort(function(a, b){ return b.querySelectorAll("tr").length - a.querySelectorAll("tr").length; });
+  var err = null;
+  for (var t = 0; t < tables.length; t++){
+    try { return parseGrid(gridFromTable(tables[t])); }
+    catch (e){ if (!err) err = e; }
+  }
+  throw err || new Error("не нашёл нужные колонки в таблице");
+}
+
+/* ------------------------------------------------------------------------ кэш */
+function cacheSave(data){
+  try{ localStorage.setItem("raspis", JSON.stringify({t:Date.now(), d:data})); }catch(e){}
+}
+function cacheLoad(){
+  try{
+    var raw = localStorage.getItem("raspis");
+    if (!raw) return null;
+    var o = JSON.parse(raw);
+    return (o && o.d) ? o : null;
+  }catch(e){ return null; }
+}
+
+/* -------------------------------------------------------------------- отрисовка */
+function card(c){
+  var cls = "class " + c.k + (c.on ? " online" : "");
+  var head = c.on ? '<div class="badge">ОНЛАЙН</div>' : '<div class="kind">' + KIND[c.k] + '</div>';
+  var note = c.st ? '<span class="stream-note">очно + трансляция</span>' : '';
+  var link = c.url ? '<a class="join" href="' + esc(c.url) + '" target="_blank" rel="noopener">' +
+    (c.on ? "подключиться" : "трансляция") + '</a>' : '';
+  return '<div class="' + cls + '">' + head +
+    '<div class="name">' + esc(c.n) + '</div>' +
+    (c.w ? '<div class="who">' + esc(c.w) + '</div>' : '') +
+    (c.d ? '<div class="when">' + esc(c.d) + '</div>' : '') +
+    ((note || link) ? '<div class="cfoot">' + note + link + '</div>' : '') +
+    '</div>';
+}
+function esc(s){
+  return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function at(list, ri, di){
+  return list.filter(function(it){ return it[0] === ri && it[1] === di; });
+}
+
+function renderDayTabs(){
+  var html = DAYS.map(function(d, i){
+    return '<button class="tab" role="tab" data-day="' + i + '" aria-selected="' + (curDay === i) + '">' +
+      d[0] + ((today - 1) === i ? '<i class="dot"></i>' : '') + '</button>';
+  }).join("");
+  html += '<button class="tab" role="tab" data-day="all" aria-selected="' + (curDay === "all") + '">Вся неделя</button>';
+  var box = document.getElementById("dayTabs");
+  box.innerHTML = html;
+  box.querySelectorAll(".tab").forEach(function(b){
+    b.addEventListener("click", function(){
+      curDay = b.dataset.day === "all" ? "all" : Number(b.dataset.day);
+      render();
+    });
+  });
+}
+
+function renderDay(list){
+  var di = curDay, rows = "", last = -1, count = 0;
+  TIMES.forEach(function(t, ri){ if (at(list, ri, di).length){ last = ri; } });
+  if (last < 0) return '<div class="dayhead">' + DAYS[di][1] + '<span>пар нет</span></div>' +
+    '<div class="free">В этот день ничего не стоит.</div>';
+
+  for (var ri = 0; ri <= last; ri++){
+    var cells = at(list, ri, di), t = TIMES[ri];
+    count += cells.length;
+    if (!cells.length){
+      rows += '<div class="row gap"><div class="t">' + t[0] + '<small>' + t[1] + '</small></div><div class="c">—</div></div>';
+    } else {
+      rows += '<div class="row"><div class="t">' + t[0] + '<small>' + t[1] + '</small></div><div class="c">' +
+        cells.map(function(it){ return card(it[2]); }).join("") + '</div></div>';
+    }
+  }
+  var first = 0;
+  while (first <= last && !at(list, first, di).length) first++;
+  return '<div class="dayhead">' + DAYS[di][1] + '<span>' + TIMES[first][0] + '–' + TIMES[last][1] +
+    ' · ' + count + ' п.</span></div>' + rows;
+}
+
+function renderWeek(list){
+  var head = '<th class="corner">Пара</th>';
+  DAYS.forEach(function(d, i){
+    var t = (today - 1) === i;
+    head += '<th class="' + (t ? "is-today" : "") + '">' + d[0] + '<span class="full">' + d[1] + '</span>' +
+      (t ? '<i class="todaydot"></i>' : '') + '</th>';
+  });
+  var rows = "";
+  TIMES.forEach(function(t, ri){
+    rows += '<tr><td class="time">' + t[0] + '<small>' + t[1] + '</small></td>';
+    DAYS.forEach(function(d, di){
+      var inner = at(list, ri, di).map(function(it){ return card(it[2]); }).join("");
+      rows += '<td class="slot' + (inner ? "" : " empty") + ((today - 1) === di ? " is-today" : "") + '">' + inner + '</td>';
+    });
+    rows += "</tr>";
+  });
+  return '<div class="scroller"><table><thead><tr>' + head + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+}
+
+function renderStatus(){
+  var box = document.getElementById("status"), txt = document.getElementById("statusText");
+  box.className = "status " + (SOURCE.state === "live" ? "live" : SOURCE.state === "loading" ? "load" : "stale");
+  if (SOURCE.state === "loading") txt.textContent = "Тяну расписание из таблицы…";
+  else if (SOURCE.state === "live") txt.textContent = "Актуально из таблицы · " + SOURCE.when;
+  else if (SOURCE.state === "cache") txt.textContent = "Из сохранённой копии · " + SOURCE.when + " · обновить не удалось";
+  else txt.textContent = "Таблица недоступна · встроенная копия от " + SNAPSHOT_DATE +
+    (SOURCE.why ? " · " + SOURCE.why : "");
+}
+
+function renderNotes(){
+  var live = SOURCE.state === "live" || SOURCE.state === "cache";
+  var howto = LOCAL_FILE
+    ? 'Страница открыта как файл, и у неё Origin = null — такому источнику Google не отдаёт данные ' +
+      'ни по одному адресу. Положите файл в папку и запустите в ней <code>python3 -m http.server 8000</code>, ' +
+      'откройте <code>localhost:8000</code> — загрузка заработает сама. Второй вариант — развернуть Apps Script ' +
+      'и вписать его адрес в APPS_SCRIPT_URL (код есть в комментарии в начале скрипта).'
+    : 'Живая загрузка не прошла — Google не ответил или изменил формат выгрузки. Нажмите «Обновить».';
+  document.getElementById("notes").innerHTML =
+    '<div class="note"><h2>Откуда данные</h2><p>' +
+      (live ? "Страница разбирает HTML-выгрузку листа: объединённые ячейки разворачиваются, поэтому лекции потока попадают в обе подгруппы. Пары, преподаватели, даты и ссылки берутся из таблицы как есть."
+            : "Показана встроенная копия от " + SNAPSHOT_DATE + ".") +
+    '</p></div>' +
+    '<div class="note"><h2>Живые данные</h2><p>' + (live
+      ? 'Источник — выгрузка книги в zip (единственный формат, где сохраняются объединения ячеек и ссылки). csv и gviz их теряют, htmlview больше не отдаёт разметку.'
+      : howto) + '</p></div>' +
+    '<div class="note"><h2>Аудитории</h2><p>Номеров аудиторий в таблице обычно нет. Актуальные места и переносы: <a href="https://ruz.hse.ru/">ruz.hse.ru</a>.</p></div>';
+}
+
+function render(){
+  var list = ITEMS[curGroup] || [];
+  document.getElementById("groupName").textContent = curGroup;
+  document.getElementById("groupMeta").textContent = GROUPS[curGroup].meta;
+  document.title = "Расписание " + curGroup + " · 1 семестр 26/27";
+  document.querySelectorAll("#dayTabs .tab").forEach(function(b){
+    var v = b.dataset.day === "all" ? "all" : Number(b.dataset.day);
+    b.setAttribute("aria-selected", String(v === curDay));
+  });
+  document.getElementById("panel").innerHTML = (curDay === "all") ? renderWeek(list) : renderDay(list);
+  renderStatus();
+  renderNotes();
+}
+
+function stamp(ts){
+  var d = new Date(ts);
+  return d.toLocaleDateString("ru-RU", {day:"2-digit", month:"2-digit"}) + " " +
+         d.toLocaleTimeString("ru-RU", {hour:"2-digit", minute:"2-digit"});
+}
+
+function update(){
+  SOURCE = {state:"loading"};
+  renderStatus();
+  loadLive().then(function(data){
+    ITEMS = data;
+    cacheSave(data);
+    SOURCE = {state:"live", when: stamp(Date.now())};
+    render();
+  }).catch(function(err){
+    var c = cacheLoad();
+    if (c){ ITEMS = c.d; SOURCE = {state:"cache", when: stamp(c.t)}; }
+    else {
+      ITEMS = SNAPSHOT;
+      SOURCE = {state:"snapshot", why: LOCAL_FILE
+        ? "локальный файл, Google не отдаёт данные"
+        : (err && err.message ? err.message : null)};
+    }
+    render();
+  });
+}
+
+document.querySelectorAll("#groupTabs .tab").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    document.querySelectorAll("#groupTabs .tab").forEach(function(b){
+      b.setAttribute("aria-selected", String(b === btn));
+    });
+    curGroup = btn.dataset.key;
+    render();
+  });
+});
+document.getElementById("refresh").addEventListener("click", update);
+document.getElementById("sheetLink").href = SHEET_URL;
+
+var cached = cacheLoad();
+if (cached){ ITEMS = cached.d; SOURCE = {state:"cache", when: stamp(cached.t)}; }
+renderDayTabs();
+render();
+update();
+</script>
+</body>
+</html>
