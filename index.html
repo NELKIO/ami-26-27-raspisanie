@@ -112,15 +112,30 @@
   .tab .sub{color:var(--muted);font-size:11px;margin-left:5px}
   .tab[aria-selected="true"] .sub{color:var(--ink);opacity:.6}
 
-  .datebar{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-top:10px;
-    font-size:11.5px;color:var(--muted)}
-  .datebar input[type="date"]{color-scheme:dark;background:var(--card);color:var(--ink);
+  .daybar{display:flex;align-items:center;justify-content:space-between;gap:8px 12px;margin-top:14px}
+  .daybar .tabs.days{margin-top:0;flex:0 1 auto;min-width:0}
+  .daybar .tabs.days .tab{padding:5px 10px}
+  .daytools{flex:0 0 auto;display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--muted)}
+  .daytools>span{white-space:nowrap}
+  .daytools input[type="date"]{color-scheme:dark;background:var(--card);color:var(--ink);
     border:1px solid var(--line);border-radius:5px;padding:2px 6px;
     font-family:"IBM Plex Mono",monospace;font-size:11.5px}
-  .datebar button{appearance:none;border:1px solid var(--line);background:var(--card);
+  .daytools button{appearance:none;border:1px solid var(--line);background:var(--card);
     color:var(--muted);border-radius:5px;padding:2px 8px;font:inherit;font-size:11px;cursor:pointer}
-  .datebar button:hover{color:var(--ink)}
-  .datebar button[disabled]{opacity:.45;cursor:default}
+  .daytools button:hover{color:var(--ink)}
+  .daytools button[disabled]{opacity:.45;cursor:default}
+  .chip{border-radius:999px !important;padding:3px 11px !important;white-space:nowrap}
+  .chip::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
+    background:var(--muted);margin-right:6px;vertical-align:middle}
+  .chip[aria-pressed="true"]{color:var(--ok);border-color:rgba(63,195,155,.55);
+    background:rgba(63,195,155,.12)}
+  .chip[aria-pressed="true"]::before{background:var(--ok)}
+  .dsep{width:1px;height:14px;background:var(--line)}
+  @media (max-width:760px){
+    .daybar{flex-wrap:wrap}
+    .daybar .tabs.days,.daytools{flex:1 1 100%}
+    .daytools{flex-wrap:wrap}
+  }
 
   .notes{margin-top:18px;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
   .note{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:11px 13px}
@@ -141,13 +156,16 @@
 
   <div class="tabs" role="tablist" aria-label="Подгруппа" id="groupTabs"></div>
 
-  <div class="tabs days" role="tablist" aria-label="День недели" id="dayTabs"></div>
-
-  <div class="datebar">
-    <span>Отсчёт дат от</span>
-    <input type="date" id="datePick">
-    <button type="button" id="dateToday">сегодня</button>
-    <span id="dateHint"></span>
+  <div class="daybar">
+    <div class="tabs days" role="tablist" aria-label="День недели" id="dayTabs"></div>
+    <div class="daytools">
+      <button type="button" class="chip" id="onlyReal" aria-pressed="false"
+              title="Скрыть пары, которых в этот день не будет">только в этот день</button>
+      <i class="dsep"></i>
+      <span title="Даты дней недели считаются от этого числа">Отсчёт от</span>
+      <input type="date" id="datePick">
+      <button type="button" id="dateToday">сегодня</button>
+    </div>
   </div>
 
   <header class="hero">
@@ -968,6 +986,7 @@ if (curDay > 5) curDay = 0;                      // воскресенья в р
 var ITEMS = SNAPSHOT;
 var SOURCE = {state:"snapshot", when:null, why:null};
 var LOCAL_FILE = location.protocol === "file:";
+var onlyReal = false;                            // фильтр «только в этот день»
 
 /* ------------------------------------------------------------------- даты */
 /* Дата дня недели = ближайшая дата не раньше «отсчёта». Сегодня вторник 01.09 →
@@ -1399,18 +1418,30 @@ function renderDateBar(){
   var inp = document.getElementById("datePick");
   if (inp.value !== fmtISO(anchor)) inp.value = fmtISO(anchor);
   document.getElementById("dateToday").disabled = sameDay(anchor, TODAY);
-  document.getElementById("dateHint").textContent =
-    sameDay(anchor, TODAY) ? "" : "· сегодня " + fmtDM(TODAY);
+  document.getElementById("onlyReal").setAttribute("aria-pressed", String(onlyReal));
+}
+
+/* пары слота, с учётом фильтра «только в этот день».
+   Прячем лишь то, про что таблица прямо говорит «не в эту дату»; пары без дат
+   («С 2 модуля» и подобные) остаются — судить по ним не о чем, а пропустить пару хуже. */
+function shown(list, ri, di, when){
+  return at(list, ri, di).filter(function(it){
+    return !onlyReal || verdict(it[2].d, when) !== "no";
+  });
 }
 
 function renderDay(list){
-  var di = curDay, when = dateFor(di), rows = "", last = -1, count = 0;
-  TIMES.forEach(function(t, ri){ if (at(list, ri, di).length){ last = ri; } });
-  if (last < 0) return '<div class="dayhead">' + DAYS[di][1] + '<span>' + fmtDM(when) + ' · пар нет</span></div>' +
-    '<div class="free">В этот день ничего не стоит.</div>';
+  var di = curDay, when = dateFor(di), rows = "", last = -1, count = 0, hidden = 0;
+  TIMES.forEach(function(t, ri){
+    if (shown(list, ri, di, when).length) last = ri;
+    hidden += at(list, ri, di).length - shown(list, ri, di, when).length;
+  });
+  var tail = hidden ? ' · скрыто ' + hidden : '';
+  if (last < 0) return '<div class="dayhead">' + DAYS[di][1] + '<span>' + fmtDM(when) + ' · пар нет' + tail + '</span></div>' +
+    '<div class="free">' + (hidden ? "В этот день ничего из расписания не идёт." : "В этот день ничего не стоит.") + '</div>';
 
   for (var ri = 0; ri <= last; ri++){
-    var cells = at(list, ri, di), t = TIMES[ri];
+    var cells = shown(list, ri, di, when), t = TIMES[ri];
     count += cells.length;
     if (!cells.length){
       rows += '<div class="row gap"><div class="t">' + t[0] + '<small>' + t[1] + '</small></div><div class="c">—</div></div>';
@@ -1420,9 +1451,9 @@ function renderDay(list){
     }
   }
   var first = 0;
-  while (first <= last && !at(list, first, di).length) first++;
+  while (first <= last && !shown(list, first, di, when).length) first++;
   return '<div class="dayhead">' + DAYS[di][1] + '<span>' + fmtDM(when) + ' · ' +
-    TIMES[first][0] + '–' + TIMES[last][1] + ' · ' + count + ' п.</span></div>' + rows;
+    TIMES[first][0] + '–' + TIMES[last][1] + ' · ' + count + ' п.' + tail + '</span></div>' + rows;
 }
 
 function renderWeek(list){
@@ -1437,7 +1468,7 @@ function renderWeek(list){
     rows += '<tr><td class="time">' + t[0] + '<small>' + t[1] + '</small></td>';
     DAYS.forEach(function(d, di){
       var when = dateFor(di);
-      var inner = at(list, ri, di).map(function(it){ return card(it[2], when); }).join("");
+      var inner = shown(list, ri, di, when).map(function(it){ return card(it[2], when); }).join("");
       rows += '<td class="slot' + (inner ? "" : " empty") + (sameDay(when, TODAY) ? " is-today" : "") + '">' + inner + '</td>';
     });
     rows += "</tr>";
@@ -1536,6 +1567,10 @@ document.getElementById("datePick").addEventListener("change", function(){
   if (!v) return;
   var parts = v.split("-");
   anchor = new Date(+parts[0], +parts[1] - 1, +parts[2]);
+  render();
+});
+document.getElementById("onlyReal").addEventListener("click", function(){
+  onlyReal = !onlyReal;
   render();
 });
 document.getElementById("dateToday").addEventListener("click", function(){
