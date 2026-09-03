@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Расписание БСБВЦ262 и БМТМТБ261 · матфак · 1 модуль 26/27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#101315; --card:#171b1e; --raise:#1e2327;
+    --ink:#e7ecee; --muted:#8d979d; --line:#2b3236; --line2:#3b444a;
+    --lecture:#5aa2f0; --seminar:#3fc39b; --practice:#e2a13c;
+    --online:#ff7a45; --no:#f2646a; --today:#20272b; --ok:#3fc39b; --warn:#e2a13c; --radius:8px;
+    --scheme:dark; --stripe:rgba(141,151,157,.06);
+    --research:#b48cf2; --english:#8d979d;
+  }
+  :root[data-theme="light"]{
+    --bg:#f3f4f2; --card:#ffffff; --raise:#f0f2f0;
+    --ink:#1d2326; --muted:#6a7479; --line:#dfe3e1; --line2:#c9cfcc;
+    --lecture:#2f7fd6; --seminar:#1f9c78; --practice:#c4841a;
+    --online:#e5602b; --no:#d4404a; --today:#e9edea; --ok:#1f9c78; --warn:#c4841a;
+    --scheme:light; --stripe:rgba(29,35,38,.05);
+    --research:#7d4fd6; --english:#6a7479;
+  }
+  html{color-scheme:var(--scheme)}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;font-size:13px;line-height:1.4}
+  .wrap{max-width:1000px;margin:0 auto;padding:20px 12px 44px}
+
+  .tabs{display:flex;gap:4px;padding:3px;background:var(--card);border:1px solid var(--line);
+    border-radius:999px;width:max-content;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{appearance:none;border:0;background:transparent;color:var(--muted);cursor:pointer;
+    font-family:"IBM Plex Mono",monospace;font-size:13px;padding:5px 14px;border-radius:999px;white-space:nowrap}
+  .tab[aria-selected="true"]{background:var(--raise);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+  .tab:focus-visible{outline:2px solid var(--lecture);outline-offset:2px}
+  .tabs.days{margin-top:14px}
+  .tabs.days .tab{padding:5px 12px;font-size:12.5px}
+  .tab .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--practice);
+    margin-left:5px;vertical-align:middle}
+
+  .group{font-family:"IBM Plex Mono",monospace;font-size:clamp(30px,8vw,52px);font-weight:500;
+    letter-spacing:-.03em;line-height:.95;margin:16px 0 0}
+  .hero p{margin:8px 0 0;max-width:58ch;color:var(--muted);font-size:12.5px}
+  .stream{display:inline-block;margin-top:10px;padding:2px 9px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);font-family:"IBM Plex Mono",monospace;
+    font-size:11.5px;color:var(--muted)}
+
+  .status{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:11.5px;color:var(--muted)}
+  .status .led{width:6px;height:6px;border-radius:50%;background:var(--muted);flex:0 0 auto}
+  .status.live .led{background:var(--ok)} .status.stale .led{background:var(--warn)}
+  .status.load .led{background:var(--lecture);animation:pulse 1s infinite alternate}
+  @keyframes pulse{from{opacity:.3}to{opacity:1}}
+  .status button,.status a{appearance:none;border:1px solid var(--line);background:var(--card);
+    color:var(--muted);border-radius:5px;padding:2px 8px;font:inherit;font-size:11px;
+    cursor:pointer;text-decoration:none}
+  .status button:hover,.status a:hover{color:var(--ink)}
+
+  .legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:14px 0 10px;font-size:11.5px;color:var(--muted)}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .swatch{width:3px;height:12px;border-radius:2px;display:inline-block}
+  .onlinekey{color:var(--online);border:1px solid var(--online);border-radius:4px;padding:1px 6px;
+    font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.04em}
+
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .dayhead{padding:9px 12px;border-bottom:1px solid var(--line2);font-size:12px;font-weight:600}
+  .dayhead span{font-weight:400;color:var(--muted);margin-left:6px}
+  .row{display:flex;gap:10px;padding:8px 12px;border-bottom:1px solid var(--line)}
+  .row:last-child{border-bottom:none}
+  .row .t{flex:0 0 62px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:500;padding-top:3px}
+  .row .t small{display:block;color:var(--muted);font-weight:400;font-size:10.5px;margin-top:1px}
+  .row .c{flex:1;min-width:0}
+  .row.gap .t{color:var(--muted);font-weight:400}
+  .row.gap .c{padding-top:3px;color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:12px}
+  .free{padding:20px 12px;color:var(--muted);font-size:12.5px}
+
+  .scroller{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{border-collapse:separate;border-spacing:0;width:100%;min-width:760px}
+  th,td{vertical-align:top;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+  th:last-child,td:last-child{border-right:none}
+  tr:last-child th,tr:last-child td{border-bottom:none}
+  thead th{position:sticky;top:0;z-index:3;background:var(--card);padding:9px 11px;text-align:left;
+    font-size:12px;font-weight:600;border-bottom:1px solid var(--line2)}
+  thead th .full{display:block;font-weight:400;font-size:10.5px;color:var(--muted)}
+  th.corner,td.time{position:sticky;left:0;z-index:2;background:var(--card);
+    width:76px;min-width:76px;box-shadow:1px 0 0 var(--line)}
+  thead th.corner{z-index:4}
+  td.time{padding:9px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:500;white-space:nowrap}
+  td.time small{display:block;color:var(--muted);font-weight:400;font-size:10.5px;margin-top:1px}
+  td.slot{padding:6px;min-width:140px}
+  td.empty{background:repeating-linear-gradient(135deg,transparent,transparent 8px,var(--stripe) 8px,var(--stripe) 9px)}
+  td.is-today,thead th.is-today{background:var(--today)}
+  .todaydot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--practice);margin-left:5px;vertical-align:middle}
+
+  .class{border-left:3px solid var(--line);padding:6px 8px;border-radius:0 5px 5px 0;background:var(--raise)}
+  .class + .class{margin-top:6px}
+  .class .kind{font-family:"IBM Plex Mono",monospace;font-size:10px}
+  .class .name{font-size:12.5px;font-weight:600;margin:1px 0 2px;line-height:1.25}
+  .class .who{font-size:12px}
+  .class .when{font-size:11px;color:var(--muted);margin-top:2px}
+  .l{border-left-color:var(--lecture)} .l .kind{color:var(--lecture)}
+  .s{border-left-color:var(--seminar)} .s .kind{color:var(--seminar)}
+  .p{border-left-color:var(--practice)} .p .kind{color:var(--practice)}
+  .r{border-left-color:var(--research)} .r .kind{color:var(--research)}
+  .e{border-left-color:var(--english)} .e .kind{color:var(--english)}
+  .o{border-left-color:var(--line2)} .o .kind{color:var(--muted)}
+  .class.faded{opacity:.42}
+  .par{display:inline-block;margin-left:6px;padding:0 5px;border-radius:3px;border:1px solid var(--line2);
+    color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.03em;vertical-align:1px}
+  .par.on{color:var(--ok);border-color:rgba(63,195,155,.55)}
+  .par.off{color:var(--no);border-color:rgba(242,100,106,.5)}
+  .room{display:inline-block;margin-left:6px;padding:0 5px;border-radius:3px;background:var(--raise);
+    box-shadow:inset 0 0 0 1px var(--line);font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink)}
+  .lvl{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);margin-left:5px}
+  .parkey{display:inline-block;padding:0 5px;border-radius:3px;border:1px solid var(--line2);
+    font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--muted);margin-right:3px}
+  .weekpar{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);margin-left:6px}
+  .class.online{border-left-color:var(--online);background:rgba(255,122,69,.12);
+    box-shadow:inset 0 0 0 1px rgba(255,122,69,.45)}
+  .badge{display:inline-block;margin-bottom:3px;padding:2px 7px;border-radius:4px;
+    background:var(--online);color:#fff5ef;font-family:"IBM Plex Mono",monospace;
+    font-size:10.5px;font-weight:500;letter-spacing:.06em}
+  .cfoot{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:4px}
+  .stream-note{font-size:11px;color:var(--muted)}
+  .join{display:inline-block;color:var(--online);background:transparent;text-decoration:none;
+    border:1px solid var(--online);border-radius:4px;padding:1px 6px;
+    font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.04em}
+  .join:hover{background:rgba(255,122,69,.14)}
+  .d-yes{color:var(--ok)}
+  .d-no{color:var(--no)}
+
+  .tabsep{flex:0 0 auto;width:1px;align-self:stretch;margin:2px 3px;background:var(--line)}
+  .tab .sub{color:var(--muted);font-size:11px;margin-left:5px}
+  .tab[aria-selected="true"] .sub{color:var(--ink);opacity:.6}
+
+  .daybar{display:flex;align-items:center;justify-content:space-between;gap:8px 12px;margin-top:14px}
+  .daybar .tabs.days{margin-top:0;flex:0 1 auto;min-width:0}
+  .daybar .tabs.days .tab{padding:5px 10px}
+  .daytools{flex:0 0 auto;display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--muted)}
+  .daytools>span{white-space:nowrap}
+  .daytools input[type="date"]{color-scheme:var(--scheme);background:var(--card);color:var(--ink);
+    border:1px solid var(--line);border-radius:5px;padding:2px 6px;
+    font-family:"IBM Plex Mono",monospace;font-size:11.5px}
+  .daytools button{appearance:none;border:1px solid var(--line);background:var(--card);
+    color:var(--muted);border-radius:5px;padding:2px 8px;font:inherit;font-size:11px;cursor:pointer}
+  .daytools button:hover{color:var(--ink)}
+  .daytools button[disabled]{opacity:.45;cursor:default}
+  .chip{border-radius:999px !important;padding:3px 11px !important;white-space:nowrap}
+  .chip::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
+    background:var(--muted);margin-right:6px;vertical-align:middle}
+  .chip[aria-pressed="true"]{color:var(--ok);border-color:rgba(63,195,155,.55);
+    background:rgba(63,195,155,.12)}
+  .chip[aria-pressed="true"]::before{background:var(--ok)}
+  .dsep{width:1px;height:14px;background:var(--line)}
+  @media (max-width:760px){
+    .daybar{flex-wrap:wrap}
+    .daybar .tabs.days,.daytools{flex:1 1 100%}
+    .daytools{flex-wrap:wrap}
+  }
+
+  .notes{margin-top:18px;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .note{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:11px 13px}
+  .note h2{margin:0 0 4px;font-size:12.5px;font-weight:600}
+  .note p{margin:0;font-size:11.5px;color:var(--muted)}
+  .note a{color:var(--lecture)}
+  footer{margin-top:18px;font-size:11px;color:var(--muted);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:space-between;gap:8px 14px}
+  footer a{color:var(--lecture)}
+  .themebtn{appearance:none;border:1px solid var(--line);background:var(--card);color:var(--muted);
+    border-radius:999px;padding:3px 10px;font:inherit;font-size:11px;cursor:pointer;
+    font-family:"IBM Plex Mono",monospace;white-space:nowrap}
+  .themebtn:hover{color:var(--ink)}
+  .themebtn::before{content:"◐";margin-right:6px}
+
+  @media (max-width:640px){
+    .wrap{padding:16px 8px 36px}
+    th.corner,td.time{width:64px;min-width:64px}
+    td.slot{min-width:132px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="tabs" role="tablist" aria-label="Подгруппа" id="groupTabs"></div>
+
+  <div class="daybar">
+    <div class="tabs days" role="tablist" aria-label="День недели" id="dayTabs"></div>
+    <div class="daytools">
+      <button type="button" class="chip" id="onlyReal" aria-pressed="false"
+              title="Скрыть пары, которых в этот день не будет">только в этот день</button>
+      <button type="button" class="chip" id="showEng" aria-pressed="false"
+              title="Английский стоит в сетке группы с 21.09; по умолчанию скрыт">английский</button>
+      <i class="dsep"></i>
+      <span title="Даты дней недели считаются от этого числа">Отсчёт от</span>
+      <input type="date" id="datePick">
+      <button type="button" id="dateToday">сегодня</button>
+    </div>
+  </div>
+
+  <header class="hero">
+    <h1 class="group" id="groupName">БСБВЦ262</h1>
+    <p>Факультет математики, 1 курс, 1 модуль 2026/27 — пары выбранной группы. Английский стартует с 21.09 и по умолчанию скрыт: включается кнопкой рядом с датой.</p>
+    <span class="stream" id="groupMeta"></span>
+    <div class="status" id="status">
+      <i class="led"></i><span id="statusText">Загрузка…</span>
+      <button id="refresh" type="button">Обновить</button>
+      <a id="sheetLink" target="_blank" rel="noopener">Таблица</a>
+    </div>
+  </header>
+
+  <div class="legend">
+    <span><i class="swatch" style="background:var(--lecture)"></i>Лекция</span>
+    <span><i class="swatch" style="background:var(--seminar)"></i>Семинар</span>
+    <span><i class="swatch" style="background:var(--research)"></i>НИС</span>
+    <span><i class="swatch" style="background:var(--english)"></i>Английский</span>
+    <span><i class="parkey">чёт</i><i class="parkey">нечёт</i>неделя</span>
+    <span><i class="onlinekey">ОНЛАЙН</i>идти никуда не нужно</span>
+  </div>
+
+  <div class="panel" id="panel"></div>
+  <div class="notes" id="notes"></div>
+
+  <footer><span>Данные тянутся напрямую из таблицы факультета математики «1 бак с 7.09». Переносы и отмены — в <a href="https://ruz.hse.ru/">РУЗ</a>. Расписание <a href="../">ПМИ</a> — отдельно.</span><button type="button" class="themebtn" id="themeToggle">светлая тема</button></footer>
+</div>
+
+<script>
+/* ------------------------------------------------------------------- тема */
+(function(){
+  var t = null;
+  try { t = localStorage.getItem("theme"); } catch(e){}
+  if (t === "light") document.documentElement.setAttribute("data-theme", "light");
+})();
+function applyThemeButton(){
+  var light = document.documentElement.getAttribute("data-theme") === "light";
+  var b = document.getElementById("themeToggle");
+  if (b) b.textContent = light ? "тёмная тема" : "светлая тема";
+}
+document.getElementById("themeToggle").addEventListener("click", function(){
+  var light = document.documentElement.getAttribute("data-theme") === "light";
+  if (light) document.documentElement.removeAttribute("data-theme");
+  else document.documentElement.setAttribute("data-theme", "light");
+  try { localStorage.setItem("theme", light ? "dark" : "light"); } catch(e){}
+  applyThemeButton();
+});
+applyThemeButton();
+
+/* ------------------------------------------------------------------ настройки */
+var SHEET_ID = "1_DxncTDb5oQDG55bnuLluEZSiV88ZRLyIqXFMC3weMY";
+var GID      = "883693860";               // лист «1бак с 7.09»
+var SHEET_URL = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/edit?gid=" + GID;
+
+/* Единственный источник, в котором есть объединения ячеек (colspan) и ссылки:
+   выгрузка всей книги в zip с HTML-версиями листов. htmlview/pubhtml теперь отдают
+   пустую JS-оболочку, csv и gviz теряют объединения — по ним поток восстановить нельзя. */
+var SRC_ZIP = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/export?format=zip";
+
+/* Google отдаёт Access-Control-Allow-Origin, только если браузер прислал настоящий
+   Origin. У страницы, открытой двойным кликом (file://), Origin = null, и запрос
+   режется. Варианты, если нужна живая загрузка из локального файла:
+   1) отдать папку любым http-сервером (см. заметку «Живые данные» внизу страницы);
+   2) вписать сюда адрес веб-приложения Apps Script — оно отдаёт JSON с ACAO: *
+      и работает даже из file://. Код приложения — в комментарии ниже. */
+var APPS_SCRIPT_URL = "";                 // напр. "https://script.google.com/macros/s/AKfy.../exec"
+var PROXY = "";                           // необязательный CORS-прокси, префикс перед URL-encoded адресом
+
+/*  Apps Script (Расширения → Apps Script → Развернуть → Веб-приложение,
+    доступ «Все»); вставьте полученный /exec-адрес в APPS_SCRIPT_URL:
+
+function doGet() {
+  var GID = 883693860;
+  var ss = SpreadsheetApp.openById("1_DxncTDb5oQDG55bnuLluEZSiV88ZRLyIqXFMC3weMY");
+  var sh = null;
+  ss.getSheets().forEach(function (s) { if (s.getSheetId() === GID) sh = s; });
+  var rng  = sh.getDataRange();
+  var vals = rng.getDisplayValues();
+  var rich = rng.getRichTextValues();
+  var grid = vals.map(function (row, r) {
+    return row.map(function (v, c) {
+      var url = null, rt = rich[r][c];
+      if (rt) rt.getRuns().forEach(function (run) { if (!url && run.getLinkUrl()) url = run.getLinkUrl(); });
+      return { t: v, h: url ? [url] : [] };
+    });
+  });
+  sh.getMergedRanges().forEach(function (m) {          // разворачиваем объединения
+    var r0 = m.getRow() - 1, c0 = m.getColumn() - 1, v = grid[r0][c0];
+    for (var r = 0; r < m.getNumRows(); r++)
+      for (var c = 0; c < m.getNumColumns(); c++) grid[r0 + r][c0 + c] = v;
+  });
+  return ContentService.createTextOutput(JSON.stringify({ grid: grid }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+*/
+
+var PINNED = ["БСБВЦ262", "БМТМТБ261"];
+var GROUP_ORDER = ["БСБВЦ262", "БМТМТБ261", "БМТМТБ262", "БМТМТБ263", "БМТМТБ264", "БМТМТБ265", "БСБВЦ261"];
+var GROUPS = {
+  "БСБВЦ262":{meta:"СОВБАК"},
+  "БМТМТБ261":{meta:"БАКМАТ"},
+  "БМТМТБ262":{meta:"БАКМАТ"},
+  "БМТМТБ263":{meta:"БАКМАТ"},
+  "БМТМТБ264":{meta:"БАКМАТ"},
+  "БМТМТБ265":{meta:"БАКМАТ"},
+  "БСБВЦ261":{meta:"СОВБАК"}
+};
+var TIMES = [["10:00", "11:20"], ["11:30", "12:50"], ["13:20", "14:40"], ["14:50", "16:10"], ["16:20", "17:40"], ["18:10", "19:30"]];
+
+var SNAPSHOT = {
+  "БСБВЦ262":[
+    [0,0,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 9:30"}],
+    [1,0,{"k": "s", "n": "Основы российской государственности", "w": "Сладков В.Д.", "d": "группа _58", "room": "306"}],
+    [2,0,{"k": "s", "n": "Геометрия и линейная алгебра", "w": "Гусева Л.А.", "d": "", "room": "213"}],
+    [3,0,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "продв", "room": "215", "d": "с 21.09"}],
+    [0,2,{"k": "s", "n": "Геометрия и линейная алгебра", "w": "Гусева Л.А.", "d": "", "room": "213"}],
+    [1,2,{"k": "s", "n": "Основы российской государственности", "w": "Сладков В.Д.", "d": "группа _58", "room": "306"}],
+    [2,2,{"k": "l", "n": "Математический анализ", "w": "Калмынин А.Б.", "d": "", "room": "427"}],
+    [3,2,{"k": "s", "n": "История России", "w": "Клюев А.И.", "d": "группа _57", "room": "212"}],
+    [0,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 9:30"}],
+    [1,3,{"k": "s", "n": "Математический анализ", "w": "Филимонов Д.А.", "d": "", "room": "109"}],
+    [2,3,{"k": "l", "n": "Введение в дискретную математику и топологию", "w": "Артамкин И.В.", "d": "", "room": "427"}],
+    [3,3,{"k": "r", "n": "Научно-исследовательский семинар \"Педагогическая мастерская\"", "w": "Ященко И.В.", "d": "", "room": "306"}],
+    [4,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "продв", "room": "215", "d": "с 21.09"}],
+    [0,4,{"k": "s", "n": "Введение в дискретную математику и в топологию", "w": "Запрягаев А.А.", "d": "", "par": "odd", "room": "212"}],
+    [1,4,{"k": "l", "n": "Геометрия и линейная алгебра", "w": "Авилов А.А.", "d": "", "room": "306"}],
+    [2,4,{"k": "s", "n": "Введение в дискретную математику и в топологию", "w": "Запрягаев А.А.", "d": "", "room": "212"}],
+    [3,4,{"k": "l", "n": "Математический анализ", "w": "Калмынин А.Б.", "d": "", "par": "odd", "room": "427"}],
+    [0,5,{"k": "r", "n": "Научно-исследовательский семинар \"Тривиум. Математика\"", "w": "Муравьев М.Ю.", "d": "с октября", "par": "even", "room": "427"}],
+    [1,5,{"k": "l", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "26.09, 3.10, 10.10 · бакмат+совбак · группа _12", "on": 1}]
+  ],
+  "БМТМТБ261":[
+    [0,0,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 9:30"}],
+    [1,0,{"k": "s", "n": "Математический анализ", "w": "Меновщиков А.В", "d": "", "room": "209"}],
+    [2,0,{"k": "s", "n": "Алгебра", "w": "Ильин А.И.", "d": "", "room": "208"}],
+    [3,0,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "продв", "room": "215", "d": "с 21.09"}],
+    [0,1,{"k": "l", "n": "Геометрия и линейная алгебра", "w": "Осипов П.С.", "d": "начало в 9:30 · только для бакмат", "par": "odd", "room": "427"}],
+    [1,1,{"k": "e", "n": "Английский язык", "w": "Мищук А.М.", "lvl": "осн", "room": "212", "d": "с 21.09 · начало в 11:10"}],
+    [2,1,{"k": "s", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "группа _52-53", "room": "210"}],
+    [3,1,{"k": "s", "n": "Введение в дискретную математику и в топологию", "w": "Алфимов М.Н.", "d": "", "par": "even", "room": "208"}],
+    [1,2,{"k": "s", "n": "История России", "w": "Новикова А.Д.", "d": "группа _51", "room": "212"}],
+    [2,2,{"k": "l", "n": "Математический анализ", "w": "Калмынин А.Б.", "d": "", "room": "427"}],
+    [3,2,{"k": "s", "n": "Введение в дискретную математику и в топологию", "w": "Алфимов М.Н.", "d": "", "room": "326"}],
+    [0,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 9:30"}],
+    [1,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 11:10"}],
+    [2,3,{"k": "l", "n": "Введение в дискретную математику и топологию", "w": "Артамкин И.В.", "d": "", "room": "427"}],
+    [3,3,{"k": "s", "n": "Алгебра", "w": "Ильин А.И.", "d": "", "par": "even", "room": "208"}],
+    [4,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "продв", "room": "215", "d": "с 21.09"}],
+    [0,4,{"k": "l", "n": "Геометрия и линейная алгебра", "w": "Осипов П.С.", "d": "", "room": "427"}],
+    [1,4,{"k": "s", "n": "Геометрия и линейная алгебра", "w": "Шварцман О.В.", "d": "", "room": "208"}],
+    [2,4,{"k": "l", "n": "Алгебра", "w": "Кириченко В.А.", "d": "", "room": "427"}],
+    [3,4,{"k": "l", "n": "Математический анализ", "w": "Калмынин А.Б.", "d": "", "par": "odd", "room": "427"}],
+    [0,5,{"k": "r", "n": "Научно-исследовательский семинар \"Тривиум. Математика\"", "w": "Муравьев М.Ю.", "d": "с октября", "par": "even", "room": "427"}],
+    [1,5,{"k": "l", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "26.09, 3.10, 10.10 · бакмат+совбак · группа _12", "on": 1}],
+    [2,5,{"k": "s", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "группа _52-53", "room": "212"}]
+  ],
+  "БМТМТБ262":[
+    [0,0,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 9:30"}],
+    [1,0,{"k": "s", "n": "Математический анализ", "w": "Шилин И.С.", "d": "", "room": "210"}],
+    [2,0,{"k": "s", "n": "Алгебра", "w": "Тюрин Д.Н.", "d": "", "par": "even", "room": "210"}],
+    [3,0,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "продв", "room": "215", "d": "с 21.09"}],
+    [0,1,{"k": "l", "n": "Геометрия и линейная алгебра", "w": "Осипов П.С.", "d": "начало в 9:30 · только для бакмат", "par": "odd", "room": "427"}],
+    [1,1,{"k": "e", "n": "Английский язык", "w": "Мищук А.М.", "lvl": "осн", "room": "212", "d": "с 21.09 · начало в 11:10"}],
+    [2,1,{"k": "s", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "группа _52-53", "room": "210"}],
+    [3,1,{"k": "s", "n": "История России", "w": "Новикова А.Д.", "d": "группа _52-53", "room": "211"}],
+    [1,2,{"k": "s", "n": "Введение в дискретную математику и в топологию", "w": "Басалаев А.А.", "d": "", "room": "213"}],
+    [2,2,{"k": "l", "n": "Математический анализ", "w": "Калмынин А.Б.", "d": "", "room": "427"}],
+    [0,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 9:30"}],
+    [1,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 11:10"}],
+    [2,3,{"k": "l", "n": "Введение в дискретную математику и топологию", "w": "Артамкин И.В.", "d": "", "room": "427"}],
+    [3,3,{"k": "s", "n": "Алгебра", "w": "Тюрин Д.Н.", "d": "", "room": "209"}],
+    [4,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "продв", "room": "215", "d": "с 21.09"}],
+    [0,4,{"k": "l", "n": "Геометрия и линейная алгебра", "w": "Осипов П.С.", "d": "", "room": "427"}],
+    [1,4,{"k": "s", "n": "Геометрия и линейная алгебра", "w": "Осипов П.С.", "d": "", "room": "209"}],
+    [2,4,{"k": "l", "n": "Алгебра", "w": "Кириченко В.А.", "d": "", "room": "427"}],
+    [3,4,{"k": "l", "n": "Математический анализ", "w": "Калмынин А.Б.", "d": "", "par": "odd", "room": "427"}],
+    [3,4,{"k": "s", "n": "Введение в дискретную математику и в топологию", "w": "Басалаев А.А.", "d": "", "par": "even", "room": "209"}],
+    [0,5,{"k": "r", "n": "Научно-исследовательский семинар \"Тривиум. Математика\"", "w": "Муравьев М.Ю.", "d": "с октября", "par": "even", "room": "427"}],
+    [1,5,{"k": "l", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "26.09, 3.10, 10.10 · бакмат+совбак · группа _12", "on": 1}],
+    [2,5,{"k": "s", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "группа _52-53", "room": "212"}]
+  ],
+  "БМТМТБ263":[
+    [0,0,{"k": "e", "n": "Английский язык", "w": "Мищук А.М.", "lvl": "осн", "room": "212", "d": "с 21.09 · начало в 9:30"}],
+    [1,0,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 11:10"}],
+    [2,0,{"k": "s", "n": "Введение в дискретную математику и в топологию", "w": "Львовский С.М.", "d": "", "room": "209"}],
+    [3,0,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "продв", "room": "215", "d": "с 21.09"}],
+    [0,1,{"k": "l", "n": "Геометрия и линейная алгебра", "w": "Осипов П.С.", "d": "начало в 9:30 · только для бакмат", "par": "odd", "room": "427"}],
+    [1,1,{"k": "s", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "группа _54", "room": "210"}],
+    [2,1,{"k": "e", "n": "Английский язык", "w": "Мищук А.М.", "lvl": "осн", "room": "212", "d": "с 21.09 · начало в 13:00"}],
+    [3,1,{"k": "s", "n": "История России", "w": "Новикова А.Д.", "d": "группа _52-53", "room": "211"}],
+    [4,1,{"k": "s", "n": "Математический анализ", "w": "Калмынин А.Б.", "d": "", "room": "211"}],
+    [1,2,{"k": "s", "n": "Введение в дискретную математику и в топологию", "w": "Львовский С.М.", "d": "", "par": "odd", "room": "210"}],
+    [2,2,{"k": "l", "n": "Математический анализ", "w": "Калмынин А.Б.", "d": "", "room": "427"}],
+    [3,2,{"k": "s", "n": "Геометрия и линейная алгебра", "w": "Гусева Л.А.", "d": "", "room": "210"}],
+    [0,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 9:30"}],
+    [1,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 11:10"}],
+    [2,3,{"k": "l", "n": "Введение в дискретную математику и топологию", "w": "Артамкин И.В.", "d": "", "room": "427"}],
+    [3,3,{"k": "s", "n": "Алгебра", "w": "Кириченко В.А.", "d": "", "par": "even", "room": "210"}],
+    [4,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "продв", "room": "215", "d": "с 21.09"}],
+    [0,4,{"k": "l", "n": "Геометрия и линейная алгебра", "w": "Осипов П.С.", "d": "", "room": "427"}],
+    [1,4,{"k": "s", "n": "Алгебра", "w": "Кириченко В.А.", "d": "", "room": "210"}],
+    [2,4,{"k": "l", "n": "Алгебра", "w": "Кириченко В.А.", "d": "", "room": "427"}],
+    [3,4,{"k": "l", "n": "Математический анализ", "w": "Калмынин А.Б.", "d": "", "par": "odd", "room": "427"}],
+    [0,5,{"k": "r", "n": "Научно-исследовательский семинар \"Тривиум. Математика\"", "w": "Муравьев М.Ю.", "d": "с октября", "par": "even", "room": "427"}],
+    [1,5,{"k": "l", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "26.09, 3.10, 10.10 · бакмат+совбак · группа _12", "on": 1}],
+    [3,5,{"k": "s", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "группа _54", "room": "212"}]
+  ],
+  "БМТМТБ264":[
+    [0,0,{"k": "e", "n": "Английский язык", "w": "Мищук А.М.", "lvl": "осн", "room": "212", "d": "с 21.09 · начало в 9:30"}],
+    [1,0,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 11:10"}],
+    [2,0,{"k": "s", "n": "Математический анализ", "w": "Илларионов А.А.", "d": "", "room": "211"}],
+    [3,0,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "продв", "room": "215", "d": "с 21.09"}],
+    [0,1,{"k": "l", "n": "Геометрия и линейная алгебра", "w": "Осипов П.С.", "d": "начало в 9:30 · только для бакмат", "par": "odd", "room": "427"}],
+    [1,1,{"k": "s", "n": "История России", "w": "Новикова А.Д.", "d": "группа _54-55", "room": "211"}],
+    [2,1,{"k": "e", "n": "Английский язык", "w": "Мищук А.М.", "lvl": "осн", "room": "212", "d": "с 21.09 · начало в 13:00"}],
+    [3,1,{"k": "s", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "группа _55-56", "room": "212"}],
+    [4,1,{"k": "s", "n": "Алгебра", "w": "Болбачан В.С.", "d": "", "par": "even", "room": "212"}],
+    [4,1,{"k": "s", "n": "Введение в дискретную математику и в топологию", "w": "Запрягаев А.А", "d": "", "par": "odd", "room": "212"}],
+    [1,2,{"k": "s", "n": "Введение в дискретную математику и в топологию", "w": "Запрягаев А.А.", "d": "", "room": "211"}],
+    [2,2,{"k": "l", "n": "Математический анализ", "w": "Калмынин А.Б.", "d": "", "room": "427"}],
+    [0,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 9:30"}],
+    [1,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 11:10"}],
+    [2,3,{"k": "l", "n": "Введение в дискретную математику и топологию", "w": "Артамкин И.В.", "d": "", "room": "427"}],
+    [3,3,{"k": "s", "n": "Алгебра", "w": "Болбачан В.С.", "d": "", "room": "212"}],
+    [4,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "продв", "room": "215", "d": "с 21.09"}],
+    [0,4,{"k": "l", "n": "Геометрия и линейная алгебра", "w": "Осипов П.С.", "d": "", "room": "427"}],
+    [1,4,{"k": "s", "n": "Геометрия и линейная алгебра", "w": "Ровинский М.З.", "d": "", "room": "213"}],
+    [2,4,{"k": "l", "n": "Алгебра", "w": "Кириченко В.А.", "d": "", "room": "427"}],
+    [3,4,{"k": "l", "n": "Математический анализ", "w": "Калмынин А.Б.", "d": "", "par": "odd", "room": "427"}],
+    [0,5,{"k": "r", "n": "Научно-исследовательский семинар \"Тривиум. Математика\"", "w": "Муравьев М.Ю.", "d": "с октября", "par": "even", "room": "427"}],
+    [1,5,{"k": "l", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "26.09, 3.10, 10.10 · бакмат+совбак · группа _12", "on": 1}],
+    [4,5,{"k": "s", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "группа _55-56", "room": "212"}]
+  ],
+  "БМТМТБ265":[
+    [0,0,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 9:30"}],
+    [1,0,{"k": "e", "n": "Английский язык", "w": "Мищук А.М.", "lvl": "осн", "room": "212", "d": "с 21.09 · начало в 11:10"}],
+    [2,0,{"k": "s", "n": "Введение в дискретную математику и в топологию", "w": "Щечкин А.И.", "d": "", "room": "212"}],
+    [3,0,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "продв", "room": "215", "d": "с 21.09"}],
+    [0,1,{"k": "l", "n": "Геометрия и линейная алгебра", "w": "Осипов П.С.", "d": "начало в 9:30 · только для бакмат", "par": "odd", "room": "427"}],
+    [1,1,{"k": "s", "n": "История России", "w": "Новикова А.Д.", "d": "группа _54-55", "room": "211"}],
+    [2,1,{"k": "e", "n": "Английский язык", "w": "Мищук А.М.", "lvl": "осн", "room": "212", "d": "с 21.09 · начало в 13:00"}],
+    [3,1,{"k": "s", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "группа _55-56", "room": "212"}],
+    [4,1,{"k": "o", "n": "БЖД", "w": "Покровский И.", "d": "8.09", "room": "215"}],
+    [1,2,{"k": "s", "n": "Математический анализ", "w": "Сивкин В.Н.", "d": "", "room": "209"}],
+    [2,2,{"k": "l", "n": "Математический анализ", "w": "Калмынин А.Б.", "d": "", "room": "427"}],
+    [3,2,{"k": "s", "n": "Геометрия и линейная алгебра", "w": "Ровинский М.З.", "d": "", "room": "208"}],
+    [0,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 9:30"}],
+    [1,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 11:10"}],
+    [2,3,{"k": "l", "n": "Введение в дискретную математику и топологию", "w": "Артамкин И.В.", "d": "", "room": "427"}],
+    [3,3,{"k": "s", "n": "Введение в дискретную математику и в топологию", "w": "Щечкин А.И.", "d": "", "par": "odd", "room": "318"}],
+    [4,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "продв", "room": "215", "d": "с 21.09"}],
+    [0,4,{"k": "l", "n": "Геометрия и линейная алгебра", "w": "Осипов П.С.", "d": "", "room": "427"}],
+    [1,4,{"k": "s", "n": "Алгебра", "w": "Куюмжиян К.", "d": "", "room": "212"}],
+    [2,4,{"k": "l", "n": "Алгебра", "w": "Кириченко В.А.", "d": "", "room": "427"}],
+    [3,4,{"k": "l", "n": "Математический анализ", "w": "Калмынин А.Б.", "d": "", "par": "odd", "room": "427"}],
+    [3,4,{"k": "s", "n": "Алгебра", "w": "Куюмжиян К.", "d": "", "par": "even", "room": "211"}],
+    [0,5,{"k": "r", "n": "Научно-исследовательский семинар \"Тривиум. Математика\"", "w": "Муравьев М.Ю.", "d": "с октября", "par": "even", "room": "427"}],
+    [1,5,{"k": "l", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "26.09, 3.10, 10.10 · бакмат+совбак · группа _12", "on": 1}],
+    [4,5,{"k": "s", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "группа _55-56", "room": "212"}]
+  ],
+  "БСБВЦ261":[
+    [0,0,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 9:30"}],
+    [1,0,{"k": "s", "n": "Математический анализ", "w": "Клименко А.В.", "d": "", "room": "213"}],
+    [2,0,{"k": "s", "n": "Основы российской государственности", "w": "Сладков В.Д.", "d": "группа _57", "room": "306"}],
+    [3,0,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "продв", "room": "215", "d": "с 21.09"}],
+    [0,2,{"k": "s", "n": "История России", "w": "Клюев А.И.", "d": "группа _56", "room": "212"}],
+    [1,2,{"k": "s", "n": "Введение в дискретную математику и в топологию", "w": "Гусева Л.А.", "d": "", "room": "110"}],
+    [2,2,{"k": "l", "n": "Математический анализ", "w": "Калмынин А.Б.", "d": "", "room": "427"}],
+    [3,2,{"k": "s", "n": "Геометрия и линейная алгебра", "w": "Авилов А.А.", "d": "", "room": "213"}],
+    [0,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "баз", "room": "215", "d": "с 21.09 · начало в 9:30"}],
+    [1,3,{"k": "s", "n": "Основы российской государственности", "w": "Сладков В.Д.", "d": "группа _57", "room": "209"}],
+    [2,3,{"k": "l", "n": "Введение в дискретную математику и топологию", "w": "Артамкин И.В.", "d": "", "room": "427"}],
+    [3,3,{"k": "r", "n": "Научно-исследовательский семинар \"Педагогическая мастерская\"", "w": "Ященко И.В.", "d": "", "room": "306"}],
+    [4,3,{"k": "e", "n": "Английский язык", "w": "Кошелева В.П.", "lvl": "продв", "room": "215", "d": "с 21.09"}],
+    [1,4,{"k": "l", "n": "Геометрия и линейная алгебра", "w": "Авилов А.А.", "d": "", "room": "306"}],
+    [2,4,{"k": "s", "n": "Геометрия и линейная алгебра", "w": "Авилов А.А.", "d": "", "room": "213"}],
+    [3,4,{"k": "s", "n": "Введение в дискретную математику и в топологию", "w": "Гусева Л.А.", "d": "", "par": "even", "room": "208"}],
+    [3,4,{"k": "l", "n": "Математический анализ", "w": "Калмынин А.Б.", "d": "", "par": "odd", "room": "427"}],
+    [0,5,{"k": "r", "n": "Научно-исследовательский семинар \"Тривиум. Математика\"", "w": "Муравьев М.Ю.", "d": "с октября", "par": "even", "room": "427"}],
+    [1,5,{"k": "l", "n": "Основы российской государственности", "w": "Дзюбинский Я.Р.", "d": "26.09, 3.10, 10.10 · бакмат+совбак · группа _12", "on": 1}]
+  ]
+};
+
+var DAYS = [["ПН","понедельник"],["ВТ","вторник"],["СР","среда"],["ЧТ","четверг"],["ПТ","пятница"],["СБ","суббота"]];
+var KIND = {l:"Лекция", s:"Семинар", r:"НИС", e:"Английский", o:"Занятие"};
+var LVL  = {"баз":"базовый", "осн":"основной", "продв":"продвинутый"};
+/* Чётность недель: лист называется «1бак с 7.09», неделю с 07.09 считаем первой (нечётной). */
+var PARITY_EPOCH = new Date(2026, 8, 7);
+
+
+/* --------------------------------------------- резервная копия (снимок 01.09) */
+var SNAPSHOT_DATE = "01.09";
+var SNAP = {items:SNAPSHOT, groups:GROUPS, order:GROUP_ORDER, times:TIMES};
+
+/* ------------------------------------------------------------------ состояние */
+var curGroup = PINNED[0];
+var curDay = (new Date().getDay() + 6) % 7;      // 0=ПН … 6=ВС
+if (curDay > 5) curDay = 0;                      // воскресенья в расписании нет
+var ITEMS = SNAPSHOT;
+var SOURCE = {state:"snapshot", when:null, why:null};
+var LOCAL_FILE = location.protocol === "file:";
+var onlyReal = false;                            // фильтр «только в этот день»
+var showEng = false;                             // английский по умолчанию скрыт
+
+/* ------------------------------------------------------------------- даты */
+/* Дата дня недели = ближайшая дата не раньше «отсчёта». Сегодня вторник 01.09 →
+   ВТ это 01.09, ЧТ это 03.09, а ПН уже 07.09 (понедельник этой недели прошёл). */
+var TODAY  = startOfDay(new Date());
+var anchor = TODAY;
+var YEAR0  = TODAY.getMonth() >= 8 ? TODAY.getFullYear() : TODAY.getFullYear() - 1;
+
+function startOfDay(d){ return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+function dowIndex(d){ var w = d.getDay(); return w === 0 ? 6 : w - 1; }   // 0=ПН … 6=ВС
+function dateFor(di){
+  var delta = (di - dowIndex(anchor) + 7) % 7;
+  return new Date(anchor.getFullYear(), anchor.getMonth(), anchor.getDate() + delta);
+}
+function sameDay(a, b){ return a && b && a.getTime() === b.getTime(); }
+function fmtDM(d){
+  return ("0" + d.getDate()).slice(-2) + "." + ("0" + (d.getMonth() + 1)).slice(-2);
+}
+function fmtISO(d){
+  return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+}
+/* «30.09» без года: сентябрь–декабрь — первый год учебного года, январь–июнь — следующий */
+function dateFromDM(dd, mm){ return new Date(mm >= 9 ? YEAR0 : YEAR0 + 1, mm - 1, dd); }
+
+var RE_FROM   = /^[СC]\s+(\d{1,2})\.(\d{2})$/;          // «С 07.09», встречается и с латинской C
+var RE_LIST   = /^\d{1,2}\.\d{2}(\s*[.,]\s*\d{1,2}\.\d{2})*$/;   // «30.09, 14.10», иногда точка вместо запятой
+var RE_CANCEL = /^отмена\s+(\d{1,2})\.(\d{2})$/i;
+var RE_DM     = /(\d{1,2})\.(\d{2})/g;
+
+function datesIn(tok){
+  var out = [], m;
+  RE_DM.lastIndex = 0;
+  while ((m = RE_DM.exec(tok))) out.push(dateFromDM(+m[1], +m[2]));
+  return out;
+}
+
+/* Чётность недели: считаем от PARITY_EPOCH (понедельник первой, нечётной недели).
+   Возвращает "odd" / "even". */
+function weekParity(when){
+  var monday = new Date(when.getFullYear(), when.getMonth(), when.getDate() - dowIndex(when));
+  var weeks = Math.round((monday - PARITY_EPOCH) / (7 * 864e5));
+  return ((weeks % 2) + 2) % 2 === 0 ? "odd" : "even";
+}
+function parityTag(when){
+  return '<span class="weekpar">' + (weekParity(when) === "odd" ? "нечёт" : "чёт") + '. нед.</span>';
+}
+
+var RE_FROM   = /^[СC]\s+(\d{1,2})\.(\d{1,2})$/;
+var RE_LIST   = /^\d{1,2}\.\d{1,2}(\s*[.,]\s*\d{1,2}\.\d{1,2})*$/;
+var RE_DM     = /(\d{1,2})\.(\d{1,2})/g;
+var RE_MONTH  = /^с (сентября|октября|ноября|декабря)$/i;
+var MONTHS    = {"сентября":9, "октября":10, "ноября":11, "декабря":12};
+
+function datesIn(tok){
+  var out = [], m;
+  RE_DM.lastIndex = 0;
+  while ((m = RE_DM.exec(tok))) out.push(dateFromDM(+m[1], +m[2]));
+  return out;
+}
+
+/* Идёт ли пара в этот день: "yes" / "no" / "".
+   У математиков главный признак — чётность недели; даты списком встречаются редко
+   (ОРГ-лекция по субботам), «с октября» — у НИСа. Пустая строка — таблица молчит. */
+function verdict(c, when){
+  var toks = String(c.d || "").split(" · "), lists = [], froms = [], reasons = [];
+  for (var i = 0; i < toks.length; i++){
+    var t = toks[i].trim();
+    if (!t) continue;
+    var mm = t.match(RE_MONTH);
+    if (mm){ froms.push(dateFromDM(1, MONTHS[mm[1].toLowerCase()])); continue; }
+    if (RE_FROM.test(t)) froms = froms.concat(datesIn(t));
+    else if (RE_LIST.test(t)) lists = lists.concat(datesIn(t));
+  }
+  var i2;
+  if (lists.length){
+    for (i2 = 0; i2 < lists.length; i2++) if (sameDay(lists[i2], when)) return "yes";
+    return "no";
+  }
+  for (i2 = 0; i2 < froms.length; i2++) if (when < froms[i2]) return "no";
+  if (c.par) return weekParity(when) === c.par ? "yes" : "no";
+  return froms.length ? "yes" : "";
+}
+
+/* Раскраска пометок: даты и «с …» — зелёным/красным по вердикту, остальное как есть. */
+function dateHTML(d, c, when){
+  var v = verdict(c, when);
+  return String(d || "").split(" · ").map(function(tok){
+    var t = tok.trim(), safe = esc(t);
+    if (!t) return safe;
+    if (RE_FROM.test(t) || RE_MONTH.test(t))
+      return v ? '<span class="' + (v === "yes" ? "d-yes" : "d-no") + '">' + safe + '</span>' : safe;
+    if (RE_LIST.test(t)){
+      if (v === "no") return '<span class="d-no">' + safe + '</span>';
+      return safe.replace(RE_DM, function(m, dd, mo){
+        return sameDay(dateFromDM(+dd, +mo), when) ? '<span class="d-yes">' + m + '</span>' : m;
+      });
+    }
+    return safe;
+  }).filter(Boolean).join(" · ");
+}
+
+/* ------------------------------------------------------------------- загрузка */
+function withTimeout(url, ms, as){
+  var ctl = typeof AbortController !== "undefined" ? new AbortController() : null;
+  var timer = setTimeout(function(){ if (ctl) ctl.abort(); }, ms || 25000);
+  return fetch(url, ctl ? {signal:ctl.signal} : {}).then(function(r){
+    clearTimeout(timer);
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return as === "buf" ? r.arrayBuffer() : r.text();
+  }, function(e){ clearTimeout(timer); throw e; });
+}
+
+/* --- минимальный распаковщик zip: центральный каталог + inflate через DecompressionStream */
+function inflateRaw(bytes){
+  if (typeof DecompressionStream === "undefined")
+    return Promise.reject(new Error("браузер без DecompressionStream"));
+  var s = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+  return new Response(s).arrayBuffer().then(function(b){ return new Uint8Array(b); });
+}
+
+function zipOpen(buf){
+  var u = new Uint8Array(buf), dv = new DataView(buf), eocd = -1;
+  var stop = Math.max(0, u.length - 66000);
+  for (var i = u.length - 22; i >= stop; i--){ if (dv.getUint32(i, true) === 0x06054b50){ eocd = i; break; } }
+  if (eocd < 0) throw new Error("это не zip");
+  var n = dv.getUint16(eocd + 10, true), p = dv.getUint32(eocd + 16, true), list = [], dec = new TextDecoder("utf-8");
+  for (var k = 0; k < n; k++){
+    if (dv.getUint32(p, true) !== 0x02014b50) break;
+    var nameLen = dv.getUint16(p + 28, true);
+    list.push({
+      name:   dec.decode(u.subarray(p + 46, p + 46 + nameLen)),
+      method: dv.getUint16(p + 10, true),
+      csize:  dv.getUint32(p + 20, true),
+      lho:    dv.getUint32(p + 42, true)
+    });
+    p += 46 + nameLen + dv.getUint16(p + 30, true) + dv.getUint16(p + 32, true);
+  }
+  return {u:u, dv:dv, list:list};
+}
+
+function zipRead(z, e){
+  var p = e.lho;
+  if (z.dv.getUint32(p, true) !== 0x04034b50) return Promise.reject(new Error("битая запись zip"));
+  var start = p + 30 + z.dv.getUint16(p + 26, true) + z.dv.getUint16(p + 28, true);
+  var data = z.u.subarray(start, start + e.csize);
+  return (e.method === 0 ? Promise.resolve(data) : inflateRaw(data))
+    .then(function(out){ return new TextDecoder("utf-8").decode(out); });
+}
+
+/* из выгрузки книги достаём HTML именно нашего листа: Google проставляет gid
+   в id строковых заголовков (<th id="1526534829R5">) */
+function sheetFromZip(buf){
+  var z = zipOpen(buf);
+  var htmls = z.list.filter(function(e){ return /\.html?$/i.test(e.name); });
+  var i = 0;
+  function step(fallback){
+    if (i >= htmls.length){
+      if (fallback) return fallback;
+      throw new Error("нужный лист не найден в выгрузке");
+    }
+    return zipRead(z, htmls[i++]).then(function(t){
+      if (t.indexOf('id="' + GID + 'R') >= 0) return t;
+      if (!fallback && t.indexOf("БСБВЦ262") >= 0 && t.indexOf("БМТМТБ261") >= 0) fallback = t;
+      return step(fallback);
+    }, function(){ return step(fallback); });
+  }
+  return Promise.resolve(step(null));
+}
+
+function fromZipUrl(url){
+  return withTimeout(url, 40000, "buf").then(sheetFromZip).then(parseSheet);
+}
+function fromAppsScript(url){
+  return withTimeout(url, 25000).then(function(t){
+    var o = JSON.parse(t);
+    if (!o || !o.grid) throw new Error("Apps Script вернул не то");
+    return parseGrid(o.grid.map(function(row){
+      return row.map(function(c){
+        if (c == null) return null;
+        return {text: String(c.t == null ? "" : c.t).replace(/\u00a0/g, " ").trim(), hrefs: c.h || []};
+      });
+    }));
+  });
+}
+
+/* честный порядок: своё веб-приложение → прямой запрос к Google → прокси */
+function loadLive(){
+  var chain = [];
+  if (APPS_SCRIPT_URL) chain.push(function(){ return fromAppsScript(APPS_SCRIPT_URL); });
+  chain.push(function(){ return fromZipUrl(SRC_ZIP); });
+  if (PROXY) chain.push(function(){ return fromZipUrl(PROXY + encodeURIComponent(SRC_ZIP)); });
+
+  var i = 0, firstErr = null;
+  function next(){
+    if (i >= chain.length) return Promise.reject(firstErr || new Error("источники недоступны"));
+    return chain[i++]().catch(function(e){ if (!firstErr) firstErr = e; return next(); });
+  }
+  return next();
+}
+
+/* --------------------------------------------------------------------- разбор */
+/* сетка с разворачиванием colspan/rowspan: значение объединённой ячейки лежит
+   только в левой верхней клетке, поэтому простой forward-fill по пустым нельзя —
+   он затащил бы в колонку чужие пары. */
+function gridFromTable(table){
+  var grid = [], busy = {};
+  var trs = table.querySelectorAll("tr");
+  for (var r = 0; r < trs.length; r++){
+    var kids = trs[r].children, c = 0;
+    for (var k = 0; k < kids.length; k++){
+      var cell = kids[k];
+      if (cell.tagName === "TH") continue;          // заголовки строк Google, не данные
+      while (busy[r + ":" + c]) c++;
+      var cs = parseInt(cell.getAttribute("colspan") || 1, 10);
+      var rs = parseInt(cell.getAttribute("rowspan") || 1, 10);
+      var tmp = document.createElement("div");
+      tmp.innerHTML = cell.innerHTML.replace(/<br\s*\/?>/gi, "\n");
+      var hrefs = [], as = cell.querySelectorAll("a[href]");
+      for (var ai = 0; ai < as.length; ai++) hrefs.push(as[ai].getAttribute("href"));
+      var val = {text: (tmp.textContent || "").replace(/\u00a0/g, " ").trim(), hrefs: hrefs};
+      for (var ri = 0; ri < rs; ri++){
+        for (var ci = 0; ci < cs; ci++){
+          grid[r + ri] = grid[r + ri] || [];
+          grid[r + ri][c + ci] = val;
+          busy[(r + ri) + ":" + (c + ci)] = 1;
+        }
+      }
+      c += cs;
+    }
+  }
+  return grid;
+}
+
+function cellAt(grid, r, c){
+  return (grid[r] && grid[r][c] && grid[r][c].text) ? grid[r][c] : null;
+}
+
+function slotIndex(txt){
+  var m = String(txt).match(/^\s*(\d{1,2}:\d{2})\s*-/);
+  if (!m) return -1;
+  for (var i = 0; i < TIMES.length; i++) if (TIMES[i][0] === m[1]) return i;
+  return -1;
+}
+
+/* Формат ячейки матфака: «[чет нед] С: Предмет (Преподаватель) 213», иногда с префиксом
+   «с 9:30», «26.09, 3.10», «ОНЛАЙН», «только для БАКМАТ». Английский — отдельным
+   четырёхстрочным блоком с уровнем и кодом языковой группы. В одной ячейке бывает
+   два варианта (чёт/нечёт) через пустую строку. */
+var RE_PARITY = /(^|[^а-яё])(не)?чет\.?\s*нед(?![а-яё])\.?/i;   // \b в JS не знает кириллицы
+var RE_START  = /(^|[^а-яё])с\s+(\d{1,2}:\d{2})(?!\d)/i;
+
+function parseBlock(text){
+  var t = text.replace(/\s+/g, " ").trim();
+  if (!t) return null;
+
+  if (/АНГЛИЙСКИЙ/.test(t)){
+    var ms = t.match(RE_START), start = ms ? ms[2] : null;
+    var ml = t.match(/(баз|осн|продв)\s*-{1,2}\s*([А-ЯЁ][а-яё]+\s+[А-ЯЁ]\.\s*[А-ЯЁ]\.)/i);
+    var rooms = t.replace(/М_\S+/g, "").match(/(?:^|[^\d_])(\d{3})(?![\d_])/g);
+    var room = rooms ? rooms[rooms.length - 1].replace(/\D/g, "") : null;
+    var card = {k:"e", n:"Английский язык", w: ml ? ml[2] : "", lvl: ml ? ml[1].toLowerCase() : null};
+    var notes = ["с 21.09"];
+    if (start) notes.push("начало в " + start);
+    if (room) card.room = room;
+    card.d = notes.join(" · ");
+    return card;
+  }
+
+  var par = null, m = t.match(RE_PARITY);
+  if (m){ par = m[2] ? "odd" : "even"; t = t.replace(RE_PARITY, "$1 ").trim(); }
+  var dates = null;
+  m = t.match(/^((?:\d{1,2}\.\d{1,2})(?:\s*,\s*\d{1,2}\.\d{1,2})*)\s+/);
+  if (m){ dates = m[1]; t = t.slice(m[0].length).trim(); }
+  var start = null;
+  m = t.match(RE_START);
+  if (m){ start = m[2]; t = t.replace(RE_START, "$1 ").trim(); }
+  var online = /ОНЛАЙН/.test(t); t = t.replace(/ОНЛАЙН/g, " ").trim();
+  var scope = null;
+  m = t.match(/(только для БАКМАТ|БАКМАТ\+СОВБАК)/);
+  if (m){ scope = m[1]; t = t.replace(m[1], " ").trim(); }
+  var since = null;
+  m = t.match(/занятия с (\S+)/i);
+  if (m){ since = "с " + m[1]; t = t.replace(m[0], " ").trim(); }
+  t = t.replace(/\s+/g, " ").trim();
+
+  var k = "s";
+  m = t.match(/^(Л|С)\s*:\s*/);
+  if (m){ k = m[1] === "Л" ? "l" : "s"; t = t.slice(m[0].length).trim(); }
+  else if (/семинар/i.test(t)) k = "r";
+  else k = "o";
+
+  var room = null;
+  m = t.match(/\s+(\d{3})\s*$/);
+  if (m){ room = m[1]; t = t.slice(0, m.index).trim(); }
+  var code = null;
+  m = t.match(/\(?(\d{7}_\d+(?:-\d+)?)\)?/);
+  if (m){ code = m[1]; t = (t.slice(0, m.index) + t.slice(m.index + m[0].length)).trim(); }
+  var who = "";
+  m = t.match(/\(([^()]+)\)\s*$/);
+  if (m){ who = m[1].trim().replace(/,$/, "").trim(); t = t.slice(0, m.index).trim(); }
+  var name = t.replace(/^[\s,]+|[\s,]+$/g, "");
+  if (!name) return null;
+
+  var notes = [];
+  if (dates) notes.push(dates);
+  if (since) notes.push(since);
+  if (start) notes.push("начало в " + start);
+  if (scope) notes.push(scope.toLowerCase());
+  if (code) notes.push("группа _" + code.split("_")[1]);
+  var card = {k:k, n:name, w:who, d:notes.join(" · ")};
+  if (par) card.par = par;
+  if (room) card.room = room;
+  if (online) card.on = 1;
+  return card;
+}
+
+function parseCard(raw){
+  var text = String(raw).replace(/\r/g, "").replace(/[ \t]*\n[ \t]*/g, "\n").trim();
+  var blocks = text.split(/\n\s*\n/).filter(function(b){ return b.trim(); });
+  if (blocks.length === 1 && /\n\s*(не)?чет нед/i.test(text))
+    blocks = text.split(/\n(?=\s*(?:не)?чет нед)/i);
+  var out = [];
+  blocks.forEach(function(b){ var c = parseBlock(b); if (c) out.push(c); });
+  return out;
+}
+
+var GRPRE = /^Б[А-Я]{3,7}\d{3}$/;
+
+function parseGrid(grid){
+  var headRow = -1, cols = [], seenName = {};
+  for (var r = 0; r < grid.length && headRow < 0; r++){
+    if (!grid[r]) continue;
+    var hits = [];
+    for (var c = 0; c < grid[r].length; c++){
+      var v = cellAt(grid, r, c);
+      if (v && GRPRE.test(v.text)) hits.push([v.text, c]);
+    }
+    if (hits.length >= 3){
+      headRow = r;
+      hits.forEach(function(h){ if (!seenName[h[0]]){ seenName[h[0]] = 1; cols.push(h); } });
+    }
+  }
+  if (headRow < 0) throw new Error("нет строки с группами");
+
+  var groups = {}, names = [];
+  cols.forEach(function(h){
+    groups[h[0]] = {meta: h[0].indexOf("БМТМТБ") === 0 ? "БАКМАТ" : "СОВБАК"};
+    names.push(h[0]);
+  });
+
+  var dayCol = -1, timeCol = -1, times = [];
+  for (var r3 = headRow + 1; r3 < grid.length; r3++){
+    if (!grid[r3]) continue;
+    for (var c3 = 0; c3 < 4; c3++){
+      var v3 = cellAt(grid, r3, c3);
+      if (!v3) continue;
+      var low = v3.text.trim().toLowerCase();
+      if (dayCol < 0 && DAYS.some(function(d){ return d[1] === low; })) dayCol = c3;
+      var mt = v3.text.match(/^\s*(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})\s*$/);
+      if (mt){
+        if (timeCol < 0) timeCol = c3;
+        if (!times.some(function(x){ return x[0] === mt[1]; })) times.push([mt[1], mt[2]]);
+      }
+    }
+  }
+  if (dayCol < 0 || timeCol < 0) throw new Error("не нашёл колонки дня и времени");
+  times.sort(function(a, b){
+    var pa = a[0].split(":"), pb = b[0].split(":");
+    return (+pa[0] * 60 + +pa[1]) - (+pb[0] * 60 + +pb[1]);
+  });
+  TIMES = times;
+
+  var items = {};
+  names.forEach(function(n){ items[n] = []; });
+  var day = -1, slot = -1, seen = {};
+
+  for (var r4 = headRow + 1; r4 < grid.length; r4++){
+    if (!grid[r4]) continue;
+    var dv = cellAt(grid, r4, dayCol);
+    if (dv){ var lowd = dv.text.trim().toLowerCase(); for (var di = 0; di < DAYS.length; di++) if (DAYS[di][1] === lowd) day = di; }
+    var tv = cellAt(grid, r4, timeCol);
+    if (tv && slotIndex(tv.text) >= 0) slot = slotIndex(tv.text);
+    if (day < 0 || slot < 0) continue;
+    if (tv && slotIndex(tv.text) < 0) continue;          // строка без времени в колонке времени — футер («по субботам все контрольные…»)
+
+    cols.forEach(function(h){
+      var cv = cellAt(grid, r4, h[1]);
+      if (!cv) return;
+      var key = h[0] + "|" + day + "|" + slot + "|" + cv.text;
+      if (seen[key]) return;
+      seen[key] = 1;
+      parseCard(cv.text).forEach(function(c){ items[h[0]].push([slot, day, c]); });
+    });
+  }
+  if (!names.some(function(n){ return items[n].length; }))
+    throw new Error("колонки нашлись, но пар в них нет");
+
+  var order = PINNED.filter(function(n){ return names.indexOf(n) >= 0; })
+    .concat(names.filter(function(n){ return PINNED.indexOf(n) < 0; }));
+  return {items: items, groups: groups, order: order, times: times};
+}
+
+function parseSheet(html){
+  var doc = new DOMParser().parseFromString(html, "text/html");
+  var tables = Array.prototype.slice.call(doc.querySelectorAll("table"));
+  if (!tables.length) throw new Error("в выгрузке нет таблицы");
+  tables.sort(function(a, b){ return b.querySelectorAll("tr").length - a.querySelectorAll("tr").length; });
+  var err = null;
+  for (var t = 0; t < tables.length; t++){
+    try { return parseGrid(gridFromTable(tables[t])); }
+    catch (e){ if (!err) err = e; }
+  }
+  throw err || new Error("не нашёл нужные колонки в таблице");
+}
+
+/* ------------------------------------------------------------------------ кэш */
+function cacheSave(data){
+  try{ localStorage.setItem("raspis_math", JSON.stringify({t:Date.now(), d:data})); }catch(e){}
+}
+function cacheLoad(){
+  try{
+    var raw = localStorage.getItem("raspis_math");
+    if (!raw) return null;
+    var o = JSON.parse(raw);
+    return (o && o.d) ? o : null;
+  }catch(e){ return null; }
+}
+
+/* -------------------------------------------------------------------- отрисовка */
+function card(c, when){
+  var v = verdict(c, when);
+  var cls = "class " + c.k + (c.on ? " online" : "") + (c.par && v === "no" ? " faded" : "");
+  var parTag = c.par
+    ? '<span class="par ' + (v === "yes" ? "on" : v === "no" ? "off" : "") + '">' +
+      (c.par === "odd" ? "нечёт" : "чёт") + '</span>' : '';
+  var head = c.on ? '<div class="badge">ОНЛАЙН</div>'
+                  : '<div class="kind">' + KIND[c.k] + parTag + '</div>';
+  var who = c.w ? esc(c.w) : "";
+  if (c.k === "e" && c.lvl) who += '<span class="lvl">' + esc(LVL[c.lvl] || c.lvl) + '</span>';
+  var whenHtml = dateHTML(c.d, c, when);
+  var room = c.room ? '<span class="room">' + esc(c.room) + '</span>' : '';
+  return '<div class="' + cls + '">' + head +
+    '<div class="name">' + esc(c.n) + '</div>' +
+    (who ? '<div class="who">' + who + '</div>' : '') +
+    ((whenHtml || room) ? '<div class="when">' + whenHtml + room + '</div>' : '') +
+    '</div>';
+}
+
+function esc(s){
+  return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+function at(list, ri, di){
+  return list.filter(function(it){ return it[0] === ri && it[1] === di; });
+}
+
+function renderGroupTabs(){
+  var box = document.getElementById("groupTabs");
+  box.innerHTML = GROUP_ORDER.map(function(g, i){
+    return (i === PINNED.length && i > 0 ? '<i class="tabsep"></i>' : '') +
+      '<button class="tab" role="tab" data-key="' + esc(g) + '" aria-selected="' +
+      (g === curGroup) + '">' + esc(g) + '</button>';
+  }).join("");
+  box.querySelectorAll(".tab").forEach(function(b){
+    b.addEventListener("click", function(){ curGroup = b.dataset.key; render(); });
+  });
+}
+
+function renderDayTabs(){
+  var html = DAYS.map(function(d, i){
+    var dt = dateFor(i);
+    return '<button class="tab" role="tab" data-day="' + i + '" aria-selected="' + (curDay === i) + '">' +
+      d[0] + '<span class="sub">' + fmtDM(dt) + '</span>' +
+      (sameDay(dt, TODAY) ? '<i class="dot"></i>' : '') + '</button>';
+  }).join("");
+  html += '<button class="tab" role="tab" data-day="all" aria-selected="' + (curDay === "all") + '">Вся неделя</button>';
+  var box = document.getElementById("dayTabs");
+  box.innerHTML = html;
+  box.querySelectorAll(".tab").forEach(function(b){
+    b.addEventListener("click", function(){
+      curDay = b.dataset.day === "all" ? "all" : Number(b.dataset.day);
+      render();
+    });
+  });
+}
+
+function renderDateBar(){
+  var inp = document.getElementById("datePick");
+  if (inp.value !== fmtISO(anchor)) inp.value = fmtISO(anchor);
+  document.getElementById("dateToday").disabled = sameDay(anchor, TODAY);
+  document.getElementById("onlyReal").setAttribute("aria-pressed", String(onlyReal));
+  document.getElementById("showEng").setAttribute("aria-pressed", String(showEng));
+}
+
+/* пары слота, с учётом фильтра «только в этот день».
+   Прячем лишь то, про что таблица прямо говорит «не в эту дату»; пары без дат
+   («С 2 модуля» и подобные) остаются — судить по ним не о чем, а пропустить пару хуже. */
+function shown(list, ri, di, when){
+  return at(list, ri, di).filter(function(it){
+    var c = it[2];
+    if (c.k === "e" && !showEng) return false;
+    return !onlyReal || verdict(c, when) !== "no";
+  });
+}
+
+function renderDay(list){
+  var di = curDay, when = dateFor(di), rows = "", last = -1, count = 0, hidden = 0;
+  TIMES.forEach(function(t, ri){
+    if (shown(list, ri, di, when).length) last = ri;
+    hidden += at(list, ri, di).length - shown(list, ri, di, when).length;
+  });
+  var tail = hidden ? ' · скрыто ' + hidden : '';
+  if (last < 0) return '<div class="dayhead">' + DAYS[di][1] + '<span>' + fmtDM(when) + parityTag(when) + ' · пар нет' + tail + '</span></div>' +
+    '<div class="free">' + (hidden ? "В этот день ничего из расписания не идёт." : "В этот день ничего не стоит.") + '</div>';
+
+  for (var ri = 0; ri <= last; ri++){
+    var cells = shown(list, ri, di, when), t = TIMES[ri];
+    count += cells.length;
+    if (!cells.length){
+      rows += '<div class="row gap"><div class="t">' + t[0] + '<small>' + t[1] + '</small></div><div class="c">—</div></div>';
+    } else {
+      rows += '<div class="row"><div class="t">' + t[0] + '<small>' + t[1] + '</small></div><div class="c">' +
+        cells.map(function(it){ return card(it[2], when); }).join("") + '</div></div>';
+    }
+  }
+  var first = 0;
+  while (first <= last && !shown(list, first, di, when).length) first++;
+  return '<div class="dayhead">' + DAYS[di][1] + '<span>' + fmtDM(when) + parityTag(when) + ' · ' +
+    TIMES[first][0] + '–' + TIMES[last][1] + ' · ' + count + ' п.' + tail + '</span></div>' + rows;
+}
+
+function renderWeek(list){
+  var head = '<th class="corner">Пара</th>';
+  DAYS.forEach(function(d, i){
+    var dt = dateFor(i), t = sameDay(dt, TODAY);
+    head += '<th class="' + (t ? "is-today" : "") + '">' + d[0] + ' <span class="sub">' + fmtDM(dt) + '</span>' +
+      '<span class="full">' + d[1] + parityTag(dt) + '</span>' + (t ? '<i class="todaydot"></i>' : '') + '</th>';
+  });
+  var rows = "";
+  TIMES.forEach(function(t, ri){
+    rows += '<tr><td class="time">' + t[0] + '<small>' + t[1] + '</small></td>';
+    DAYS.forEach(function(d, di){
+      var when = dateFor(di);
+      var inner = shown(list, ri, di, when).map(function(it){ return card(it[2], when); }).join("");
+      rows += '<td class="slot' + (inner ? "" : " empty") + (sameDay(when, TODAY) ? " is-today" : "") + '">' + inner + '</td>';
+    });
+    rows += "</tr>";
+  });
+  return '<div class="scroller"><table><thead><tr>' + head + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+}
+
+function renderStatus(){
+  var box = document.getElementById("status"), txt = document.getElementById("statusText");
+  box.className = "status " + (SOURCE.state === "live" ? "live" : SOURCE.state === "loading" ? "load" : "stale");
+  if (SOURCE.state === "loading") txt.textContent = "Тяну расписание из таблицы…";
+  else if (SOURCE.state === "live") txt.textContent = "Актуально из таблицы · " + SOURCE.when;
+  else if (SOURCE.state === "cache") txt.textContent = "Из сохранённой копии · " + SOURCE.when + " · обновить не удалось";
+  else txt.textContent = "Таблица недоступна · встроенная копия от " + SNAPSHOT_DATE +
+    (SOURCE.why ? " · " + SOURCE.why : "");
+}
+
+function renderNotes(){
+  var live = SOURCE.state === "live" || SOURCE.state === "cache";
+  var howto = LOCAL_FILE
+    ? 'Страница открыта как файл, и у неё Origin = null — такому источнику Google не отдаёт данные ' +
+      'ни по одному адресу. Откройте версию на GitHub Pages либо запустите в папке с файлом ' +
+      '<code>python3 -m http.server 8000</code>.'
+    : 'Живая загрузка не прошла — Google не ответил или изменил формат выгрузки. Нажмите «Обновить».';
+  document.getElementById("notes").innerHTML =
+    '<div class="note"><h2>Откуда данные</h2><p>' +
+      (live ? "Страница разбирает HTML-выгрузку листа «1 бак с 7.09»: объединённые ячейки разворачиваются, поэтому потоковые лекции попадают во все группы. Предмет, преподаватель, аудитория и чётность берутся из таблицы как есть."
+            : "Показана встроенная копия от " + SNAPSHOT_DATE + ".") +
+    '</p></div>' +
+    '<div class="note"><h2>Чётные и нечётные недели</h2><p>Неделя с 07.09 считается первой, нечётной; дальше чередуются. ' +
+      'У пары с пометкой <i class="parkey">чёт</i>/<i class="parkey">нечёт</i> метка <span class="d-yes">зелёная</span>, если на дате дня она идёт, ' +
+      '<span class="d-no">красная</span> и карточка приглушена — если нет. Если факультет считает иначе, поправьте PARITY_EPOCH в скрипте.</p></div>' +
+    '<div class="note"><h2>Английский</h2><p>Стоит в сетке группы с уровнем (базовый / основной / продвинутый) и стартует с 21.09. ' +
+      'По умолчанию скрыт — кнопка «английский» рядом с датой. Какой уровень ваш, смотрите по языковой группе.</p></div>' +
+    '<div class="note"><h2>Живые данные</h2><p>' + (live
+      ? 'Источник — выгрузка книги в zip (единственный формат, где сохраняются объединения ячеек). csv и gviz их теряют, htmlview больше не отдаёт разметку.'
+      : howto) + '</p></div>';
+}
+
+function render(){
+  if (!GROUPS[curGroup]) curGroup = GROUP_ORDER[0];
+  var list = ITEMS[curGroup] || [];
+  document.getElementById("groupName").textContent = curGroup;
+  document.getElementById("groupMeta").textContent = GROUPS[curGroup].meta;
+  document.title = "Расписание " + curGroup + " · матфак · 1 модуль 26/27";
+  renderGroupTabs();
+  renderDayTabs();
+  renderDateBar();
+  document.getElementById("panel").innerHTML = (curDay === "all") ? renderWeek(list) : renderDay(list);
+  renderStatus();
+  renderNotes();
+}
+
+function stamp(ts){
+  var d = new Date(ts);
+  return d.toLocaleDateString("ru-RU", {day:"2-digit", month:"2-digit"}) + " " +
+         d.toLocaleTimeString("ru-RU", {hour:"2-digit", minute:"2-digit"});
+}
+
+/* данные приходят пачкой: пары + список подгрупп + их подписи */
+function applyData(p){
+  if (!p) return;
+  ITEMS = p.items || {};
+  if (p.times && p.times.length) TIMES = p.times;
+  if (p.groups && p.order && p.order.length){
+    GROUPS = p.groups;
+    GROUP_ORDER = p.order;
+  }
+  if (!GROUPS[curGroup]) curGroup = GROUP_ORDER[0];
+}
+
+function update(){
+  SOURCE = {state:"loading"};
+  renderStatus();
+  loadLive().then(function(data){
+    applyData(data);
+    cacheSave(data);
+    SOURCE = {state:"live", when: stamp(Date.now())};
+    render();
+  }).catch(function(err){
+    var c = cacheLoad();
+    if (c){ applyData(c.d); SOURCE = {state:"cache", when: stamp(c.t)}; }
+    else {
+      applyData(SNAP);
+      SOURCE = {state:"snapshot", why: LOCAL_FILE
+        ? "локальный файл, Google не отдаёт данные"
+        : (err && err.message ? err.message : null)};
+    }
+    render();
+  });
+}
+
+document.getElementById("refresh").addEventListener("click", update);
+document.getElementById("sheetLink").href = SHEET_URL;
+document.getElementById("datePick").addEventListener("change", function(){
+  var v = this.value;
+  if (!v) return;
+  var parts = v.split("-");
+  anchor = new Date(+parts[0], +parts[1] - 1, +parts[2]);
+  render();
+});
+document.getElementById("onlyReal").addEventListener("click", function(){
+  onlyReal = !onlyReal;
+  render();
+});
+document.getElementById("showEng").addEventListener("click", function(){
+  showEng = !showEng;
+  render();
+});
+document.getElementById("dateToday").addEventListener("click", function(){
+  anchor = TODAY;
+  render();
+});
+
+var cached = cacheLoad();
+if (cached){ applyData(cached.d); SOURCE = {state:"cache", when: stamp(cached.t)}; }
+render();
+update();
+
+</script>
+</body>
+</html>

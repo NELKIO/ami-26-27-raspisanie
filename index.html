@@ -10,10 +10,19 @@
 <style>
   :root{
     --bg:#101315; --card:#171b1e; --raise:#1e2327;
-    --ink:#e7ecee; --muted:#8d979d; --line:#2b3236;
+    --ink:#e7ecee; --muted:#8d979d; --line:#2b3236; --line2:#3b444a;
     --lecture:#5aa2f0; --seminar:#3fc39b; --practice:#e2a13c;
     --online:#ff7a45; --no:#f2646a; --today:#20272b; --ok:#3fc39b; --warn:#e2a13c; --radius:8px;
+    --scheme:dark; --stripe:rgba(141,151,157,.06);
   }
+  :root[data-theme="light"]{
+    --bg:#f3f4f2; --card:#ffffff; --raise:#f0f2f0;
+    --ink:#1d2326; --muted:#6a7479; --line:#dfe3e1; --line2:#c9cfcc;
+    --lecture:#2f7fd6; --seminar:#1f9c78; --practice:#c4841a;
+    --online:#e5602b; --no:#d4404a; --today:#e9edea; --ok:#1f9c78; --warn:#c4841a;
+    --scheme:light; --stripe:rgba(29,35,38,.05);
+  }
+  html{color-scheme:var(--scheme)}
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{margin:0;background:var(--bg);color:var(--ink);
@@ -56,7 +65,7 @@
     font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.04em}
 
   .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-  .dayhead{padding:9px 12px;border-bottom:1px solid #3b444a;font-size:12px;font-weight:600}
+  .dayhead{padding:9px 12px;border-bottom:1px solid var(--line2);font-size:12px;font-weight:600}
   .dayhead span{font-weight:400;color:var(--muted);margin-left:6px}
   .row{display:flex;gap:10px;padding:8px 12px;border-bottom:1px solid var(--line)}
   .row:last-child{border-bottom:none}
@@ -73,7 +82,7 @@
   th:last-child,td:last-child{border-right:none}
   tr:last-child th,tr:last-child td{border-bottom:none}
   thead th{position:sticky;top:0;z-index:3;background:var(--card);padding:9px 11px;text-align:left;
-    font-size:12px;font-weight:600;border-bottom:1px solid #3b444a}
+    font-size:12px;font-weight:600;border-bottom:1px solid var(--line2)}
   thead th .full{display:block;font-weight:400;font-size:10.5px;color:var(--muted)}
   th.corner,td.time{position:sticky;left:0;z-index:2;background:var(--card);
     width:76px;min-width:76px;box-shadow:1px 0 0 var(--line)}
@@ -81,7 +90,7 @@
   td.time{padding:9px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:500;white-space:nowrap}
   td.time small{display:block;color:var(--muted);font-weight:400;font-size:10.5px;margin-top:1px}
   td.slot{padding:6px;min-width:140px}
-  td.empty{background:repeating-linear-gradient(135deg,transparent,transparent 8px,rgba(141,151,157,.06) 8px,rgba(141,151,157,.06) 9px)}
+  td.empty{background:repeating-linear-gradient(135deg,transparent,transparent 8px,var(--stripe) 8px,var(--stripe) 9px)}
   td.is-today,thead th.is-today{background:var(--today)}
   .todaydot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--practice);margin-left:5px;vertical-align:middle}
 
@@ -97,7 +106,7 @@
   .class.online{border-left-color:var(--online);background:rgba(255,122,69,.12);
     box-shadow:inset 0 0 0 1px rgba(255,122,69,.45)}
   .badge{display:inline-block;margin-bottom:3px;padding:2px 7px;border-radius:4px;
-    background:var(--online);color:#1a0d06;font-family:"IBM Plex Mono",monospace;
+    background:var(--online);color:#fff5ef;font-family:"IBM Plex Mono",monospace;
     font-size:10.5px;font-weight:500;letter-spacing:.06em}
   .cfoot{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:4px}
   .stream-note{font-size:11px;color:var(--muted)}
@@ -117,7 +126,7 @@
   .daybar .tabs.days .tab{padding:5px 10px}
   .daytools{flex:0 0 auto;display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--muted)}
   .daytools>span{white-space:nowrap}
-  .daytools input[type="date"]{color-scheme:dark;background:var(--card);color:var(--ink);
+  .daytools input[type="date"]{color-scheme:var(--scheme);background:var(--card);color:var(--ink);
     border:1px solid var(--line);border-radius:5px;padding:2px 6px;
     font-family:"IBM Plex Mono",monospace;font-size:11.5px}
   .daytools button{appearance:none;border:1px solid var(--line);background:var(--card);
@@ -142,7 +151,14 @@
   .note h2{margin:0 0 4px;font-size:12.5px;font-weight:600}
   .note p{margin:0;font-size:11.5px;color:var(--muted)}
   .note a{color:var(--lecture)}
-  footer{margin-top:18px;font-size:11px;color:var(--muted)}
+  footer{margin-top:18px;font-size:11px;color:var(--muted);display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:space-between;gap:8px 14px}
+  footer a{color:var(--lecture)}
+  .themebtn{appearance:none;border:1px solid var(--line);background:var(--card);color:var(--muted);
+    border-radius:999px;padding:3px 10px;font:inherit;font-size:11px;cursor:pointer;
+    font-family:"IBM Plex Mono",monospace;white-space:nowrap}
+  .themebtn:hover{color:var(--ink)}
+  .themebtn::before{content:"◐";margin-right:6px}
 
   @media (max-width:640px){
     .wrap{padding:16px 8px 36px}
@@ -189,10 +205,30 @@
   <div class="panel" id="panel"></div>
   <div class="notes" id="notes"></div>
 
-  <footer>Данные тянутся напрямую из таблицы «Расписание ПМИ и ЭАД, 1 семестр 26/27». Аудитории и переносы — в <a href="https://ruz.hse.ru/" style="color:var(--lecture)">РУЗ</a>.</footer>
+  <footer><span>Данные тянутся напрямую из таблицы «Расписание ПМИ и ЭАД, 1 семестр 26/27». Аудитории и переносы — в <a href="https://ruz.hse.ru/">РУЗ</a>. Расписание <a href="math/">матфака</a> — отдельно.</span><button type="button" class="themebtn" id="themeToggle">светлая тема</button></footer>
 </div>
 
 <script>
+/* ------------------------------------------------------------------- тема */
+(function(){
+  var t = null;
+  try { t = localStorage.getItem("theme"); } catch(e){}
+  if (t === "light") document.documentElement.setAttribute("data-theme", "light");
+})();
+function applyThemeButton(){
+  var light = document.documentElement.getAttribute("data-theme") === "light";
+  var b = document.getElementById("themeToggle");
+  if (b) b.textContent = light ? "тёмная тема" : "светлая тема";
+}
+document.getElementById("themeToggle").addEventListener("click", function(){
+  var light = document.documentElement.getAttribute("data-theme") === "light";
+  if (light) document.documentElement.removeAttribute("data-theme");
+  else document.documentElement.setAttribute("data-theme", "light");
+  try { localStorage.setItem("theme", light ? "dark" : "light"); } catch(e){}
+  applyThemeButton();
+});
+applyThemeButton();
+
 /* ------------------------------------------------------------------ настройки */
 var SHEET_ID = "1kgwKRON2tOFtIgcf0OeoHC3WhT6H4s9F4sEtsgYBVbA";
 var GID      = "1526534829";              // вкладка с актуальным расписанием
