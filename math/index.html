@@ -176,6 +176,75 @@
   .themebtn:hover{color:var(--ink)}
   .themebtn::before{content:"◐";margin-right:6px}
 
+  [hidden]{display:none !important}
+  .daybar{flex-wrap:wrap}
+  .daytools{margin-left:auto;flex-wrap:wrap}
+  button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--lecture);outline-offset:3px}
+  .f{border-left-color:var(--research)} .f .kind{color:var(--research)}
+  .elective-tag{display:inline-block;margin-left:6px;color:var(--research);font-size:10px}
+  .class .course-alert{margin-top:5px;color:var(--warn);font-size:11px}
+  .class .name,.course-title{overflow-wrap:anywhere}
+  .coursebar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;
+    margin-top:18px;padding:12px 14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--card)}
+  .coursebar h2{margin:0;font-size:14px;font-weight:500}
+  .coursebar p{margin:4px 0 0;font-size:11.5px;color:var(--muted)}
+  .course-action{appearance:none;border:1px solid var(--line2);border-radius:6px;padding:9px 13px;
+    color:var(--ink);background:var(--raise);font:inherit;cursor:pointer;min-height:40px}
+  .course-action:hover{border-color:var(--research)}
+  .course-action.primary{color:var(--research);border-color:var(--research)}
+  .course-count{font-family:"IBM Plex Mono",monospace;margin-left:8px}
+  .course-notice{margin:8px 0;color:var(--warn);font-size:12px}
+  .course-dialog{color:var(--ink);background:var(--bg);border:1px solid var(--line2);border-radius:12px;
+    width:min(850px,calc(100% - 32px));max-width:100%;height:min(780px,90dvh);max-height:90dvh;padding:0;overflow:hidden}
+  .course-dialog::backdrop{background:rgba(0,0,0,.65)}
+  .course-dialog[open]{display:flex;flex-direction:column}
+  .course-dialog-head{display:flex;align-items:flex-start;gap:16px;justify-content:space-between;padding:20px 20px 12px;flex-shrink:0}
+  .course-dialog h2{font-size:20px;font-weight:500;letter-spacing:-.02em;margin:0 0 5px}
+  .course-dialog-head p{margin:0;max-width:58ch;font-size:12px;color:var(--muted)}
+  .course-close{flex-shrink:0;min-width:44px;padding:8px;font-size:20px;line-height:1}
+  .course-controls{padding:0 20px 12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;flex-shrink:0}
+  .course-search{display:block;flex:1 1 280px}
+  .course-search span{display:block;font-size:11px;color:var(--muted);margin-bottom:5px}
+  .course-search input{width:100%;min-height:42px;padding:9px 12px;border-radius:6px;border:1px solid var(--line2);
+    font:inherit;background:var(--card);color:var(--ink)}
+  .course-filter{display:flex;gap:8px;align-items:center;min-height:44px;cursor:pointer;font-size:12px}
+  .course-dialog input[type="checkbox"]{width:18px;height:18px;flex-shrink:0;accent-color:var(--research)}
+  .course-results{padding:0 20px 8px;margin:0;font-size:11px;color:var(--muted);flex-shrink:0}
+  .course-list{padding:4px 20px 20px;overflow-y:auto;overscroll-behavior:contain;min-height:0;flex:1;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-content:start}
+  .course-option{position:relative;border:1px solid var(--line);border-radius:8px;background:var(--card);min-width:0}
+  .course-option.selected{border-color:var(--research);background:var(--raise)}
+  .course-option.cancelled{opacity:.65}
+  .course-option label{display:flex;align-items:flex-start;gap:10px;padding:14px;cursor:pointer}
+  .course-option label>input{margin:2px 0 0}
+  .course-option-main{min-width:0;flex:1}
+  .course-option-meta{font-size:10.5px;color:var(--muted);margin-bottom:6px}
+  .course-title{display:block;font-size:14px;font-weight:500;line-height:1.35;margin-bottom:5px}
+  .course-teacher{display:block;font-size:12px;color:var(--muted);margin-bottom:10px}
+  .course-slot{display:block;font-size:12px;line-height:1.6;margin-top:5px}
+  .course-slot small{display:block;color:var(--muted);font-size:11px}
+  .course-option .course-alert{color:var(--warn)}
+  .course-links{padding:0 14px 12px 42px;font-size:11px}
+  .course-links a{color:var(--lecture);margin-right:10px;overflow-wrap:anywhere}
+  .course-empty{grid-column:1/-1;padding:30px 12px;color:var(--muted);text-align:center}
+  .course-dialog-foot{padding:12px 20px;border-top:1px solid var(--line);display:flex;gap:12px;
+    align-items:center;justify-content:space-between;background:var(--card);flex-shrink:0}
+  .course-dialog-foot span{font-size:11px;color:var(--muted);max-width:42ch}
+  .course-dialog-foot a{color:var(--lecture)}
+  body:has(.course-dialog[open]){overflow:hidden}
+  @media (max-width:600px){
+    .course-dialog{width:100%;height:100dvh;max-height:100dvh;margin:0;border-radius:0;border:0}
+    .course-dialog-head{padding:16px 14px 12px}
+    .course-dialog h2{font-size:18px}
+    .course-controls{padding:0 14px 8px;gap:4px 12px}
+    .course-search{flex-basis:100%}
+    .course-search input{font-size:16px}
+    .course-results{padding:0 14px 8px}
+    .course-list{grid-template-columns:1fr;padding:4px 14px 16px}
+    .course-dialog-foot{padding:12px 14px max(12px,env(safe-area-inset-bottom))}
+    .coursebar>.course-action{width:100%}
+  }
+
   @media (max-width:640px){
     .wrap{padding:16px 8px 36px}
     th.corner,td.time{width:64px;min-width:64px}
@@ -213,6 +282,33 @@
     </div>
   </header>
 
+  <section class="coursebar" aria-labelledby="myCoursesTitle">
+    <div><h2 id="myCoursesTitle">Мои НИСы и спецкурсы</h2>
+      <p id="courseSummary">Все дополнительные курсы выключены. Выберите то, на что ходите.</p>
+    </div>
+    <button type="button" class="course-action primary" id="chooseCourses" aria-haspopup="dialog">Выбрать курсы <span class="course-count" id="courseCount">0</span></button>
+  </section>
+  <p class="course-notice" id="courseNotice" hidden></p>
+
+  <dialog class="course-dialog" id="courseDialog" aria-labelledby="courseDialogTitle" aria-describedby="courseDialogHelp">
+    <div class="course-dialog-head">
+      <div><h2 id="courseDialogTitle">НИСы и спецкурсы</h2>
+        <p id="courseDialogHelp">Отметьте занятия для своего расписания. Это не запись на курс. Выбор сохраняется только в этом браузере; на других людей он не влияет.</p></div>
+      <button type="button" class="course-action course-close" id="closeCourses" aria-label="Закрыть выбор курсов">×</button>
+    </div>
+    <div class="course-controls">
+      <label class="course-search"><span>Название или преподаватель</span><input type="search" id="courseSearch" placeholder="Например, проективная геометрия" autocomplete="off"></label>
+      <label class="course-filter"><input type="checkbox" id="coursesOnlySelected">Только выбранные</label>
+      <button type="button" class="course-action" id="clearCourses">Снять всё</button>
+    </div>
+    <p class="course-results" id="courseResults" role="status"></p>
+    <div class="course-list" id="courseList"></div>
+    <div class="course-dialog-foot">
+      <span id="courseSource"></span>
+      <button type="button" class="course-action primary" id="doneCourses">Готово</button>
+    </div>
+  </dialog>
+
   <div class="legend">
     <span><i class="swatch" style="background:var(--lecture)"></i>Лекция</span>
     <span><i class="swatch" style="background:var(--seminar)"></i>Семинар</span>
@@ -225,7 +321,7 @@
   <div class="panel" id="panel"></div>
   <div class="notes" id="notes"></div>
 
-  <footer><span>Данные тянутся напрямую из таблицы факультета математики «1 бак с 7.09». Переносы и отмены — в <a href="https://ruz.hse.ru/">РУЗ</a>. Расписание <a href="../">ПМИ</a> — отдельно.</span><button type="button" class="themebtn" id="themeToggle">светлая тема</button></footer>
+  <footer><span>Данные из листов «1 бак с 7.09» и «RS and SpecialCourses/НИСы и СК». Личный выбор сохраняется в этом браузере. Переносы и отмены — в <a href="https://ruz.hse.ru/">РУЗ</a>. Расписание <a href="../">ПМИ</a> — отдельно.</span><button type="button" class="themebtn" id="themeToggle">светлая тема</button></footer>
 </div>
 
 <script>
@@ -252,6 +348,36 @@ applyThemeButton();
 /* ------------------------------------------------------------------ настройки */
 var SHEET_ID = "1_DxncTDb5oQDG55bnuLluEZSiV88ZRLyIqXFMC3weMY";
 var GID      = "883693860";               // лист «1бак с 7.09»
+var COURSES_GID = "1583908539";           // RS and SpecialCourses/НИСы и СК
+var COURSE_SNAPSHOT_DATE = "05.09.2026";
+var COURSE_SNAPSHOT = {v:1, from:"2026-09-01", until:"2026-12-30", courses:[
+  [1,["16:20","17:40"],{code:"1249946",n:"Stochastic Analysis and Applications in Finance",w:"C.J.A. Bernardin",minYear:3,language:"en",room:"306",d:"с 1.09",starts:"2026-09-01",links:["https://sites.google.com/view/hse-stoch-analysis/general"]}],
+  [1,["16:20","17:40"],{code:"1122271",n:"Modular Forms and Number Theory 1",w:"A.B. Kalmynin, V. S. Bolbachan",minYear:2,language:"en",room:"210",d:"с 15.09",starts:"2026-09-15"}],
+  [1,["16:20","17:40"],{code:"1249944",n:"Геометрия уравнений Пенлеве",w:"Побережный В.А.",minYear:3,room:"110",d:"с 15.05 · Дата начала вне периода листа — уточните у преподавателя",uncertain:"Дата начала вне периода листа — уточните у преподавателя"}],
+  [1,["16:20","19:30"],{code:"1271817",n:"Кристаллы и канонические базисы 1",w:"Гуренкова А.",room:"207",d:"с 15.09 · 2 пары подряд",starts:"2026-09-15",pairs:2}],
+  [1,["18:10","19:30"],{code:"1251709",n:"Автоморфные формы и их приложения 1",w:"Гриценко В.А., Спиридонов В.П.",minYear:3,room:"306",d:""}],
+  [1,["18:10","19:30"],{code:"1122291",n:"Complex Networks 1",w:"V. G.Gorbounov, F. U. Ozhegov, I. A. Samoylenko",minYear:2,language:"en",room:"108",d:"с 22.09",starts:"2026-09-22"}],
+  [2,["14:50","16:10"],{code:"1255521",n:"Seminar of HSE – Skoltech International Laboratory of Representation Theory and Mathematical Physics",w:"V.O.Medvedev",minYear:3,language:"en",room:"108",d:""}],
+  [2,["16:20","17:40"],{code:"1122333",n:"Функциональный анализ и некоммутативная геометрия 1",w:"Пирковский А.Ю.",minYear:3,room:"108",d:"с 23.09",starts:"2026-09-23"}],
+  [2,["16:20","17:40"],{code:"1119238",n:"Математическая физика 1",w:"Маршаков А.В.",minYear:3,room:"110",d:""}],
+  [2,["16:20","19:30"],{code:"1251719",n:"Теория кодирования как введение в алгебру и арифметику",w:"Гриценко В.А.",minYear:1,room:"427",d:"с 16.09 · 2 пары подряд",starts:"2026-09-16",pairs:2}],
+  [2,["18:10","19:30"],{code:"1122252",n:"Теория представлений 1",w:"Рыбников Л.Г., Уваров Ф.В.",minYear:3,on:1,d:"с 9.09",starts:"2026-09-09",links:["https://us02web.zoom.us/j/5398220268?pwd=aW92Z2NPQ2E4cUFvRDZ4RVhIU1VMdz09"]}],
+  [2,["18:10","19:30"],{code:"1256008",n:"Асимптотические методы 1",w:"Зыбин К.П.",minYear:2,room:"108",d:"Курс отменён",cancelled:true}],
+  [3,["16:20","17:40"],{code:"1122325",n:"Representations and Probability 1",w:"A.V.Klimenko, M.Mariani, G.I.Olshanski",minYear:3,language:"en",room:"306",d:"Дата начала определяется",uncertain:"Дата начала определяется"}],
+  [3,["16:20","17:40"],{code:"1249874",n:"Проективная алгебраическая геометрия 1",w:"Артамкин И.В.",minYear:1,room:"110",d:"с 24.09",starts:"2026-09-24"}],
+  [3,["18:10","19:30"],{code:"1249852",n:"Теория пересечений и характеристические классы 1",w:"Ландо С.К., Казарян М.Э.",minYear:3,room:"110",d:"с 3.09",starts:"2026-09-03"}],
+  [3,["18:00","19:30"],{code:"1122226",n:"Геометрические структуры на многообразиях 1",w:"Жгун В.С., Каледин Д.Б., Америк Е.Ю.",minYear:2,room:"306",d:"начало в 18:00 · по сетке до 19:30",timeOverride:"18:00"}],
+  [4,["16:20","17:40"],{code:"1122244",n:"Современные проблемы математической логики 1",w:"Шехтман В.Б., Шамканов Д.С., Кудинов А.В.",minYear:2,room:"427",d:"с 25.09",starts:"2026-09-25"}],
+  [4,["16:20","17:40"],{code:"1251723",n:"Геометрия и динамика 1",w:"Ольшанский Г.И., Скрипченко А.С.",minYear:1,room:"209",d:"с 11.09",starts:"2026-09-11"}],
+  [4,["16:20","17:40"],{code:"1251679",n:"Basic and Advanced Topics in Probability and Analysis 1",w:"C. Bernardin, M. Mariani, V. Konakov",minYear:3,language:"en",room:"210",d:"с 18.09",starts:"2026-09-18"}],
+  [4,["18:30","19:30"],{code:"1122313",n:"Динамические системы 1",w:"Ильяшенко Ю.С., Шилин И.В., Глуцюк А.А.",minYear:3,room:"110",d:"с 4.09 · начало в 18:30 · по сетке до 19:30",starts:"2026-09-04",timeOverride:"18:30"}]
+].map(function(it){
+  var c = it[2]; c.k = "r"; c.courseId = "rs:" + c.code; delete c.code;
+  c.elective = true; c.termFrom = "2026-09-01"; c.termUntil = "2026-12-30";
+  c.links = c.links || []; c.pairs = c.pairs || 1;
+  return {id:c.courseId, n:c.n, w:c.w, minYear:c.minYear || null, language:c.language || "ru",
+    sessions:[{day:it[0], time:it[1], card:c}]};
+})};
 var SHEET_URL = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/edit?gid=" + GID;
 
 /* Единственный источник, в котором есть объединения ячеек (colspan) и ссылки:
@@ -484,7 +610,7 @@ var SNAPSHOT = {
 };
 
 var DAYS = [["ПН","понедельник"],["ВТ","вторник"],["СР","среда"],["ЧТ","четверг"],["ПТ","пятница"],["СБ","суббота"]];
-var KIND = {l:"Лекция", s:"Семинар", r:"НИС", e:"Английский", o:"Занятие"};
+var KIND = {l:"Лекция", s:"Семинар", r:"НИС", f:"Спецкурс", e:"Английский", o:"Занятие"};
 var LVL  = {"баз":"базовый", "осн":"основной", "продв":"продвинутый"};
 /* Чётность недель: неделя с 07.09 — чётная, нечётные считаются от 14.09. */
 var PARITY_EPOCH = new Date(2026, 8, 14);
@@ -495,14 +621,24 @@ var SNAPSHOT_DATE = "01.09";
 var SNAP = {items:SNAPSHOT, groups:GROUPS, order:GROUP_ORDER, times:TIMES};
 
 /* ------------------------------------------------------------------ состояние */
-var curGroup = PINNED[0];
+var PREFS_KEY = "raspis_math_prefs_v1";
+var prefs = prefsLoad();
+var preferredGroup = typeof prefs.group === "string" ? prefs.group : PINNED[0];
+var curGroup = Object.prototype.hasOwnProperty.call(GROUPS, preferredGroup) ? preferredGroup : PINNED[0];
 var curDay = (new Date().getDay() + 6) % 7;      // 0=ПН … 6=ВС
 if (curDay > 5) curDay = 0;                      // воскресенья в расписании нет
 var ITEMS = SNAPSHOT;
 var SOURCE = {state:"snapshot", when:null, why:null};
 var LOCAL_FILE = location.protocol === "file:";
-var onlyReal = false;                            // фильтр «только в этот день»
-var showEng = false;                             // английский по умолчанию скрыт
+var onlyReal = prefs.onlyReal === true;          // фильтр «только в этот день»
+var showEng = prefs.showEng === true;             // английский по умолчанию скрыт
+var selectedCourses = Array.isArray(prefs.courses) ? prefs.courses.filter(function(id){
+  return typeof id === "string" && /^rs:[a-z0-9:-]{1,160}$/.test(id);
+}).slice(0, 300) : [];
+var COURSE_DATA = COURSE_SNAPSHOT;
+var COURSE_SOURCE = {state:"snapshot", when:COURSE_SNAPSHOT_DATE};
+var VIEW_TIMES = TIMES;
+var courseSearch = "", coursesOnlySelected = false;
 
 /* ------------------------------------------------------------------- даты */
 /* Дата дня недели = ближайшая дата не раньше «отсчёта». Сегодня вторник 01.09 →
@@ -527,18 +663,6 @@ function fmtISO(d){
 /* «30.09» без года: сентябрь–декабрь — первый год учебного года, январь–июнь — следующий */
 function dateFromDM(dd, mm){ return new Date(mm >= 9 ? YEAR0 : YEAR0 + 1, mm - 1, dd); }
 
-var RE_FROM   = /^[СC]\s+(\d{1,2})\.(\d{2})$/;          // «С 07.09», встречается и с латинской C
-var RE_LIST   = /^\d{1,2}\.\d{2}(\s*[.,]\s*\d{1,2}\.\d{2})*$/;   // «30.09, 14.10», иногда точка вместо запятой
-var RE_CANCEL = /^отмена\s+(\d{1,2})\.(\d{2})$/i;
-var RE_DM     = /(\d{1,2})\.(\d{2})/g;
-
-function datesIn(tok){
-  var out = [], m;
-  RE_DM.lastIndex = 0;
-  while ((m = RE_DM.exec(tok))) out.push(dateFromDM(+m[1], +m[2]));
-  return out;
-}
-
 /* Чётность недели: считаем от PARITY_EPOCH (понедельник первой, нечётной недели).
    Возвращает "odd" / "even". */
 function weekParity(when){
@@ -550,7 +674,7 @@ function parityTag(when){
   return '<span class="weekpar">' + (weekParity(when) === "odd" ? "нечёт" : "чёт") + '. нед.</span>';
 }
 
-var RE_FROM   = /^[СC]\s+(\d{1,2})\.(\d{1,2})$/;
+var RE_FROM   = /^[СC]\s+(\d{1,2})\.(\d{1,2})$/i;
 var RE_LIST   = /^\d{1,2}\.\d{1,2}(\s*[.,]\s*\d{1,2}\.\d{1,2})*$/;
 var RE_DM     = /(\d{1,2})\.(\d{1,2})/g;
 var RE_MONTH  = /^с (сентября|октября|ноября|декабря)$/i;
@@ -567,7 +691,15 @@ function datesIn(tok){
    У математиков главный признак — чётность недели; даты списком встречаются редко
    (ОРГ-лекция по субботам), «с октября» — у НИСа. Пустая строка — таблица молчит. */
 function verdict(c, when){
-  var toks = String(c.d || "").split(" · "), lists = [], froms = [], reasons = [];
+  if (c.elective){
+    var iso = fmtISO(when);
+    if (c.cancelled || iso < c.termFrom || iso > c.termUntil) return "no";
+    if (c.uncertain) return "";
+    if (c.starts && iso < c.starts) return "no";
+    if (c.par && weekParity(when) !== c.par) return "no";
+    return "yes";
+  }
+  var toks = String(c.d || "").split(" · "), lists = [], froms = [];
   for (var i = 0; i < toks.length; i++){
     var t = toks[i].trim();
     if (!t) continue;
@@ -654,26 +786,50 @@ function zipRead(z, e){
 
 /* из выгрузки книги достаём HTML именно нашего листа: Google проставляет gid
    в id строковых заголовков (<th id="1526534829R5">) */
-function sheetFromZip(buf){
+function sheetFromZip(buf, gid){
+  gid = gid || GID;
   var z = zipOpen(buf);
   var htmls = z.list.filter(function(e){ return /\.html?$/i.test(e.name); });
-  var i = 0;
-  function step(fallback){
+  var i = 0, fallback = null;
+  var expectedName = gid === GID ? "1бакс7.09.html" : gid === COURSES_GID ? "rsandspecialcoursesнисыиск.html" : "";
+  function step(){
     if (i >= htmls.length){
       if (fallback) return fallback;
-      throw new Error("нужный лист не найден в выгрузке");
+      throw new Error("лист " + gid + " не найден в выгрузке");
     }
-    return zipRead(z, htmls[i++]).then(function(t){
-      if (t.indexOf('id="' + GID + 'R') >= 0) return t;
-      if (!fallback && t.indexOf("БСБВЦ262") >= 0 && t.indexOf("БМТМТБ261") >= 0) fallback = t;
-      return step(fallback);
-    }, function(){ return step(fallback); });
+    var entry = htmls[i++];
+    return zipRead(z, entry).then(function(t){
+      if (t.indexOf('id="' + gid + 'R') >= 0) return t;
+      // Имена групп есть и на листе первой недели — по ним подменять источник нельзя.
+      if (expectedName && entry.name.split("/").pop().replace(/\s+/g, "").toLowerCase() === expectedName) fallback = t;
+      return step();
+    }, function(){ return step(); });
   }
-  return Promise.resolve(step(null));
+  return Promise.resolve().then(step);
 }
 
 function fromZipUrl(url){
-  return withTimeout(url, 40000, "buf").then(sheetFromZip).then(parseSheet);
+  return withTimeout(url, 40000, "buf").then(function(buf){
+    var base = sheetFromZip(buf, GID).then(parseSheet).then(function(data){
+      return {data:data};
+    }, function(err){ return {error:err}; });
+    var courses = sheetFromZip(buf, COURSES_GID).then(parseCourses).then(function(data){
+      COURSE_DATA = data;
+      COURSE_SOURCE = {state:"live", when:stamp(Date.now())};
+      courseCacheSave(data);
+      renderCourseSummary();
+      if (document.getElementById("courseDialog").open) renderCourseChoices();
+      return data;
+    }).catch(function(err){
+      COURSE_SOURCE.why = err.message;
+      return null;             // сбой каталога не ломает обязательное расписание
+    });
+    return Promise.all([base, courses]).then(function(parts){
+      // Дожидаемся обоих листов: новый каталог должен попасть и в резервную сетку.
+      if (parts[0].error) throw parts[0].error;
+      return parts[0].data;
+    });
+  });
 }
 function fromAppsScript(url){
   return withTimeout(url, 25000).then(function(t){
@@ -722,7 +878,8 @@ function gridFromTable(table){
       tmp.innerHTML = cell.innerHTML.replace(/<br\s*\/?>/gi, "\n");
       var hrefs = [], as = cell.querySelectorAll("a[href]");
       for (var ai = 0; ai < as.length; ai++) hrefs.push(as[ai].getAttribute("href"));
-      var val = {text: (tmp.textContent || "").replace(/\u00a0/g, " ").trim(), hrefs: hrefs};
+      var val = {text: (tmp.textContent || "").replace(/\u00a0/g, " ").trim(), hrefs: hrefs,
+        row:r, col:c, rows:rs, cols:cs, css:cell.className};
       for (var ri = 0; ri < rs; ri++){
         for (var ci = 0; ci < cs; ci++){
           grid[r + ri] = grid[r + ri] || [];
@@ -918,6 +1075,133 @@ function parseSheet(html){
   throw err || new Error("не нашёл нужные колонки в таблице");
 }
 
+/* ----------------------------------------------------- НИСы и спецкурсы по выбору */
+function safeURL(raw){
+  try{
+    var u = new URL(raw);
+    if (u.hostname === "www.google.com" && u.pathname === "/url") u = new URL(u.searchParams.get("q") || u.searchParams.get("url"));
+    return /^https?:$/.test(u.protocol) ? u.href : "";
+  }catch(e){ return ""; }
+}
+function clockMinutes(t){ var p = t.split(":"); return +p[0] * 60 + +p[1]; }
+function courseTime(text){
+  var m = String(text).match(/^\s*(\d{1,2})[:.](\d{2})\s*[-–—]\s*(\d{1,2})[:.](\d{2})\s*$/);
+  if (!m || +m[1] > 23 || +m[3] > 23 || +m[2] > 59 || +m[4] > 59) return null;
+  return [("0" + m[1]).slice(-2) + ":" + m[2], ("0" + m[3]).slice(-2) + ":" + m[4]];
+}
+function courseID(text){
+  var code = text.match(/\((\d{6,9})\)/);
+  if (code) return "rs:" + code[1];
+  var h = 0;
+  for (var i = 0; i < text.length; i++) h = ((h << 5) - h + text.charCodeAt(i)) | 0;
+  return "rs:text:" + (h >>> 0).toString(36);
+}
+function courseTerm(text){
+  var y = text.match(/(20\d{2})\s*\/\s*20\d{2}/);
+  var m = text.match(/(\d{1,2})\s+(сентября|октября|ноября|декабря)\s*[-–—]\s*(\d{1,2})\s+(сентября|октября|ноября|декабря)/i);
+  if (!y || !m) throw new Error("не найден период НИСов и спецкурсов");
+  return {year:+y[1], from:fmtISO(new Date(+y[1], MONTHS[m[2].toLowerCase()] - 1, +m[1])),
+    until:fmtISO(new Date(+y[1], MONTHS[m[4].toLowerCase()] - 1, +m[3]))};
+}
+function parseCourseCell(cell, term, styleText){
+  var raw = cell.text.replace(/\s+/g, " ").trim();
+  var code = raw.match(/\((\d{6,9})\)/);
+  var marker = raw.match(/(?:НИС|Research\s+Seminar|Спецкурс|Special\s+Course|С\/курс|СК)\s+/i);
+  if (!marker) return null;
+  var titleEnd = code ? code.index : raw.length;
+  var name = raw.slice(marker.index + marker[0].length, titleEnd).replace(/["«»“”]/g, "").trim();
+  if (!name) return null;
+  var rest = code ? raw.slice(code.index + code[0].length) : "";
+  var w = rest.match(/\(([^()]+)\)/), room = rest.replace(/https?:\/\/\S+/g, "").match(/\s(\d{3})\s*$/);
+  var minYear = raw.match(/(?:^|\s)([1-6])\s*\+/);
+  var start = raw.match(/(?:^|\s)[сc]\s+(\d{1,2})\.(\d{1,2})(?!\d)/i);
+  var override = raw.match(/(?:^|\s)[сc]\s+(\d{1,2}:\d{2})(?!\d)/i);
+  var c = {k:/НИС|Research/i.test(marker[0]) ? "r" : "f", n:name, w:w ? w[1].trim() : "",
+    d:"", elective:true, courseId:courseID(code ? code[0] : name), termFrom:term.from, termUntil:term.until};
+  var notes = [];
+  if (minYear) c.minYear = +minYear[1];
+  if (room) c.room = room[1];
+  if (/ОНЛАЙН/i.test(raw)) c.on = 1;
+  if (/курс\s+отмен[её]н/i.test(raw)){ c.cancelled = true; notes.push("Курс отменён"); }
+  if (/дата\s+определяется/i.test(raw)){ c.uncertain = "Дата начала определяется"; notes.push(c.uncertain); }
+  if (start){
+    var dt = new Date(term.year, +start[2] - 1, +start[1]), iso = fmtISO(dt);
+    notes.push("с " + start[1] + "." + start[2]);
+    if (dt.getMonth() !== +start[2] - 1 || dt.getDate() !== +start[1] || iso < term.from || iso > term.until){
+      c.uncertain = "Дата начала вне периода листа — уточните у преподавателя";
+      notes.push(c.uncertain);
+    } else c.starts = iso;
+  }
+  if (override){ c.timeOverride = override[1]; notes.push("начало в " + override[1]); }
+  var par = raw.match(RE_PARITY);
+  if (par) c.par = par[2] ? "odd" : "even";
+  var rules = styleText.match(/[^{}]+\{[^{}]*\}/g) || [];
+  var classes = String(cell.css || "").split(/\s+/);
+  rules.forEach(function(rule){
+    var selector = rule.slice(0, rule.indexOf("{"));
+    if (!classes.some(function(cl){ return cl && new RegExp("\\." + cl + "(?![\\w-])").test(selector); })) return;
+    if (/background-color\s*:\s*#ffff99/i.test(rule)) c.language = "en";
+    if (/background-color\s*:\s*#93c47d/i.test(rule)) notes.push("Нельзя включить в ИУП");
+  });
+  c.links = (cell.hrefs || []).map(safeURL).filter(function(url, i, list){ return url && list.indexOf(url) === i; });
+  c.d = notes.join(" · ");
+  return c;
+}
+function parseCourses(html){
+  var doc = new DOMParser().parseFromString(html, "text/html");
+  var table = doc.querySelector("table");
+  if (!table) throw new Error("нет таблицы НИСов и спецкурсов");
+  var term = courseTerm(table.textContent), grid = gridFromTable(table);
+  var styleText = Array.prototype.map.call(doc.querySelectorAll("style"), function(s){ return s.textContent; }).join("\n");
+  var timeCol = -1;
+  for (var r = 0; r < grid.length && timeCol < 0; r++){
+    (grid[r] || []).forEach(function(v, col){ if (v && /^время$/i.test(v.text)) timeCol = col; });
+  }
+  if (timeCol < 0) throw new Error("нет колонки времени у НИСов");
+  function rowDay(row){
+    for (var col = 0; col < timeCol; col++){
+      var v = cellAt(grid, row, col);
+      if (!v) continue;
+      for (var di = 0; di < DAYS.length; di++) if (v.text.toLowerCase() === DAYS[di][1]) return di;
+    }
+    return -1;
+  }
+  var courses = [], byID = {}, seen = {};
+  for (var ri = 0; ri < grid.length; ri++){
+    var tv = cellAt(grid, ri, timeCol), time = tv && courseTime(tv.text);
+    if (!time) continue;
+    var day = rowDay(ri);
+    // У первой пары четверга подпись дня начинается строкой ниже.
+    if (day < 0){
+      for (var next = ri + 1; next < grid.length && day < 0; next++) day = rowDay(next);
+    }
+    if (day < 0) throw new Error("не определён день дополнительного занятия");
+    for (var ci = timeCol + 1; ci < (grid[ri] || []).length; ci++){
+      var cell = cellAt(grid, ri, ci);
+      if (!cell) continue;
+      var origin = cell.row + ":" + cell.col;
+      if (seen[origin]) continue;
+      seen[origin] = true;
+      var c = parseCourseCell(cell, term, styleText);
+      if (!c) continue;
+      var lastTimeCell = cellAt(grid, cell.row + cell.rows - 1, timeCol);
+      var lastTime = lastTimeCell && courseTime(lastTimeCell.text);
+      var span = cell.rows || 1, actualTime = [c.timeOverride || time[0], lastTime ? lastTime[1] : time[1]];
+      c.pairs = span;
+      if (span > 1) c.d += (c.d ? " · " : "") + span + " пары подряд";
+      if (c.timeOverride) c.d += " · по сетке до " + actualTime[1];
+      var course = byID[c.courseId];
+      if (!course){
+        course = {id:c.courseId, n:c.n, w:c.w, minYear:c.minYear || null, language:c.language || "ru", sessions:[]};
+        byID[c.courseId] = course; courses.push(course);
+      }
+      course.sessions.push({day:day, time:actualTime, card:c});
+    }
+  }
+  if (!courses.length) throw new Error("лист найден, но НИСы и спецкурсы не разобраны");
+  return {v:1, from:term.from, until:term.until, courses:courses};
+}
+
 /* ------------------------------------------------------------------------ кэш */
 function cacheSave(data){
   try{ localStorage.setItem("raspis_math", JSON.stringify({t:Date.now(), d:data})); }catch(e){}
@@ -931,10 +1215,37 @@ function cacheLoad(){
   }catch(e){ return null; }
 }
 
+function courseCacheSave(data){
+  try{ localStorage.setItem("raspis_math_courses_v1", JSON.stringify({t:Date.now(), d:data})); }catch(e){}
+}
+function courseCacheLoad(){
+  try{
+    var o = JSON.parse(localStorage.getItem("raspis_math_courses_v1"));
+    return o && o.d && o.d.v === 1 && Array.isArray(o.d.courses) && o.d.courses.length &&
+      o.d.courses.every(function(c){ return typeof c.id === "string" && typeof c.n === "string" &&
+        Array.isArray(c.sessions) && c.sessions.length && c.sessions.every(function(s){ return s.card &&
+          s.day >= 0 && s.day < DAYS.length && s.day % 1 === 0 && Array.isArray(s.time) &&
+          s.time.length === 2 && courseTime(s.time.join("-")) &&
+          (!s.card.links || Array.isArray(s.card.links)); }); }) ? o : null;
+  }catch(e){ return null; }
+}
+
+/* Личный выбор не смешивается с кэшем Google и с настройками страницы ПМИ. */
+function prefsLoad(){
+  try{
+    var p = JSON.parse(localStorage.getItem(PREFS_KEY));
+    return p && p.v === 1 && !Array.isArray(p) ? p : {};
+  }catch(e){ return {}; }
+}
+function prefsSave(){
+  try{ localStorage.setItem(PREFS_KEY, JSON.stringify({v:1, group:preferredGroup,
+    onlyReal:onlyReal, showEng:showEng, courses:selectedCourses})); }catch(e){}
+}
+
 /* -------------------------------------------------------------------- отрисовка */
 function card(c, when){
   var v = verdict(c, when);
-  var cls = "class " + c.k + (c.on ? " online" : "") + (c.par && v === "no" ? " faded" : "");
+  var cls = "class " + c.k + (c.on ? " online" : "") + ((c.par || c.elective) && v === "no" ? " faded" : "");
   var parTag = c.par
     ? '<span class="par ' + (v === "yes" ? "on" : v === "no" ? "off" : "") + '">' +
       (c.par === "odd" ? "нечёт" : "чёт") + '</span>' : '';
@@ -944,11 +1255,18 @@ function card(c, when){
   if (c.k === "e" && c.lvl) who += '<span class="lvl">' + esc(LVL[c.lvl] || c.lvl) + '</span>';
   var whenHtml = dateHTML(c.d, c, when);
   var room = c.room ? '<span class="room">' + esc(c.room) + '</span>' : '';
-  return '<div class="' + cls + '">' + head +
+  var extra = c.elective ? '<span class="elective-tag">по выбору' + (c.language === "en" ? ' · на английском' : '') + '</span>' : '';
+  var links = (c.links || []).map(safeURL).filter(Boolean).map(function(url){
+    return '<a class="join" href="' + esc(url) + '" target="_blank" rel="noopener">' + (c.on ? 'подключиться' : 'о курсе') + '</a>';
+  }).join("");
+  var warning = c.uncertain || (c.elective && v === "no" ? "В эту дату занятие не идёт" : "");
+  return '<div class="' + cls + '"' + (c.elective ? ' data-elective="' + esc(c.courseId) + '"' : '') + '>' + head + extra +
     '<div class="name">' + esc(c.n) + '</div>' +
     (who ? '<div class="who">' + who + '</div>' : '') +
     ((whenHtml || room) ? '<div class="when">' + whenHtml + room + '</div>' : '') +
-    '</div>';
+    (warning ? '<div class="course-alert">' + esc(warning) + '</div>' : '') +
+    (c.conflict ? '<div class="course-alert">' + esc(c.conflict) + '</div>' : '') +
+    (links ? '<div class="cfoot">' + links + '</div>' : '') + '</div>';
 }
 
 function esc(s){
@@ -959,6 +1277,100 @@ function at(list, ri, di){
   return list.filter(function(it){ return it[0] === ri && it[1] === di; });
 }
 
+function courseSelected(id){ return selectedCourses.indexOf(id) >= 0; }
+function courseCancelled(course){ return course.sessions.every(function(s){ return s.card.cancelled; }); }
+function renderCourseSummary(){
+  document.getElementById("courseCount").textContent = selectedCourses.length;
+  document.getElementById("courseSummary").textContent = selectedCourses.length
+    ? "Выбрано: " + selectedCourses.length + ". Добавлены к парам группы. Выбор запоминается в этом браузере."
+    : "Все дополнительные курсы выключены. Выберите то, на что ходите.";
+  var missing = selectedCourses.filter(function(id){ return !COURSE_DATA.courses.some(function(c){ return c.id === id; }); });
+  var cancelled = COURSE_DATA.courses.filter(function(c){ return courseSelected(c.id) && courseCancelled(c); });
+  var uncertain = COURSE_DATA.courses.filter(function(c){ return courseSelected(c.id) && c.sessions.some(function(s){ return s.card.uncertain; }); });
+  var notices = [];
+  if (missing.length) notices.push("Выбранных курсов больше нет в текущем каталоге: " + missing.length + ". Проверьте выбор — настройки не удалены.");
+  if (cancelled.length) notices.push("Отменены и не добавлены в сетку: " + cancelled.map(function(c){ return c.n; }).join(", ") + ".");
+  if (uncertain.length) notices.push("Начало требует уточнения: " + uncertain.map(function(c){ return c.n; }).join(", ") + ".");
+  if (COURSE_SOURCE.state !== "live") notices.push("Каталог курсов: " + (COURSE_SOURCE.state === "cache" ? "сохранённая копия" : "встроенная копия") + " от " + COURSE_SOURCE.when + ".");
+  var notice = document.getElementById("courseNotice");
+  notice.hidden = !notices.length; notice.textContent = notices.join(" ");
+  var label = COURSE_SOURCE.state === "live" ? "Из таблицы" : COURSE_SOURCE.state === "cache" ? "Из кэша" : "Встроенный снимок";
+  document.getElementById("courseSource").innerHTML = esc(label + " · " + COURSE_SOURCE.when) +
+    ' · <a href="' + esc("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/edit?gid=" + COURSES_GID) + '" target="_blank" rel="noopener">Лист курсов</a>';
+  document.getElementById("clearCourses").disabled = !selectedCourses.length;
+}
+function renderCourseChoices(){
+  var box = document.getElementById("courseList"), scroll = box.scrollTop;
+  var focused = document.activeElement && document.activeElement.getAttribute("data-course");
+  var words = courseSearch.toLowerCase().replace(/ё/g, "е").trim().split(/\s+/);
+  var courses = COURSE_DATA.courses.filter(function(c){
+    var hay = (c.n + " " + c.w).toLowerCase().replace(/ё/g, "е");
+    return (!coursesOnlySelected || courseSelected(c.id)) && words.every(function(word){ return hay.indexOf(word) >= 0; });
+  });
+  courses.sort(function(a, b){ return Number(courseCancelled(a)) - Number(courseCancelled(b)) || a.n.localeCompare(b.n, "ru"); });
+  box.innerHTML = courses.map(function(c){
+    var selected = courseSelected(c.id), cancelled = courseCancelled(c);
+    var meta = (c.sessions[0].card.k === "r" ? "НИС" : "Спецкурс") +
+      (c.minYear ? " · " + c.minYear + " курс и старше" : " · курс обучения не указан") + (c.language === "en" ? " · на английском" : "");
+    var slots = c.sessions.map(function(s){
+      return '<span class="course-slot">' + esc(DAYS[s.day][0] + " · " + s.time[0] + "–" + s.time[1]) +
+        (s.card.room ? ' · ауд. ' + esc(s.card.room) : '') + (s.card.on ? ' · онлайн' : '') +
+        '<small' + (s.card.uncertain || s.card.cancelled ? ' class="course-alert"' : '') + '>' +
+        esc(s.card.d || "Дата начала не указана; по расписанию листа") + '</small></span>';
+    }).join("");
+    var links = [];
+    c.sessions.forEach(function(s){ (s.card.links || []).forEach(function(url){
+      url = safeURL(url); if (url && links.indexOf(url) < 0) links.push(url);
+    }); });
+    return '<article class="course-option' + (selected ? ' selected' : '') + (cancelled ? ' cancelled' : '') + '">' +
+      '<label><input type="checkbox" data-course="' + esc(c.id) + '"' + (selected ? ' checked' : '') +
+      (cancelled && !selected ? ' disabled' : '') + ' aria-label="' + esc(c.n) + '">' +
+      '<span class="course-option-main"><span class="course-option-meta">' + esc(meta) + '</span>' +
+      '<strong class="course-title">' + esc(c.n) + '</strong><span class="course-teacher">' + esc(c.w) + '</span>' + slots + '</span></label>' +
+      (links.length ? '<div class="course-links">' + links.map(function(url, i){ return '<a href="' + esc(url) + '" target="_blank" rel="noopener">Ссылка из таблицы' + (links.length > 1 ? ' ' + (i + 1) : '') + '</a>'; }).join("") + '</div>' : '') + '</article>';
+  }).join("") || '<div class="course-empty">' + (coursesOnlySelected ? 'Здесь пока нет выбранных курсов.' : 'Ничего не найдено. Попробуйте часть названия или фамилию.') + '</div>';
+  document.getElementById("courseResults").textContent = "Показано " + courses.length + " из " + COURSE_DATA.courses.length + " · выбрано " + selectedCourses.length;
+  box.scrollTop = scroll;
+  if (focused){
+    var target = Array.prototype.find.call(box.querySelectorAll("[data-course]"), function(el){ return el.dataset.course === focused; });
+    if (target) target.focus({preventScroll:true}); else document.getElementById("coursesOnlySelected").focus();
+  }
+}
+
+/* Сетка для показа: базовые данные не мутируют, времена листов не округляются. */
+function currentSchedule(){
+  var base = ITEMS[curGroup] || [], entries = base.map(function(it){ return {day:it[1], time:TIMES[it[0]], card:it[2]}; });
+  COURSE_DATA.courses.forEach(function(course){
+    if (!courseSelected(course.id)) return;
+    course.sessions.forEach(function(s){
+      if (s.card.cancelled) return;
+      var c = Object.assign({}, s.card);
+      entries.push({day:s.day, time:s.time, card:c});
+    });
+  });
+  function visible(e){ return (e.card.k !== "e" || showEng) && verdict(e.card, dateFor(e.day)) !== "no"; }
+  function start(e){
+    var m = String(e.card.d || "").match(/начало в (\d{1,2}:\d{2})/);
+    return clockMinutes(m ? m[1] : e.time[0]);
+  }
+  entries.forEach(function(e){
+    if (!e.card.elective || !visible(e)) return;
+    var conflicts = entries.filter(function(other){ return other !== e && other.day === e.day && visible(other) &&
+      start(e) < clockMinutes(other.time[1]) && start(other) < clockMinutes(e.time[1]); });
+    if (conflicts.length) e.card.conflict = "Совпадает по времени: " + conflicts.map(function(o){ return o.card.n; }).join(", ");
+  });
+  VIEW_TIMES = TIMES.map(function(t){ return t.slice(); });
+  entries.forEach(function(e){
+    if (e.card.elective && onlyReal && verdict(e.card, dateFor(e.day)) === "no") return;
+    if (!VIEW_TIMES.some(function(t){ return t[0] === e.time[0] && t[1] === e.time[1]; })) VIEW_TIMES.push(e.time.slice());
+  });
+  VIEW_TIMES.sort(function(a, b){ return clockMinutes(a[0]) - clockMinutes(b[0]) || clockMinutes(a[1]) - clockMinutes(b[1]); });
+  return entries.map(function(e){
+    var ri = VIEW_TIMES.findIndex(function(t){ return t[0] === e.time[0] && t[1] === e.time[1]; });
+    return [ri, e.day, e.card];
+  });
+}
+
 function renderGroupTabs(){
   var box = document.getElementById("groupTabs");
   box.innerHTML = GROUP_ORDER.map(function(g, i){
@@ -967,7 +1379,7 @@ function renderGroupTabs(){
       (g === curGroup) + '">' + esc(g) + '</button>';
   }).join("");
   box.querySelectorAll(".tab").forEach(function(b){
-    b.addEventListener("click", function(){ curGroup = b.dataset.key; render(); });
+    b.addEventListener("click", function(){ curGroup = preferredGroup = b.dataset.key; prefsSave(); render(); });
   });
 }
 
@@ -1010,7 +1422,7 @@ function shown(list, ri, di, when){
 
 function renderDay(list){
   var di = curDay, when = dateFor(di), rows = "", last = -1, count = 0, hidden = 0;
-  TIMES.forEach(function(t, ri){
+  VIEW_TIMES.forEach(function(t, ri){
     if (shown(list, ri, di, when).length) last = ri;
     hidden += at(list, ri, di).length - shown(list, ri, di, when).length;
   });
@@ -1019,8 +1431,8 @@ function renderDay(list){
     '<div class="free">' + (hidden ? "В этот день ничего из расписания не идёт." : "В этот день ничего не стоит.") + '</div>';
 
   for (var ri = 0; ri <= last; ri++){
-    var cells = shown(list, ri, di, when), t = TIMES[ri];
-    count += cells.length;
+    var cells = shown(list, ri, di, when), t = VIEW_TIMES[ri];
+    count += cells.reduce(function(n, it){ return n + (it[2].pairs || 1); }, 0);
     if (!cells.length){
       rows += '<div class="row gap"><div class="t">' + t[0] + '<small>' + t[1] + '</small></div><div class="c">—</div></div>';
     } else {
@@ -1030,8 +1442,10 @@ function renderDay(list){
   }
   var first = 0;
   while (first <= last && !shown(list, first, di, when).length) first++;
+  var end = VIEW_TIMES[last][1];
+  VIEW_TIMES.forEach(function(t, i){ if (shown(list, i, di, when).length && clockMinutes(t[1]) > clockMinutes(end)) end = t[1]; });
   return '<div class="dayhead">' + DAYS[di][1] + '<span>' + fmtDM(when) + parityTag(when) + ' · ' +
-    TIMES[first][0] + '–' + TIMES[last][1] + ' · ' + count + ' п.' + tail + '</span></div>' + rows;
+    VIEW_TIMES[first][0] + '–' + end + ' · ' + count + ' п.' + tail + '</span></div>' + rows;
 }
 
 function renderWeek(list){
@@ -1042,7 +1456,7 @@ function renderWeek(list){
       '<span class="full">' + d[1] + parityTag(dt) + '</span>' + (t ? '<i class="todaydot"></i>' : '') + '</th>';
   });
   var rows = "";
-  TIMES.forEach(function(t, ri){
+  VIEW_TIMES.forEach(function(t, ri){
     rows += '<tr><td class="time">' + t[0] + '<small>' + t[1] + '</small></td>';
     DAYS.forEach(function(d, di){
       var when = dateFor(di);
@@ -1080,7 +1494,7 @@ function renderNotes(){
       'У пары с пометкой <i class="parkey">чёт</i>/<i class="parkey">нечёт</i> метка <span class="d-yes">зелёная</span>, если на дате дня она идёт, ' +
       '<span class="d-no">красная</span> и карточка приглушена — если нет. Если факультет считает иначе, поправьте PARITY_EPOCH в скрипте.</p></div>' +
     '<div class="note"><h2>Английский</h2><p>Стоит в сетке группы с уровнем (базовый / основной / продвинутый) и стартует с 21.09. ' +
-      'По умолчанию скрыт — кнопка «английский» рядом с датой. Какой уровень ваш, смотрите по языковой группе.</p></div>' +
+      'По умолчанию скрыт — кнопка «английский» рядом с датой; выбор запоминается. Какой уровень ваш, смотрите по языковой группе. Эта кнопка не скрывает выбранные НИСы на английском языке.</p></div>' +
     '<div class="note"><h2>Живые данные</h2><p>' + (live
       ? 'Источник — выгрузка книги в zip (единственный формат, где сохраняются объединения ячеек). csv и gviz их теряют, htmlview больше не отдаёт разметку.'
       : howto) + '</p></div>';
@@ -1088,7 +1502,7 @@ function renderNotes(){
 
 function render(){
   if (!GROUPS[curGroup]) curGroup = GROUP_ORDER[0];
-  var list = ITEMS[curGroup] || [];
+  var list = currentSchedule();
   document.getElementById("groupName").textContent = curGroup;
   document.getElementById("groupMeta").textContent = GROUPS[curGroup].meta;
   document.title = "Расписание " + curGroup + " · матфак · 1 модуль 26/27";
@@ -1098,6 +1512,7 @@ function render(){
   document.getElementById("panel").innerHTML = (curDay === "all") ? renderWeek(list) : renderDay(list);
   renderStatus();
   renderNotes();
+  renderCourseSummary();
 }
 
 function stamp(ts){
@@ -1115,12 +1530,16 @@ function applyData(p){
     GROUPS = p.groups;
     GROUP_ORDER = p.order;
   }
-  if (!GROUPS[curGroup]) curGroup = GROUP_ORDER[0];
+  if (Object.prototype.hasOwnProperty.call(GROUPS, preferredGroup)) curGroup = preferredGroup;
+  else if (!Object.prototype.hasOwnProperty.call(GROUPS, curGroup)) curGroup = GROUP_ORDER[0];
 }
 
 function update(){
+  if (SOURCE.state === "loading") return;
+  if (COURSE_SOURCE.state === "live") COURSE_SOURCE.state = "cache";
   SOURCE = {state:"loading"};
   renderStatus();
+  renderCourseSummary();
   loadLive().then(function(data){
     applyData(data);
     cacheSave(data);
@@ -1150,10 +1569,12 @@ document.getElementById("datePick").addEventListener("change", function(){
 });
 document.getElementById("onlyReal").addEventListener("click", function(){
   onlyReal = !onlyReal;
+  prefsSave();
   render();
 });
 document.getElementById("showEng").addEventListener("click", function(){
   showEng = !showEng;
+  prefsSave();
   render();
 });
 document.getElementById("dateToday").addEventListener("click", function(){
@@ -1161,6 +1582,30 @@ document.getElementById("dateToday").addEventListener("click", function(){
   render();
 });
 
+document.getElementById("chooseCourses").addEventListener("click", function(){
+  renderCourseChoices();
+  document.getElementById("courseDialog").showModal();
+  document.getElementById("courseSearch").focus();
+});
+function closeCourseDialog(){ document.getElementById("courseDialog").close(); }
+document.getElementById("closeCourses").addEventListener("click", closeCourseDialog);
+document.getElementById("doneCourses").addEventListener("click", closeCourseDialog);
+document.getElementById("courseDialog").addEventListener("close", function(){ document.getElementById("chooseCourses").focus(); });
+document.getElementById("courseSearch").addEventListener("input", function(){ courseSearch = this.value; renderCourseChoices(); });
+document.getElementById("coursesOnlySelected").addEventListener("change", function(){ coursesOnlySelected = this.checked; renderCourseChoices(); });
+document.getElementById("clearCourses").addEventListener("click", function(){
+  selectedCourses = []; prefsSave(); render(); renderCourseChoices();
+});
+document.getElementById("courseList").addEventListener("change", function(e){
+  var id = e.target.getAttribute("data-course");
+  if (!id || !COURSE_DATA.courses.some(function(c){ return c.id === id; })) return;
+  selectedCourses = selectedCourses.filter(function(x){ return x !== id; });
+  if (e.target.checked) selectedCourses.push(id);
+  prefsSave(); render(); renderCourseChoices();
+});
+
+var cachedCourses = courseCacheLoad();
+if (cachedCourses){ COURSE_DATA = cachedCourses.d; COURSE_SOURCE = {state:"cache", when:stamp(cachedCourses.t)}; }
 var cached = cacheLoad();
 if (cached){ applyData(cached.d); SOURCE = {state:"cache", when: stamp(cached.t)}; }
 render();

@@ -1016,13 +1016,16 @@ var SNAPSHOT_DATE = "01.09";
 var SNAP = {items:SNAPSHOT, groups:GROUPS, order:GROUP_ORDER};
 
 /* ------------------------------------------------------------------ состояние */
-var curGroup = PINNED[0];
+var PREFS_KEY = "raspis2_prefs_v1";
+var prefs = prefsLoad();
+var preferredGroup = typeof prefs.group === "string" ? prefs.group : PINNED[0];
+var curGroup = Object.prototype.hasOwnProperty.call(GROUPS, preferredGroup) ? preferredGroup : PINNED[0];
 var curDay = (new Date().getDay() + 6) % 7;      // 0=ПН … 6=ВС
 if (curDay > 5) curDay = 0;                      // воскресенья в расписании нет
 var ITEMS = SNAPSHOT;
 var SOURCE = {state:"snapshot", when:null, why:null};
 var LOCAL_FILE = location.protocol === "file:";
-var onlyReal = false;                            // фильтр «только в этот день»
+var onlyReal = prefs.onlyReal === true;          // фильтр «только в этот день»
 
 /* ------------------------------------------------------------------- даты */
 /* Дата дня недели = ближайшая дата не раньше «отсчёта». Сегодня вторник 01.09 →
@@ -1398,6 +1401,17 @@ function cacheLoad(){
   }catch(e){ return null; }
 }
 
+/* Личные настройки этого браузера; данные таблицы хранятся отдельно. */
+function prefsLoad(){
+  try{
+    var p = JSON.parse(localStorage.getItem(PREFS_KEY));
+    return p && p.v === 1 && !Array.isArray(p) ? p : {};
+  }catch(e){ return {}; }
+}
+function prefsSave(){
+  try{ localStorage.setItem(PREFS_KEY, JSON.stringify({v:1, group:preferredGroup, onlyReal:onlyReal})); }catch(e){}
+}
+
 /* -------------------------------------------------------------------- отрисовка */
 function card(c, when){
   var cls = "class " + c.k + (c.on ? " online" : "");
@@ -1428,7 +1442,7 @@ function renderGroupTabs(){
       (g === curGroup) + '">' + esc(g) + '</button>';
   }).join("");
   box.querySelectorAll(".tab").forEach(function(b){
-    b.addEventListener("click", function(){ curGroup = b.dataset.key; render(); });
+    b.addEventListener("click", function(){ curGroup = preferredGroup = b.dataset.key; prefsSave(); render(); });
   });
 }
 
@@ -1572,7 +1586,8 @@ function applyData(p){
     GROUPS = p.groups;
     GROUP_ORDER = p.order;
   }
-  if (!GROUPS[curGroup]) curGroup = GROUP_ORDER[0];
+  if (Object.prototype.hasOwnProperty.call(GROUPS, preferredGroup)) curGroup = preferredGroup;
+  else if (!Object.prototype.hasOwnProperty.call(GROUPS, curGroup)) curGroup = GROUP_ORDER[0];
 }
 
 function update(){
@@ -1607,6 +1622,7 @@ document.getElementById("datePick").addEventListener("change", function(){
 });
 document.getElementById("onlyReal").addEventListener("click", function(){
   onlyReal = !onlyReal;
+  prefsSave();
   render();
 });
 document.getElementById("dateToday").addEventListener("click", function(){
