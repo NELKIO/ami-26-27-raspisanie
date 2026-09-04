@@ -139,8 +139,9 @@
 
   .daybar{display:flex;align-items:center;justify-content:space-between;gap:8px 12px;margin-top:14px}
   .daybar .tabs.days{margin-top:0;flex:0 1 auto;min-width:0}
-  .daybar .tabs.days .tab{padding:5px 10px}
-  .daytools{flex:0 0 auto;display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--muted)}
+  .daybar .tabs.days{gap:3px}
+  .daybar .tabs.days .tab{padding:5px 7px}
+  .daytools{flex:0 0 auto;display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted)}
   .daytools>span{white-space:nowrap}
   .daytools input[type="date"]{color-scheme:var(--scheme);background:var(--card);color:var(--ink);
     border:1px solid var(--line);border-radius:5px;padding:2px 6px;
@@ -149,7 +150,7 @@
     color:var(--muted);border-radius:5px;padding:2px 8px;font:inherit;font-size:11px;cursor:pointer}
   .daytools button:hover{color:var(--ink)}
   .daytools button[disabled]{opacity:.45;cursor:default}
-  .chip{border-radius:999px !important;padding:3px 11px !important;white-space:nowrap}
+  .chip{border-radius:999px !important;padding:3px 9px !important;white-space:nowrap}
   .chip::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
     background:var(--muted);margin-right:6px;vertical-align:middle}
   .chip[aria-pressed="true"]{color:var(--ok);border-color:rgba(63,195,155,.55);
@@ -177,8 +178,6 @@
   .themebtn::before{content:"◐";margin-right:6px}
 
   [hidden]{display:none !important}
-  .daybar{flex-wrap:wrap}
-  .daytools{margin-left:auto;flex-wrap:wrap}
   button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--lecture);outline-offset:3px}
   .f{border-left-color:var(--research)} .f .kind{color:var(--research)}
   .elective-tag{display:inline-block;margin-left:6px;color:var(--research);font-size:10px}
@@ -226,6 +225,9 @@
   .course-option .course-alert{color:var(--warn)}
   .course-links{padding:0 14px 12px 42px;font-size:11px}
   .course-links a{color:var(--lecture);margin-right:10px;overflow-wrap:anywhere}
+  .course-group{grid-column:1/-1;margin:10px 0 0;font-size:11px;font-weight:500;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted)}
+  .course-group:first-child{margin-top:2px}
   .course-empty{grid-column:1/-1;padding:30px 12px;color:var(--muted);text-align:center}
   .course-dialog-foot{padding:12px 20px;border-top:1px solid var(--line);display:flex;gap:12px;
     align-items:center;justify-content:space-between;background:var(--card);flex-shrink:0}
@@ -264,9 +266,8 @@
               title="Скрыть пары, которых в этот день не будет">только в этот день</button>
       <button type="button" class="chip" id="showEng" aria-pressed="false"
               title="Английский стоит в сетке группы с 21.09; по умолчанию скрыт">английский</button>
-      <i class="dsep"></i>
-      <span title="Даты дней недели считаются от этого числа">Отсчёт от</span>
-      <input type="date" id="datePick">
+      <span title="Даты дней недели считаются от этого числа">от</span>
+      <input type="date" id="datePick" aria-label="Отсчёт дат от">
       <button type="button" id="dateToday">сегодня</button>
     </div>
   </div>
@@ -1307,9 +1308,19 @@ function renderCourseChoices(){
     var hay = (c.n + " " + c.w).toLowerCase().replace(/ё/g, "е");
     return (!coursesOnlySelected || courseSelected(c.id)) && words.every(function(word){ return hay.indexOf(word) >= 0; });
   });
-  courses.sort(function(a, b){ return Number(courseCancelled(a)) - Number(courseCancelled(b)) || a.n.localeCompare(b.n, "ru"); });
+  // Сначала по курсу обучения: первокурснику видно доступное ему, а не весь список.
+  courses.sort(function(a, b){
+    return (a.minYear || 99) - (b.minYear || 99) || Number(courseCancelled(a)) - Number(courseCancelled(b)) ||
+      a.n.localeCompare(b.n, "ru");
+  });
+  var lastYear = null;
   box.innerHTML = courses.map(function(c){
     var selected = courseSelected(c.id), cancelled = courseCancelled(c);
+    var year = c.minYear || null, heading = "";
+    if (year !== lastYear){
+      lastYear = year;
+      heading = '<h3 class="course-group">' + (year ? "С " + year + " курса" : "Курс обучения не указан") + '</h3>';
+    }
     var meta = (c.sessions[0].card.k === "r" ? "НИС" : "Спецкурс") +
       (c.minYear ? " · " + c.minYear + " курс и старше" : " · курс обучения не указан") + (c.language === "en" ? " · на английском" : "");
     var slots = c.sessions.map(function(s){
@@ -1322,7 +1333,7 @@ function renderCourseChoices(){
     c.sessions.forEach(function(s){ (s.card.links || []).forEach(function(url){
       url = safeURL(url); if (url && links.indexOf(url) < 0) links.push(url);
     }); });
-    return '<article class="course-option' + (selected ? ' selected' : '') + (cancelled ? ' cancelled' : '') + '">' +
+    return heading + '<article class="course-option' + (selected ? ' selected' : '') + (cancelled ? ' cancelled' : '') + '">' +
       '<label><input type="checkbox" data-course="' + esc(c.id) + '"' + (selected ? ' checked' : '') +
       (cancelled && !selected ? ' disabled' : '') + ' aria-label="' + esc(c.n) + '">' +
       '<span class="course-option-main"><span class="course-option-meta">' + esc(meta) + '</span>' +
