@@ -61,6 +61,10 @@
   .status button:hover,.status a:hover{color:var(--ink)}
 
   .legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:14px 0 10px;font-size:11.5px;color:var(--muted)}
+  .callout{margin:14px 0 0;padding:9px 12px;border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--card);font-size:12px;line-height:1.5;color:var(--muted)}
+  .callout a{color:var(--lecture);overflow-wrap:anywhere}
+  .callout.below{margin:12px 0 0}
   .legend span{display:flex;align-items:center;gap:6px}
   .swatch{width:3px;height:12px;border-radius:2px;display:inline-block}
   .onlinekey{color:var(--online);border:1px solid var(--online);border-radius:4px;padding:1px 6px;
@@ -310,6 +314,9 @@
     </div>
   </dialog>
 
+  <p class="callout">Если расписание оказалось полезно, поставьте, пожалуйста, звездочку 🙏:
+    <a href="https://github.com/NELKIO/ami-26-27-raspisanie" target="_blank" rel="noopener">https://github.com/NELKIO/ami-26-27-raspisanie</a></p>
+
   <div class="legend">
     <span><i class="swatch" style="background:var(--lecture)"></i>Лекция</span>
     <span><i class="swatch" style="background:var(--seminar)"></i>Семинар</span>
@@ -320,6 +327,8 @@
   </div>
 
   <div class="panel" id="panel"></div>
+  <p class="callout below">С предложениями по улучшению и доработке сюда:
+    <a href="https://t.me/DuvanovLuka" target="_blank" rel="noopener">@DuvanovLuka</a></p>
   <div class="notes" id="notes"></div>
 
   <footer><span>Данные из листов «1 бак с 7.09» и «RS and SpecialCourses/НИСы и СК». Личный выбор сохраняется в этом браузере. Переносы и отмены — в <a href="https://ruz.hse.ru/">РУЗ</a>. Расписание <a href="../">ПМИ</a> — отдельно.</span><button type="button" class="themebtn" id="themeToggle">светлая тема</button></footer>
