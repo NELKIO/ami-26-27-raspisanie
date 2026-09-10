@@ -41,7 +41,7 @@
   /* мигающая рамка по периметру */
   .frame{position:absolute;inset:34px 36px;border:6px dashed #fff;border-radius:20px;pointer-events:none;z-index:1;
     animation:border 1.8s steps(1) infinite}
-  @keyframes border{0%{border-color:#fff}25%{border-color:#ffe600}50%{border-color:#00ffea}75%{border-color:#ff5ecb}}
+  @keyframes border{0%{border-color:#ff0033}25%{border-color:#fff}50%{border-color:#ff0033}75%{border-color:#ffe600}}
 
   .hurry{position:relative;z-index:2;font-weight:900;font-size:clamp(12px,3.4vw,18px);text-shadow:2px 2px 0 #000;
     animation:blink 1.4s steps(1) infinite, rainbow 3.2s linear infinite}
@@ -49,7 +49,9 @@
   @keyframes rainbow{0%{color:#fff}25%{color:#ffe600}50%{color:#00ffea}75%{color:#ff5ecb}100%{color:#fff}}
 
   .shout{position:relative;z-index:2;margin:0;font-size:clamp(25px,7vw,60px);font-weight:900;color:#fff;line-height:1.05;
-    text-shadow:3px 3px 0 #000,-2px -2px 0 #ffe600,0 0 22px rgba(255,255,255,.55)}
+    text-shadow:3px 3px 0 #ff0033,-2px -2px 0 #ffe600,0 0 22px rgba(255,255,255,.55);
+    animation:hot 1.1s ease-in-out infinite alternate}
+  @keyframes hot{from{filter:drop-shadow(0 0 4px #ff0033)}to{filter:drop-shadow(0 0 22px #ff0033)}}
   .shout span{display:inline-block;animation:wobble .56s ease-in-out infinite alternate}
   @keyframes wobble{from{transform:translateY(-5px) rotate(-7deg)}to{transform:translateY(5px) rotate(7deg)}}
 
@@ -79,7 +81,10 @@
   .cta-wrap{position:relative;z-index:2;display:inline-block}
   .cta{display:inline-block;padding:15px 24px;border-radius:14px;border:4px solid #fff;background:#00c853;
     color:#fff;font-size:clamp(16px,4.5vw,27px);font-weight:900;text-decoration:none;
-    box-shadow:0 8px 0 #00702f,0 12px 26px rgba(0,0,0,.4);animation:pump 1.25s ease-in-out infinite}
+    box-shadow:0 8px 0 #00702f,0 0 0 6px rgba(255,0,51,.6),0 12px 26px rgba(0,0,0,.45);
+    animation:pump 1.25s ease-in-out infinite,redring 1.1s ease-in-out infinite alternate}
+  @keyframes redring{from{box-shadow:0 8px 0 #00702f,0 0 0 4px rgba(255,0,51,.35),0 12px 26px rgba(0,0,0,.45)}
+    to{box-shadow:0 8px 0 #00702f,0 0 0 12px rgba(255,0,51,.75),0 12px 34px rgba(255,0,51,.5)}}
   .cta:active{transform:translateY(5px);box-shadow:0 3px 0 #00702f}
   @keyframes pump{50%{transform:scale(1.07)}}
   .orbit{position:absolute;left:50%;top:50%;margin:-11px 0 0 -11px;font-size:20px;pointer-events:none;
@@ -110,7 +115,7 @@
   .tick.top{top:0}
   .tick.bot{bottom:0}
   .tick b{display:inline-block;padding-left:100%;animation:run 14s linear infinite}
-  .tick.bot b{animation-duration:11s;animation-direction:reverse;color:#ff0}
+  .tick.bot b{animation-duration:11s;animation-direction:reverse;color:#ff2b3d}
   @keyframes run{to{transform:translateX(-100%)}}
 
   .side{position:absolute;top:0;bottom:0;width:30px;overflow:hidden;background:#000;z-index:3}
@@ -119,7 +124,7 @@
   .side b{position:absolute;top:0;left:0;display:block;writing-mode:vertical-rl;white-space:nowrap;
     font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:700;letter-spacing:.1em;
     animation:vrun 15s linear infinite}
-  .side.left b{color:#0ff}
+  .side.left b{color:#ff2b3d}
   .side.right b{color:#f0f;animation-duration:11s;animation-direction:reverse}
   @keyframes vrun{from{transform:translateY(0)}to{transform:translateY(-50%)}}
 
@@ -132,18 +137,44 @@
   @keyframes dvdx{to{transform:translateX(calc(100vw - 200px))}}
   @keyframes dvdy{to{transform:translateY(calc(100vh - 130px))}}
 
-  .flip{position:absolute;top:46px;left:44px;z-index:2;background:#fff;color:#ff008c;font-weight:900;
-    font-size:12px;padding:6px 10px;border-radius:8px;box-shadow:0 0 0 3px #ff008c;
+  .flip{position:absolute;top:46px;left:44px;z-index:2;background:#ff0033;color:#fff;font-weight:900;
+    font-size:12px;padding:6px 10px;border-radius:8px;box-shadow:0 0 0 3px #fff,0 0 18px #ff0033;
     animation:flip 3.2s linear infinite}
   @keyframes flip{to{transform:rotateY(360deg)}}
+
+  /* красная пульсирующая подсветка по всему баннеру */
+  .glow{position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(ellipse at center,rgba(255,0,40,0) 34%,rgba(255,0,40,.55) 100%);
+    animation:breathe 1.7s ease-in-out infinite alternate}
+  @keyframes breathe{from{opacity:.3}to{opacity:1}}
+
+  /* взрывы под текстом, по всей площади */
+  .boom{position:absolute;z-index:1;pointer-events:none;animation:boom .9s ease-out forwards}
+  @keyframes boom{0%{transform:scale(.2) rotate(-15deg);opacity:0}
+    22%{opacity:1}100%{transform:scale(2.2) rotate(20deg);opacity:0}}
+  .blast{position:absolute;z-index:1;pointer-events:none;width:34px;height:34px;margin:-17px 0 0 -17px;
+    border-radius:50%;animation:blast 1.05s ease-out forwards;
+    background:radial-gradient(circle,#fff 0%,#ffe600 22%,#ff8a00 46%,#ff0033 68%,rgba(255,0,51,0) 71%)}
+  @keyframes blast{0%{transform:scale(.25);opacity:1}18%{opacity:1}100%{transform:scale(9);opacity:0}}
+
+  /* КРАСНЫЙ ТЕКСТ, ЕЗДЯЩИЙ ПО ГОРИЗОНТАЛИ (в потоке, поэтому ничего не перекрывает) */
+  .runner{position:relative;z-index:2;width:100%;padding:0 6vw;white-space:nowrap;overflow:hidden;
+    text-align:left;pointer-events:none}
+  .runner span{display:inline-block;color:#ff1e2d;font-weight:900;letter-spacing:.05em;
+    font-size:clamp(12px,3.2vw,24px);
+    text-shadow:2px 2px 0 #fff,-2px -2px 0 #fff,2px -2px 0 #fff,-2px 2px 0 #fff,0 0 14px #ff0000;
+    animation:ride 6.4s ease-in-out infinite alternate}
+  .runner.two span{animation-duration:4.9s;animation-direction:alternate-reverse;color:#ff0040}
+  @keyframes ride{from{transform:translateX(0)}to{transform:translateX(var(--travel,90px))}}
 
   .star{position:absolute;top:-12vh;font-size:22px;pointer-events:none;z-index:1;animation:fall linear infinite}
   @keyframes fall{to{transform:translateY(122vh) rotate(720deg)}}
 
   /* Мигание, тряска и полёты — только если человек не просил их убрать в системе. */
   @media (prefers-reduced-motion:reduce){
-    .ad,.ad::before,.frame,.shout span,.ring,.spinner,.plea,.cta,.orbit,.hurry,.arrows span,
-    .tick b,.side b,.dvd,.dvd span,.flip{animation:none!important}
+    .ad,.ad::before,.frame,.shout,.shout span,.ring,.spinner,.plea,.cta,.orbit,.hurry,.arrows span,
+    .tick b,.side b,.dvd,.dvd span,.flip,.glow,.runner span{animation:none!important}
+    .glow{opacity:.5}
     .star{display:none}
     .orbit{display:none}
   }
@@ -160,7 +191,7 @@
   }
   @media (max-height:680px){
     .orb{width:clamp(112px,26vh,150px);height:clamp(112px,26vh,150px)}
-    .flip,.dvd{display:none}
+    .flip,.dvd,.runner.two{display:none}
   }
 </style>
 </head>
@@ -182,12 +213,15 @@
   <div class="side left" aria-hidden="true"><b data-side="★ ЖМИ ★ ЗВЕЗДА ★ ТУТ ★ СРОЧНО ★ "></b></div>
   <div class="side right" aria-hidden="true"><b data-side="★ ПОСЛЕДНИЙ ШАНС ★ ТОЛЬКО СЕГОДНЯ ★ "></b></div>
   <div class="frame" aria-hidden="true"></div>
+  <div class="glow" aria-hidden="true"></div>
   <div class="dvd" aria-hidden="true"><span>★ РЕКЛАМА ★</span></div>
   <div class="flip" aria-hidden="true">ХИТ!</div>
 
   <button type="button" class="x" id="close" aria-label="Закрыть баннер">✕</button>
 
   <p class="hurry">🎉 ВЫ 1 000 000-Й ПОСЕТИТЕЛЬ! СРОЧНО! ТОЛЬКО СЕГОДНЯ! 🎉</p>
+
+  <div class="runner one" aria-hidden="true"><span>🔥 СРОЧНО ЖМИ НА ЗВЕЗДУ 🔥</span></div>
 
   <h1 class="shout" id="adTitle" data-letters>ПОСТАВЬ ЗВЁЗДОЧКУ!!!</h1>
 
@@ -209,6 +243,8 @@
   <span class="url">https://github.com/NELKIO/ami-26-27-raspisanie</span>
 
   <p class="timer">⏰ предложение сгорит через <b id="clock">0:09</b> <span id="extra"></span></p>
+
+  <div class="runner two" aria-hidden="true"><span>❗ ЗВЕЗДА УХОДИТ ❗</span></div>
 
   <button type="button" class="nope" id="nope">нет, спасибо, я как-нибудь без звёздочки</button>
 
@@ -282,7 +318,36 @@ function placeOrbits(){
   });
 }
 
-var FIGURES = ["⭐","🌟","✨","💫","🙏","🥺"];
+/* красный текст ездит ровно между отступами, за край не выезжает */
+function placeRunners(){
+  Array.prototype.forEach.call(document.querySelectorAll(".runner"), function(el){
+    var span = el.firstElementChild;
+    if (!span) return;
+    var travel = el.clientWidth - parseFloat(getComputedStyle(el).paddingLeft) * 2 - span.getBoundingClientRect().width;
+    el.style.setProperty("--travel", Math.max(0, Math.round(travel)) + "px");
+  });
+}
+
+/* взрывы: сыплются по всему баннеру под текстом и сами себя убирают */
+var BOOMS = ["💥","💣","🔥","❗","‼️"];
+var booming = null;
+function boom(){
+  if (calm || ad.hidden) return;
+  if (ad.querySelectorAll(".boom,.blast").length > 16) return;
+  var e = document.createElement("span");
+  var fire = Math.random() < 0.55;
+  e.className = fire ? "boom" : "blast";
+  if (fire){
+    e.textContent = BOOMS[Math.floor(Math.random() * BOOMS.length)];
+    e.style.fontSize = (32 + Math.random() * 42).toFixed(0) + "px";
+  }
+  e.style.left = (5 + Math.random() * 90).toFixed(1) + "%";
+  e.style.top = (7 + Math.random() * 86).toFixed(1) + "%";
+  ad.appendChild(e);
+  setTimeout(function(){ if (e.parentNode) e.parentNode.removeChild(e); }, 1150);
+}
+
+var FIGURES = ["⭐","🌟","✨","🔥","❗","💥"];
 function rain(){
   if (calm || ad.querySelector(".star")) return;
   for (var i = 0; i < 22; i++){
@@ -313,13 +378,17 @@ function openAd(){
   buildSides();
   buildRings();
   placeOrbits();
+  placeRunners();
   rain();
   if (!ticking) ticking = setInterval(tick, 1000);
+  if (!booming && !calm) booming = setInterval(boom, 300);
   document.getElementById("close").focus();
 }
 function closeAd(){
   ad.hidden = true;
   clearInterval(ticking); ticking = null;
+  clearInterval(booming); booming = null;
+  Array.prototype.forEach.call(ad.querySelectorAll(".boom,.blast"), function(e){ e.parentNode.removeChild(e); });
   try { sessionStorage.setItem(KEY, "1"); } catch(e){}
   document.getElementById("again").focus();
 }
@@ -328,7 +397,7 @@ document.getElementById("close").addEventListener("click", closeAd);
 document.getElementById("nope").addEventListener("click", closeAd);
 document.getElementById("again").addEventListener("click", openAd);
 document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !ad.hidden) closeAd(); });
-addEventListener("resize", function(){ if (!ad.hidden){ buildSides(); buildRings(); placeOrbits(); } });
+addEventListener("resize", function(){ if (!ad.hidden){ buildSides(); buildRings(); placeOrbits(); placeRunners(); } });
 
 var frame = document.getElementById("frame"), swap = document.getElementById("swap");
 swap.addEventListener("click", function(){
