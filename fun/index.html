@@ -148,14 +148,8 @@
     animation:breathe 1.7s ease-in-out infinite alternate}
   @keyframes breathe{from{opacity:.3}to{opacity:1}}
 
-  /* взрывы под текстом, по всей площади */
-  .boom{position:absolute;z-index:1;pointer-events:none;animation:boom .9s ease-out forwards}
-  @keyframes boom{0%{transform:scale(.2) rotate(-15deg);opacity:0}
-    22%{opacity:1}100%{transform:scale(2.2) rotate(20deg);opacity:0}}
-  .blast{position:absolute;z-index:1;pointer-events:none;width:34px;height:34px;margin:-17px 0 0 -17px;
-    border-radius:50%;animation:blast 1.05s ease-out forwards;
-    background:radial-gradient(circle,#fff 0%,#ffe600 22%,#ff8a00 46%,#ff0033 68%,rgba(255,0,51,0) 71%)}
-  @keyframes blast{0%{transform:scale(.25);opacity:1}18%{opacity:1}100%{transform:scale(9);opacity:0}}
+  /* взрывы рисуются на canvas: вспышка, огненный шар, ударная волна, искры и дым */
+  .fx{position:absolute;inset:0;z-index:1;pointer-events:none}
 
   /* КРАСНЫЙ ТЕКСТ, ЕЗДЯЩИЙ ПО ГОРИЗОНТАЛИ (в потоке, поэтому ничего не перекрывает) */
   .runner{position:relative;z-index:2;width:100%;padding:0 6vw;white-space:nowrap;overflow:hidden;
@@ -214,6 +208,7 @@
   <div class="side right" aria-hidden="true"><b data-side="★ ПОСЛЕДНИЙ ШАНС ★ ТОЛЬКО СЕГОДНЯ ★ "></b></div>
   <div class="frame" aria-hidden="true"></div>
   <div class="glow" aria-hidden="true"></div>
+  <canvas class="fx" id="fx" aria-hidden="true"></canvas>
   <div class="dvd" aria-hidden="true"><span>★ РЕКЛАМА ★</span></div>
   <div class="flip" aria-hidden="true">ХИТ!</div>
 
@@ -328,26 +323,138 @@ function placeRunners(){
   });
 }
 
-/* взрывы: сыплются по всему баннеру под текстом и сами себя убирают */
-var BOOMS = ["💥","💣","🔥","❗","‼️"];
-var booming = null;
-function boom(){
-  if (calm || ad.hidden) return;
-  if (ad.querySelectorAll(".boom,.blast").length > 16) return;
-  var e = document.createElement("span");
-  var fire = Math.random() < 0.55;
-  e.className = fire ? "boom" : "blast";
-  if (fire){
-    e.textContent = BOOMS[Math.floor(Math.random() * BOOMS.length)];
-    e.style.fontSize = (32 + Math.random() * 42).toFixed(0) + "px";
-  }
-  e.style.left = (5 + Math.random() * 90).toFixed(1) + "%";
-  e.style.top = (7 + Math.random() * 86).toFixed(1) + "%";
-  ad.appendChild(e);
-  setTimeout(function(){ if (e.parentNode) e.parentNode.removeChild(e); }, 1150);
+/* ------------------------------------------------------------ взрывы на canvas
+   Один взрыв = вспышка + огненный шар + ударная волна + искры с гравитацией + дым.
+   Всё аддитивным блендингом, поэтому наложения светятся как настоящий огонь. */
+var fx = document.getElementById("fx"), fxc = fx.getContext("2d");
+var DPR = Math.min(window.devicePixelRatio || 1, 2);
+var balls = [], sparks = [], smoke = [];
+var raf = null, spawner = null, prev = 0, madeBursts = 0, density = 1;
+
+function sizeFx(){
+  var r = ad.getBoundingClientRect();
+  if (!r.width) return;
+  fx.width = Math.round(r.width * DPR);
+  fx.height = Math.round(r.height * DPR);
+  fx.style.width = r.width + "px";
+  fx.style.height = r.height + "px";
+  density = Math.max(0.5, Math.min(1, (r.width * r.height) / (1280 * 800)));
 }
 
-var FIGURES = ["⭐","🌟","✨","🔥","❗","💥"];
+function explode(x, y, scale){
+  balls.push({x:x, y:y, r:6*scale, max:(40+Math.random()*34)*scale, t:0, dur:0.30+Math.random()*0.16,
+              ring:(70+Math.random()*60)*scale});
+  var n = Math.round((30 + Math.random()*26) * scale * density), i, a, sp;
+  if (sparks.length < 2400){
+    for (i = 0; i < n; i++){
+      a = Math.random() * Math.PI * 2;
+      sp = (70 + Math.random()*340) * scale * (Math.random() < 0.25 ? 1.6 : 1);
+      sparks.push({x:x, y:y, vx:Math.cos(a)*sp, vy:Math.sin(a)*sp - 30,
+                   t:0, dur:0.45+Math.random()*0.8, w:0.8+Math.random()*2.2*scale, hot:Math.random()});
+    }
+  }
+  if (smoke.length < 170){
+    for (i = 0; i < Math.round(3*scale); i++){
+      a = Math.random() * Math.PI * 2;
+      smoke.push({x:x+Math.cos(a)*10*scale, y:y+Math.sin(a)*10*scale, vx:Math.cos(a)*16, vy:Math.sin(a)*14-22,
+                  r:(12+Math.random()*16)*scale, t:0, dur:0.9+Math.random()*0.8});
+    }
+  }
+  madeBursts++;
+}
+
+function step(now){
+  /* метка первого кадра бывает раньше момента запуска: без зажима dt уходил в минус,
+     Math.sqrt(отрицательного) давал NaN и роняло весь цикл отрисовки */
+  var dt = (now - prev) / 1000;
+  if (!(dt > 0)) dt = 0.016;
+  if (dt > 0.05) dt = 0.05;
+  prev = now;
+  var W = fx.width / DPR, H = fx.height / DPR, i, p, k, g;
+  fxc.setTransform(DPR, 0, 0, DPR, 0, 0);
+  fxc.clearRect(0, 0, W, H);
+
+  fxc.globalCompositeOperation = "source-over";
+  for (i = smoke.length - 1; i >= 0; i--){
+    p = smoke[i]; p.t += dt;
+    if (p.t >= p.dur){ smoke.splice(i, 1); continue; }
+    k = p.t / p.dur;
+    p.x += p.vx * dt; p.y += p.vy * dt; p.vy -= 12 * dt; p.vx *= 0.97; p.vy *= 0.97;
+    g = fxc.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * (1 + k * 2.4));
+    g.addColorStop(0, "rgba(40,26,22," + (0.22 * (1 - k)).toFixed(3) + ")");
+    g.addColorStop(1, "rgba(30,20,18,0)");
+    fxc.fillStyle = g;
+    fxc.beginPath(); fxc.arc(p.x, p.y, p.r * (1 + k * 2.4), 0, 6.284); fxc.fill();
+  }
+
+  fxc.globalCompositeOperation = "lighter";
+  for (i = balls.length - 1; i >= 0; i--){
+    p = balls[i]; p.t += dt;
+    if (p.t >= p.dur){ balls.splice(i, 1); continue; }
+    k = Math.max(0, Math.min(1, p.t / p.dur));
+    p.y -= 26 * dt;
+    var rad = p.r + (p.max - p.r) * Math.sqrt(k), a = 1 - k;
+    g = fxc.createRadialGradient(p.x, p.y, 0, p.x, p.y, rad);
+    g.addColorStop(0, "rgba(255,255,238," + (a * (1 - k * 0.4)).toFixed(3) + ")");
+    g.addColorStop(0.28, "rgba(255,214,96," + (a * 0.92).toFixed(3) + ")");
+    g.addColorStop(0.62, "rgba(255,112,24," + (a * 0.66).toFixed(3) + ")");
+    g.addColorStop(1, "rgba(190,16,8,0)");
+    fxc.fillStyle = g;
+    fxc.beginPath(); fxc.arc(p.x, p.y, rad, 0, 6.284); fxc.fill();
+    if (k < 0.55){                                   // ударная волна
+      fxc.strokeStyle = "rgba(255,226,170," + ((0.55 - k) * 1.1).toFixed(3) + ")";
+      fxc.lineWidth = 3 * (1 - k / 0.55) + 0.4;
+      fxc.beginPath(); fxc.arc(p.x, p.y, p.ring * (k / 0.55), 0, 6.284); fxc.stroke();
+    }
+  }
+
+  for (i = sparks.length - 1; i >= 0; i--){
+    p = sparks[i]; p.t += dt;
+    if (p.t >= p.dur){ sparks.splice(i, 1); continue; }
+    k = p.t / p.dur;
+    var px = p.x, py = p.y;
+    p.vy += 460 * dt;                                // гравитация
+    var drag = Math.pow(0.12, dt);                   // сопротивление воздуха
+    p.vx *= drag; p.vy *= drag;
+    p.x += p.vx * dt; p.y += p.vy * dt;
+    var a2 = (1 - k) * (1 - k);
+    fxc.strokeStyle = p.hot > 0.75
+      ? "rgba(255,247,214," + a2.toFixed(3) + ")"
+      : "rgba(255," + Math.round(60 + 150 * (1 - k)) + "," + Math.round(20 + 40 * (1 - k)) + "," + a2.toFixed(3) + ")";
+    fxc.lineWidth = p.w * (1 - k * 0.6);
+    fxc.lineCap = "round";
+    fxc.beginPath(); fxc.moveTo(px, py); fxc.lineTo(p.x, p.y); fxc.stroke();
+  }
+
+  window.__fx = {bursts:madeBursts, sparks:sparks.length, balls:balls.length, smoke:smoke.length};
+  raf = requestAnimationFrame(step);
+}
+
+function boomWave(){
+  if (calm || ad.hidden) return;
+  var W = fx.width / DPR, H = fx.height / DPR;
+  var many = 2 + (Math.random() < 0.45 ? 1 : 0) + (Math.random() < 0.2 ? 1 : 0);
+  for (var i = 0; i < many; i++)
+    explode(W * (0.04 + Math.random() * 0.92), H * (0.05 + Math.random() * 0.9), 0.65 + Math.random() * 0.95);
+}
+
+function startFx(){
+  if (calm) return;
+  sizeFx();
+  if (!raf){ prev = performance.now(); raf = requestAnimationFrame(step); }
+  if (!spawner) spawner = setInterval(boomWave, 130);
+  boomWave();
+}
+function stopFx(){
+  if (raf){ cancelAnimationFrame(raf); raf = null; }
+  clearInterval(spawner); spawner = null;
+  balls = []; sparks = []; smoke = [];
+  fxc.setTransform(1, 0, 0, 1, 0, 0);
+  fxc.clearRect(0, 0, fx.width, fx.height);
+  window.__fx = {bursts:madeBursts, sparks:0, balls:0, smoke:0};
+}
+
+var FIGURES = ["⭐","🌟","✨","🔥","🙏","🥺"];
 function rain(){
   if (calm || ad.querySelector(".star")) return;
   for (var i = 0; i < 22; i++){
@@ -380,15 +487,14 @@ function openAd(){
   placeOrbits();
   placeRunners();
   rain();
+  startFx();
   if (!ticking) ticking = setInterval(tick, 1000);
-  if (!booming && !calm) booming = setInterval(boom, 300);
   document.getElementById("close").focus();
 }
 function closeAd(){
   ad.hidden = true;
   clearInterval(ticking); ticking = null;
-  clearInterval(booming); booming = null;
-  Array.prototype.forEach.call(ad.querySelectorAll(".boom,.blast"), function(e){ e.parentNode.removeChild(e); });
+  stopFx();
   try { sessionStorage.setItem(KEY, "1"); } catch(e){}
   document.getElementById("again").focus();
 }
@@ -397,7 +503,7 @@ document.getElementById("close").addEventListener("click", closeAd);
 document.getElementById("nope").addEventListener("click", closeAd);
 document.getElementById("again").addEventListener("click", openAd);
 document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !ad.hidden) closeAd(); });
-addEventListener("resize", function(){ if (!ad.hidden){ buildSides(); buildRings(); placeOrbits(); placeRunners(); } });
+addEventListener("resize", function(){ if (!ad.hidden){ sizeFx(); buildSides(); buildRings(); placeOrbits(); placeRunners(); } });
 
 var frame = document.getElementById("frame"), swap = document.getElementById("swap");
 swap.addEventListener("click", function(){
