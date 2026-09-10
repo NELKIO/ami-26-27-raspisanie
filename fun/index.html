@@ -27,71 +27,140 @@
   /* --------------------------------- баннер --------------------------------- */
   .ad[hidden]{display:none}
   .ad{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:12px;padding:44px 16px;text-align:center;overflow:hidden;
+    gap:9px;padding:46px 44px;text-align:center;overflow:hidden;
     font-family:"Comic Sans MS","Trebuchet MS",cursive;
     background:linear-gradient(135deg,#ff008c,#ffb700,#00e5ff,#7d00ff,#ff008c);
     background-size:400% 400%;animation:pan 14s ease infinite}
   @keyframes pan{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
-  .hurry{font-weight:900;color:#fff;font-size:clamp(13px,3.6vw,18px);text-shadow:2px 2px 0 #000;
-    animation:blink 1.4s steps(1) infinite}
-  @keyframes blink{50%{opacity:.2}}
+  /* вращающееся «солнце» под всем содержимым */
+  .ad::before{content:"";position:absolute;left:50%;top:50%;width:230vmax;height:230vmax;margin:-115vmax;
+    background:repeating-conic-gradient(rgba(255,255,255,.15) 0deg 11deg, rgba(255,255,255,0) 11deg 22deg);
+    animation:spin 30s linear infinite;pointer-events:none}
 
-  .shout{margin:0;font-size:clamp(27px,7.4vw,62px);font-weight:900;color:#fff;line-height:1.05;
+  /* мигающая рамка по периметру */
+  .frame{position:absolute;inset:34px 36px;border:6px dashed #fff;border-radius:20px;pointer-events:none;z-index:1;
+    animation:border 1.8s steps(1) infinite}
+  @keyframes border{0%{border-color:#fff}25%{border-color:#ffe600}50%{border-color:#00ffea}75%{border-color:#ff5ecb}}
+
+  .hurry{position:relative;z-index:2;font-weight:900;font-size:clamp(12px,3.4vw,18px);text-shadow:2px 2px 0 #000;
+    animation:blink 1.4s steps(1) infinite, rainbow 3.2s linear infinite}
+  @keyframes blink{50%{opacity:.2}}
+  @keyframes rainbow{0%{color:#fff}25%{color:#ffe600}50%{color:#00ffea}75%{color:#ff5ecb}100%{color:#fff}}
+
+  .shout{position:relative;z-index:2;margin:0;font-size:clamp(25px,7vw,60px);font-weight:900;color:#fff;line-height:1.05;
     text-shadow:3px 3px 0 #000,-2px -2px 0 #ffe600,0 0 22px rgba(255,255,255,.55)}
   .shout span{display:inline-block;animation:wobble .56s ease-in-out infinite alternate}
   @keyframes wobble{from{transform:translateY(-5px) rotate(-7deg)}to{transform:translateY(5px) rotate(7deg)}}
 
-  /* крутится в своей «коробке», чтобы не наезжать на просьбу */
-  .spin-wrap{display:grid;place-items:center;width:100%;height:clamp(112px,30vw,142px)}
+  /* кольцо крутящегося текста, а в середине крутится ещё и плашка */
+  .orb{position:relative;z-index:2;display:grid;place-items:center;
+    width:clamp(148px,40vw,190px);height:clamp(148px,40vw,190px)}
+  .ring{position:absolute;inset:0;animation:spin 11s linear infinite}
+  .ring span{position:absolute;left:50%;top:50%;transform-origin:0 0;font-weight:900;
+    font-size:clamp(9px,2.5vw,12px);color:#fff;text-shadow:1.5px 1.5px 0 #000}
   .spinner{background:#ffe600;color:#111;font-weight:900;font-size:clamp(10px,2.7vw,13px);white-space:nowrap;
     padding:7px 14px;border-radius:999px;box-shadow:0 0 0 4px #ff008c,0 0 0 8px #fff;
-    animation:spin 7s linear infinite}
+    animation:spin 7s linear infinite reverse}
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  .plea{margin:0;max-width:32ch;color:#fff;font-size:clamp(14px,3.9vw,19px);font-weight:700;
+  .plea{position:relative;z-index:2;margin:0;max-width:32ch;color:#fff;font-size:clamp(14px,3.8vw,19px);font-weight:700;
     text-shadow:2px 2px 0 rgba(0,0,0,.65);animation:rock 3.4s ease-in-out infinite}
   @keyframes rock{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
 
+  .arrows{position:relative;z-index:2;display:flex;gap:10px;font-size:clamp(14px,4vw,20px);color:#fff;
+    text-shadow:2px 2px 0 #000}
+  .arrows span{animation:hop .7s ease-in-out infinite}
+  .arrows span:nth-child(2){animation-delay:.12s}
+  .arrows span:nth-child(3){animation-delay:.24s}
+  @keyframes hop{50%{transform:translateY(7px)}}
+
+  /* кнопка, вокруг которой по орбите летают звёзды */
+  .cta-wrap{position:relative;z-index:2;display:inline-block}
   .cta{display:inline-block;padding:15px 24px;border-radius:14px;border:4px solid #fff;background:#00c853;
-    color:#fff;font-size:clamp(16px,4.6vw,27px);font-weight:900;text-decoration:none;
+    color:#fff;font-size:clamp(16px,4.5vw,27px);font-weight:900;text-decoration:none;
     box-shadow:0 8px 0 #00702f,0 12px 26px rgba(0,0,0,.4);animation:pump 1.25s ease-in-out infinite}
   .cta:active{transform:translateY(5px);box-shadow:0 3px 0 #00702f}
   @keyframes pump{50%{transform:scale(1.07)}}
+  .orbit{position:absolute;left:50%;top:50%;margin:-11px 0 0 -11px;font-size:20px;pointer-events:none;
+    animation:orbit 4.5s linear infinite}
+  .orbit.b{animation-duration:6.5s;animation-direction:reverse;font-size:17px}
+  .orbit.c{animation-duration:5.5s;font-size:15px}
+  @keyframes orbit{
+    from{transform:rotate(0deg) translateX(var(--r,120px)) rotate(0deg)}
+    to{transform:rotate(360deg) translateX(var(--r,120px)) rotate(-360deg)}}
 
-  .url{color:#fff;font-size:clamp(10px,2.9vw,13px);word-break:break-all;text-shadow:1px 1px 0 #000;opacity:.95}
-  .timer{color:#fff;font-weight:800;font-size:clamp(12px,3.2vw,16px);text-shadow:2px 2px 0 #000}
+  .url{position:relative;z-index:2;color:#fff;font-size:clamp(10px,2.8vw,13px);word-break:break-all;
+    text-shadow:1px 1px 0 #000;opacity:.95}
+  .timer{position:relative;z-index:2;color:#fff;font-weight:800;font-size:clamp(12px,3.1vw,16px);text-shadow:2px 2px 0 #000}
   .timer b{background:#000;color:#0f0;font-family:ui-monospace,Menlo,monospace;padding:1px 7px;border-radius:4px}
-  .nope{border:0;background:none;color:#fff;font:inherit;font-size:12px;text-decoration:underline;cursor:pointer;opacity:.9}
+  .nope{position:relative;z-index:2;border:0;background:none;color:#fff;font:inherit;font-size:12px;
+    text-decoration:underline;cursor:pointer;opacity:.9}
   .nope:hover{opacity:1}
-  .honest{position:absolute;left:0;right:0;bottom:30px;color:rgba(255,255,255,.9);font-size:11px;font-weight:700;
-    font-family:system-ui,sans-serif}
+  .honest{position:absolute;left:44px;right:44px;bottom:30px;z-index:2;color:rgba(255,255,255,.9);
+    font-size:11px;font-weight:700;font-family:system-ui,sans-serif}
 
-  .x{position:absolute;top:36px;right:12px;width:34px;height:34px;border-radius:50%;border:2px solid #fff;
-    background:rgba(0,0,0,.45);color:#fff;font-size:17px;line-height:1;cursor:pointer;z-index:3}
+  .x{position:absolute;top:36px;right:42px;width:34px;height:34px;border-radius:50%;border:2px solid #fff;
+    background:rgba(0,0,0,.45);color:#fff;font-size:17px;line-height:1;cursor:pointer;z-index:4}
   .x:hover{background:#000}
 
+  /* бегущие строки: сверху, снизу и по обоим бокам */
   .tick{position:absolute;left:0;right:0;overflow:hidden;white-space:nowrap;background:#000;color:#0f0;
-    font-family:ui-monospace,Menlo,monospace;font-size:12px;padding:5px 0;z-index:2}
+    font-family:ui-monospace,Menlo,monospace;font-size:12px;padding:5px 0;z-index:3}
   .tick.top{top:0}
   .tick.bot{bottom:0}
   .tick b{display:inline-block;padding-left:100%;animation:run 14s linear infinite}
   .tick.bot b{animation-duration:11s;animation-direction:reverse;color:#ff0}
   @keyframes run{to{transform:translateX(-100%)}}
 
-  .star{position:absolute;top:-12vh;font-size:22px;pointer-events:none;animation:fall linear infinite}
+  .side{position:absolute;top:0;bottom:0;width:30px;overflow:hidden;background:#000;z-index:3}
+  .side.left{left:0}
+  .side.right{right:0}
+  .side b{position:absolute;top:0;left:0;display:block;writing-mode:vertical-rl;white-space:nowrap;
+    font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:700;letter-spacing:.1em;
+    animation:vrun 15s linear infinite}
+  .side.left b{color:#0ff}
+  .side.right b{color:#f0f;animation-duration:11s;animation-direction:reverse}
+  @keyframes vrun{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+
+  /* плашка, летающая по экрану как заставка DVD, и кувыркающийся стикер */
+  .dvd{position:absolute;left:34px;top:44px;z-index:2;pointer-events:none;opacity:.9;
+    animation:dvdx 8.5s linear infinite alternate}
+  .dvd span{display:block;background:#000;color:#0f0;border:2px solid #0f0;border-radius:6px;padding:3px 8px;
+    font-family:ui-monospace,Menlo,monospace;font-size:11px;font-weight:700;
+    animation:dvdy 6.1s linear infinite alternate}
+  @keyframes dvdx{to{transform:translateX(calc(100vw - 200px))}}
+  @keyframes dvdy{to{transform:translateY(calc(100vh - 130px))}}
+
+  .flip{position:absolute;top:46px;left:44px;z-index:2;background:#fff;color:#ff008c;font-weight:900;
+    font-size:12px;padding:6px 10px;border-radius:8px;box-shadow:0 0 0 3px #ff008c;
+    animation:flip 3.2s linear infinite}
+  @keyframes flip{to{transform:rotateY(360deg)}}
+
+  .star{position:absolute;top:-12vh;font-size:22px;pointer-events:none;z-index:1;animation:fall linear infinite}
   @keyframes fall{to{transform:translateY(122vh) rotate(720deg)}}
 
-  /* Мигание и тряска — только для тех, кто их не отключил в системе. */
+  /* Мигание, тряска и полёты — только если человек не просил их убрать в системе. */
   @media (prefers-reduced-motion:reduce){
-    .ad,.shout span,.spinner,.plea,.cta,.hurry,.tick b{animation:none!important}
-    .spin-wrap{height:auto}
+    .ad,.ad::before,.frame,.shout span,.ring,.spinner,.plea,.cta,.orbit,.hurry,.arrows span,
+    .tick b,.side b,.dvd,.dvd span,.flip{animation:none!important}
     .star{display:none}
+    .orbit{display:none}
   }
-  @media (max-width:520px){
+  @media (max-width:560px){
     .topbar{font-size:11px;gap:5px 6px;padding:6px 8px}
     .grow{margin-left:0}
-    .x{top:32px}
+    .ad{padding:42px 36px;gap:7px}
+    .frame{inset:32px 33px;border-width:4px}
+    .x{top:34px;right:36px}
+    .honest{left:36px;right:36px;bottom:26px}
+    .flip{left:36px;top:42px;font-size:10px;padding:5px 8px}
+    .dvd{left:32px}
+    @keyframes dvdx{to{transform:translateX(calc(100vw - 150px))}}
+  }
+  @media (max-height:680px){
+    .orb{width:clamp(112px,26vh,150px);height:clamp(112px,26vh,150px)}
+    .flip,.dvd{display:none}
   }
 </style>
 </head>
@@ -110,6 +179,11 @@
 
 <div class="ad" id="ad" role="dialog" aria-modal="true" aria-labelledby="adTitle" hidden>
   <div class="tick top"><b>★ ЗВЁЗДЫ БЕСПЛАТНО ★ БЕЗ СМС ★ БЕЗ РЕГИСТРАЦИИ ★ ОДИН КЛИК ★ МАМА БУДЕТ ГОРДИТЬСЯ ★ ЗВЁЗДЫ БЕСПЛАТНО ★ БЕЗ СМС ★</b></div>
+  <div class="side left" aria-hidden="true"><b data-side="★ ЖМИ ★ ЗВЕЗДА ★ ТУТ ★ СРОЧНО ★ "></b></div>
+  <div class="side right" aria-hidden="true"><b data-side="★ ПОСЛЕДНИЙ ШАНС ★ ТОЛЬКО СЕГОДНЯ ★ "></b></div>
+  <div class="frame" aria-hidden="true"></div>
+  <div class="dvd" aria-hidden="true"><span>★ РЕКЛАМА ★</span></div>
+  <div class="flip" aria-hidden="true">ХИТ!</div>
 
   <button type="button" class="x" id="close" aria-label="Закрыть баннер">✕</button>
 
@@ -117,11 +191,21 @@
 
   <h1 class="shout" id="adTitle" data-letters>ПОСТАВЬ ЗВЁЗДОЧКУ!!!</h1>
 
-  <div class="spin-wrap"><span class="spinner">★ БЕСПЛАТНО ★</span></div>
+  <div class="orb">
+    <div class="ring" data-ring="★ ПОСТАВЬ ЗВЁЗДОЧКУ ★ ПОЖАЛУЙСТА ★ " aria-hidden="true"></div>
+    <span class="spinner">★ БЕСПЛАТНО ★</span>
+  </div>
 
   <p class="plea">Если расписание оказалось полезно, поставьте, пожалуйста, звездочку 🙏</p>
 
-  <a class="cta" href="https://github.com/NELKIO/ami-26-27-raspisanie" target="_blank" rel="noopener">⭐ ЖМИ СЮДА ⭐</a>
+  <div class="arrows" aria-hidden="true"><span>▼</span><span>▼</span><span>▼</span></div>
+
+  <div class="cta-wrap">
+    <a class="cta" href="https://github.com/NELKIO/ami-26-27-raspisanie" target="_blank" rel="noopener">⭐ ЖМИ СЮДА ⭐</a>
+    <span class="orbit a" aria-hidden="true">⭐</span>
+    <span class="orbit b" aria-hidden="true">🌟</span>
+    <span class="orbit c" aria-hidden="true">✨</span>
+  </div>
   <span class="url">https://github.com/NELKIO/ami-26-27-raspisanie</span>
 
   <p class="timer">⏰ предложение сгорит через <b id="clock">0:09</b> <span id="extra"></span></p>
@@ -136,6 +220,7 @@
 <script>
 var ad = document.getElementById("ad");
 var KEY = "fun_ad_hidden";
+var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* каждую букву заголовка трясём отдельно — вразнобой */
 Array.prototype.forEach.call(document.querySelectorAll("[data-letters]"), function(el){
@@ -143,18 +228,64 @@ Array.prototype.forEach.call(document.querySelectorAll("[data-letters]"), functi
   el.textContent = "";
   text.split("").forEach(function(ch, i){
     var s = document.createElement("span");
-    s.textContent = ch === " " ? " " : ch;
+    s.textContent = ch === " " ? "\u00a0" : ch;   // обычный пробел в inline-block схлопывается
     s.style.animationDelay = (i * 0.07).toFixed(2) + "s";
     s.style.animationDuration = (0.42 + (i % 4) * 0.09).toFixed(2) + "s";
     el.appendChild(s);
   });
 });
 
+/* текст по кругу: считаем радиус по факту, поэтому строим только на видимом баннере */
+function buildRings(){
+  Array.prototype.forEach.call(document.querySelectorAll("[data-ring]"), function(el){
+    var text = el.getAttribute("data-ring"), n = text.length;
+    var r = el.getBoundingClientRect().width * 0.42;
+    if (!r) return;
+    el.innerHTML = "";
+    text.split("").forEach(function(ch, i){
+      var s = document.createElement("span");
+      s.textContent = ch;
+      s.style.transform = "rotate(" + (i * 360 / n).toFixed(2) + "deg) translateY(-" + r.toFixed(1) + "px)";
+      el.appendChild(s);
+    });
+  });
+}
+
+/* боковые ленты: копий столько, чтобы хватило на всю высоту окна без разрывов */
+function buildSides(){
+  Array.prototype.forEach.call(document.querySelectorAll("[data-side]"), function(el){
+    var text = el.getAttribute("data-side");
+    el.innerHTML = "";
+    var probe = document.createElement("span");
+    probe.textContent = text;
+    el.appendChild(probe);
+    var one = probe.getBoundingClientRect().height;
+    if (!one) return;
+    var copies = Math.ceil(innerHeight / one) + 1;
+    for (var i = 1; i < copies * 2; i++){
+      var s = document.createElement("span");
+      s.textContent = text;
+      el.appendChild(s);
+    }
+  });
+}
+
+/* орбиты вокруг кнопки — радиус от её ширины, чтобы не улетали в текст */
+function placeOrbits(){
+  var wrap = document.querySelector(".cta-wrap");
+  if (!wrap) return;
+  var w = wrap.getBoundingClientRect().width;
+  if (!w) return;
+  var radii = [w / 2 + 22, w / 2 + 40, w / 2 + 8];
+  Array.prototype.forEach.call(wrap.querySelectorAll(".orbit"), function(el, i){
+    el.style.setProperty("--r", Math.round(radii[i]) + "px");
+  });
+}
+
 var FIGURES = ["⭐","🌟","✨","💫","🙏","🥺"];
 function rain(){
-  if (ad.querySelector(".star")) return;
-  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  for (var i = 0; i < 18; i++){
+  if (calm || ad.querySelector(".star")) return;
+  for (var i = 0; i < 22; i++){
     var s = document.createElement("span");
     s.className = "star";
     s.textContent = FIGURES[i % FIGURES.length];
@@ -179,6 +310,9 @@ function tick(){
 
 function openAd(){
   ad.hidden = false;
+  buildSides();
+  buildRings();
+  placeOrbits();
   rain();
   if (!ticking) ticking = setInterval(tick, 1000);
   document.getElementById("close").focus();
@@ -194,6 +328,7 @@ document.getElementById("close").addEventListener("click", closeAd);
 document.getElementById("nope").addEventListener("click", closeAd);
 document.getElementById("again").addEventListener("click", openAd);
 document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !ad.hidden) closeAd(); });
+addEventListener("resize", function(){ if (!ad.hidden){ buildSides(); buildRings(); placeOrbits(); } });
 
 var frame = document.getElementById("frame"), swap = document.getElementById("swap");
 swap.addEventListener("click", function(){
