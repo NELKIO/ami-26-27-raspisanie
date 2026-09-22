@@ -13,14 +13,14 @@
     --ink:#e7ecee; --muted:#8d979d; --line:#2b3236; --line2:#3b444a;
     --lecture:#5aa2f0; --seminar:#3fc39b; --practice:#e2a13c;
     --online:#ff7a45; --no:#f2646a; --today:#20272b; --ok:#3fc39b; --warn:#e2a13c; --radius:8px;
-    --scheme:dark; --stripe:rgba(141,151,157,.06);
+    --scheme:dark; --stripe:rgba(141,151,157,.06); --english:#b48cf2;
   }
   :root[data-theme="light"]{
     --bg:#f3f4f2; --card:#ffffff; --raise:#f0f2f0;
     --ink:#1d2326; --muted:#6a7479; --line:#dfe3e1; --line2:#c9cfcc;
     --lecture:#2f7fd6; --seminar:#1f9c78; --practice:#c4841a;
     --online:#e5602b; --no:#d4404a; --today:#e9edea; --ok:#1f9c78; --warn:#c4841a;
-    --scheme:light; --stripe:rgba(29,35,38,.05);
+    --scheme:light; --stripe:rgba(29,35,38,.05); --english:#7d4fd6;
   }
   html{color-scheme:var(--scheme)}
   *{box-sizing:border-box}
@@ -63,6 +63,50 @@
     background:var(--card);font-size:12px;line-height:1.5;color:var(--muted)}
   .callout a{color:var(--lecture);overflow-wrap:anywhere}
   .callout.below{margin:12px 0 0}
+
+  /* ---- личный английский: карточка под расписанием + панель выбора слотов ---- */
+  .e{border-left-color:var(--english)} .e .kind{color:var(--english)}
+  .mine-tag{display:inline-block;margin-left:6px;color:var(--english);font-size:10px}
+  .engbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 14px;
+    margin:12px 0 0;padding:11px 13px;border:1px solid var(--line);border-radius:var(--radius);background:var(--card)}
+  .engbar h2{margin:0;font-size:13px;font-weight:600}
+  .engbar p{margin:3px 0 0;font-size:11.5px;color:var(--muted)}
+  .engbar .act{appearance:none;border:1px solid var(--english);border-radius:6px;padding:7px 13px;min-height:36px;
+    color:var(--english);background:var(--raise);font:inherit;font-size:12px;cursor:pointer;white-space:nowrap}
+  .engbar .act:hover{color:var(--ink);border-color:var(--ink)}
+  .engbar .act b{font-family:"IBM Plex Mono",monospace;font-weight:500;margin-left:6px}
+  .eng-dialog{color:var(--ink);background:var(--bg);border:1px solid var(--line2);border-radius:12px;padding:0;
+    width:min(560px,calc(100% - 32px));max-height:90dvh;overflow:hidden}
+  .eng-dialog::backdrop{background:rgba(0,0,0,.6)}
+  .eng-dialog[open]{display:flex;flex-direction:column}
+  .eng-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:18px 18px 10px;flex-shrink:0}
+  .eng-head h2{margin:0 0 4px;font-size:18px;font-weight:500;letter-spacing:-.02em}
+  .eng-head p{margin:0;font-size:12px;color:var(--muted);max-width:48ch}
+  .eng-close{flex-shrink:0;appearance:none;border:1px solid var(--line2);background:var(--raise);color:var(--ink);
+    border-radius:6px;min-width:40px;min-height:40px;font-size:18px;line-height:1;cursor:pointer}
+  .eng-days{display:flex;gap:4px;padding:0 18px 10px;flex-shrink:0}
+  .eng-days .tab{flex:1;padding:8px 4px;text-align:center;border:1px solid var(--line);background:var(--card);border-radius:8px}
+  .eng-days .tab[aria-selected="true"]{background:var(--raise);color:var(--ink);box-shadow:inset 0 0 0 1px var(--english)}
+  .eng-days .tab .n{display:block;font-size:10.5px;color:var(--english);margin-top:2px;min-height:13px}
+  .eng-slots{list-style:none;margin:0;padding:0 18px 14px;overflow-y:auto;min-height:0;display:grid;gap:6px}
+  .eng-slots label{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);
+    border-radius:8px;background:var(--card);cursor:pointer;min-height:44px}
+  .eng-slots label.on{border-color:var(--english);background:var(--raise)}
+  .eng-slots input{width:18px;height:18px;flex-shrink:0;accent-color:var(--english)}
+  .eng-slots .t{font-family:"IBM Plex Mono",monospace;font-size:12.5px;min-width:96px}
+  .eng-slots .busy{font-size:11px;color:var(--warn);margin-left:auto;text-align:right}
+  .eng-foot{padding:10px 18px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;
+    gap:10px;background:var(--card);flex-shrink:0;font-size:11.5px;color:var(--muted)}
+  .eng-foot .btns{display:flex;gap:8px}
+  .eng-foot button{appearance:none;border:1px solid var(--line2);background:var(--raise);color:var(--ink);border-radius:6px;
+    padding:7px 12px;font:inherit;font-size:12px;cursor:pointer;min-height:36px}
+  .eng-foot button.primary{border-color:var(--english);color:var(--english)}
+  .eng-foot button[disabled]{opacity:.45;cursor:default}
+  @media (max-width:600px){
+    .eng-dialog{width:100%;max-height:100dvh;height:100dvh;border-radius:0;border:0;margin:0}
+    .eng-foot{padding-bottom:max(10px,env(safe-area-inset-bottom))}
+    .engbar .act{width:100%}
+  }
   .legend span{display:flex;align-items:center;gap:6px}
   .swatch{width:3px;height:12px;border-radius:2px;display:inline-block}
   .onlinekey{color:var(--online);border:1px solid var(--online);border-radius:4px;padding:1px 6px;
@@ -203,10 +247,30 @@
     <span><i class="swatch" style="background:var(--lecture)"></i>Лекция</span>
     <span><i class="swatch" style="background:var(--seminar)"></i>Семинар</span>
     <span><i class="swatch" style="background:var(--practice)"></i>Практика</span>
+    <span><i class="swatch" style="background:var(--english)"></i>Английский (мой)</span>
     <span><i class="onlinekey">ОНЛАЙН</i>идти никуда не нужно</span>
   </div>
 
   <div class="panel" id="panel"></div>
+
+  <section class="engbar" aria-labelledby="engTitle">
+    <div><h2 id="engTitle">Мой английский</h2><p id="engSummary"></p></div>
+    <button type="button" class="act" id="engOpen" aria-haspopup="dialog">Выбрать слоты<b id="engCount">0</b></button>
+  </section>
+
+  <dialog class="eng-dialog" id="engDialog" aria-labelledby="engDlgTitle">
+    <div class="eng-head">
+      <div><h2 id="engDlgTitle">Слоты английского</h2>
+        <p>Отметьте, когда у вас английский. Он появится в вашем расписании. Сохраняется только в этом браузере.</p></div>
+      <button type="button" class="eng-close" id="engClose" aria-label="Закрыть">×</button>
+    </div>
+    <div class="eng-days" role="tablist" aria-label="День недели" id="engDays"></div>
+    <ul class="eng-slots" id="engSlots"></ul>
+    <div class="eng-foot"><span id="engFootNote"></span>
+      <div class="btns"><button type="button" id="engClear">Снять всё</button><button type="button" class="primary" id="engDone">Готово</button></div>
+    </div>
+  </dialog>
+
   <p class="callout below">Если расписание оказалось полезно, поставьте, пожалуйста, звездочку 🙏:
     <a href="https://github.com/NELKIO/ami-26-27-raspisanie" target="_blank" rel="noopener">https://github.com/NELKIO/ami-26-27-raspisanie</a></p>
   <p class="callout below">С предложениями по улучшению и доработке сюда:
@@ -1017,7 +1081,7 @@ var TIMES = [
   ["14:40","16:00","14.40"],["16:20","17:40","16.20"],["18:10","19:30","18.10"],["19:40","21:00","19.40"]
 ];
 var DAYS = [["ПН","понедельник"],["ВТ","вторник"],["СР","среда"],["ЧТ","четверг"],["ПТ","пятница"],["СБ","суббота"]];
-var KIND = {l:"Лекция", s:"Семинар", p:"Практика"};
+var KIND = {l:"Лекция", s:"Семинар", p:"Практика", e:"Английский"};
 var SKIP = /^(английский( язык)?|язык)$/i;
 
 
@@ -1036,6 +1100,10 @@ var ITEMS = SNAPSHOT;
 var SOURCE = {state:"snapshot", when:null, why:null};
 var LOCAL_FILE = location.protocol === "file:";
 var onlyReal = prefs.onlyReal === true;          // фильтр «только в этот день»
+/* личные слоты английского: ["день-пара", …], день 0..5, пара по индексу TIMES */
+var engSlots = Array.isArray(prefs.eng) ? prefs.eng.filter(function(k){ return /^[0-5]-[0-6]$/.test(k); })
+  .filter(function(k, i, a){ return a.indexOf(k) === i; }) : [];
+var engDay = 0;
 
 /* ------------------------------------------------------------------- даты */
 /* Дата дня недели = ближайшая дата не раньше «отсчёта». Сегодня вторник 01.09 →
@@ -1419,7 +1487,7 @@ function prefsLoad(){
   }catch(e){ return {}; }
 }
 function prefsSave(){
-  try{ localStorage.setItem(PREFS_KEY, JSON.stringify({v:1, group:preferredGroup, onlyReal:onlyReal})); }catch(e){}
+  try{ localStorage.setItem(PREFS_KEY, JSON.stringify({v:1, group:preferredGroup, onlyReal:onlyReal, eng:engSlots})); }catch(e){}
 }
 
 /* -------------------------------------------------------------------- отрисовка */
@@ -1429,7 +1497,8 @@ function card(c, when){
   var note = c.st ? '<span class="stream-note">очно + трансляция</span>' : '';
   var link = c.url ? '<a class="join" href="' + esc(c.url) + '" target="_blank" rel="noopener">' +
     (c.on ? "подключиться" : "трансляция") + '</a>' : '';
-  return '<div class="' + cls + '">' + head +
+  if (c.mine) head += '<span class="mine-tag">мой слот</span>';
+  return '<div class="' + cls + '"' + (c.mine ? ' data-mine="1"' : '') + '>' + head +
     '<div class="name">' + esc(c.n) + '</div>' +
     (c.w ? '<div class="who">' + esc(c.w) + '</div>' : '') +
     (c.d ? '<div class="when">' + dateHTML(c.d, when) + '</div>' : '') +
@@ -1568,9 +1637,56 @@ function renderNotes(){
     '<div class="note"><h2>Аудитории</h2><p>Номеров аудиторий в таблице обычно нет. Актуальные места и переносы: <a href="https://ruz.hse.ru/">ruz.hse.ru</a>.</p></div>';
 }
 
+/* Расписание группы + мои слоты английского. Базовые данные не трогаем. */
+function withEnglish(list){
+  if (!engSlots.length) return list;
+  var out = list.slice();
+  engSlots.forEach(function(key){
+    var p = key.split("-"), di = +p[0], ri = +p[1];
+    if (!TIMES[ri] || di < 0 || di > 5) return;
+    var clash = at(list, ri, di).filter(function(it){ return !it[2].on; }).map(function(it){ return it[2].n; });
+    out.push([ri, di, {k:"e", n:"Английский язык", w:"", mine:true,
+      d: clash.length ? "совпадает с: " + clash.join(", ") : ""}]);
+  });
+  return out;
+}
+function engSummaryText(){
+  if (!engSlots.length) return "Слоты не выбраны — английский в общей таблице не стоит, его ставят по языковым группам.";
+  var byDay = {};
+  engSlots.forEach(function(k){ var p = k.split("-"); (byDay[p[0]] = byDay[p[0]] || []).push(+p[1]); });
+  return "Выбрано: " + Object.keys(byDay).sort().map(function(d){
+    return DAYS[d][0] + " " + byDay[d].sort(function(a, b){ return a - b; }).map(function(ri){ return TIMES[ri][0]; }).join(", ");
+  }).join(" · ") + ". Показывается в вашем расписании.";
+}
+function renderEngBar(){
+  document.getElementById("engCount").textContent = engSlots.length;
+  document.getElementById("engSummary").textContent = engSummaryText();
+}
+function renderEngDialog(){
+  var days = document.getElementById("engDays");
+  days.innerHTML = DAYS.map(function(d, i){
+    var n = engSlots.filter(function(k){ return k.indexOf(i + "-") === 0; }).length;
+    return '<button class="tab" role="tab" data-day="' + i + '" aria-selected="' + (engDay === i) + '">' + d[0] +
+      '<span class="n">' + (n ? n + " ✓" : "") + '</span></button>';
+  }).join("");
+  days.querySelectorAll(".tab").forEach(function(b){
+    b.addEventListener("click", function(){ engDay = +b.dataset.day; renderEngDialog(); });
+  });
+  var base = ITEMS[curGroup] || [];
+  document.getElementById("engSlots").innerHTML = TIMES.map(function(t, ri){
+    var key = engDay + "-" + ri, on = engSlots.indexOf(key) >= 0;
+    var busy = at(base, ri, engDay).filter(function(it){ return !it[2].on; }).map(function(it){ return it[2].n; });
+    return '<li><label class="' + (on ? "on" : "") + '"><input type="checkbox" data-key="' + key + '"' + (on ? " checked" : "") +
+      ' aria-label="' + DAYS[engDay][1] + ' ' + t[0] + '"><span class="t">' + t[0] + '–' + t[1] + '</span>' +
+      (busy.length ? '<span class="busy">у группы: ' + esc(busy.join(", ")) + '</span>' : '') + '</label></li>';
+  }).join("");
+  document.getElementById("engClear").disabled = !engSlots.length;
+  document.getElementById("engFootNote").textContent = "Выбрано слотов: " + engSlots.length + " · день: " + DAYS[engDay][1];
+}
+
 function render(){
   if (!GROUPS[curGroup]) curGroup = GROUP_ORDER[0];
-  var list = ITEMS[curGroup] || [];
+  var list = withEnglish(ITEMS[curGroup] || []);
   document.getElementById("groupName").textContent = curGroup;
   document.getElementById("groupMeta").textContent = GROUPS[curGroup].meta;
   document.title = "Расписание " + curGroup + " · 1 семестр 26/27";
@@ -1580,6 +1696,7 @@ function render(){
   document.getElementById("panel").innerHTML = (curDay === "all") ? renderWeek(list) : renderDay(list);
   renderStatus();
   renderNotes();
+  renderEngBar();
 }
 
 function stamp(ts){
@@ -1638,6 +1755,29 @@ document.getElementById("onlyReal").addEventListener("click", function(){
 document.getElementById("dateToday").addEventListener("click", function(){
   anchor = TODAY;
   render();
+});
+
+var engDlg = document.getElementById("engDialog");
+document.getElementById("engOpen").addEventListener("click", function(){
+  engDay = (curDay === "all") ? 0 : curDay;
+  renderEngDialog();
+  engDlg.showModal();
+});
+function engCloseDlg(){ engDlg.close(); }
+document.getElementById("engClose").addEventListener("click", engCloseDlg);
+document.getElementById("engDone").addEventListener("click", engCloseDlg);
+engDlg.addEventListener("close", function(){ document.getElementById("engOpen").focus(); });
+document.getElementById("engClear").addEventListener("click", function(){
+  engSlots = []; prefsSave(); render(); renderEngDialog();
+});
+document.getElementById("engSlots").addEventListener("change", function(e){
+  var key = e.target.getAttribute("data-key");
+  if (!key) return;
+  engSlots = engSlots.filter(function(k){ return k !== key; });
+  if (e.target.checked) engSlots.push(key);
+  prefsSave(); render(); renderEngDialog();
+  var again = document.querySelector('#engSlots [data-key="' + key + '"]');
+  if (again) again.focus({preventScroll:true});
 });
 
 var cached = cacheLoad();

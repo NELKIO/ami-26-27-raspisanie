@@ -987,13 +987,23 @@ function parseBlock(text){
   return card;
 }
 
-function parseCard(raw){
+/* Ссылки: берём и гиперссылки ячейки, и голые URL из текста (в таблице бывает и так, и так). */
+var RE_URL = /https?:\/\/[^\s<>"']+/g;
+function parseCard(raw, hrefs){
   var text = String(raw).replace(/\r/g, "").replace(/[ \t]*\n[ \t]*/g, "\n").trim();
+  var links = (hrefs || []).slice();
+  text = text.replace(RE_URL, function(u){ links.push(u); return " "; });
+  links = links.map(safeURL).filter(function(u, i, list){ return u && list.indexOf(u) === i; });
   var blocks = text.split(/\n\s*\n/).filter(function(b){ return b.trim(); });
   if (blocks.length === 1 && /\n\s*(не)?чет нед/i.test(text))
     blocks = text.split(/\n(?=\s*(?:не)?чет нед)/i);
   var out = [];
-  blocks.forEach(function(b){ var c = parseBlock(b); if (c) out.push(c); });
+  blocks.forEach(function(b){
+    var c = parseBlock(b);
+    if (!c) return;
+    if (links.length) c.links = links;
+    out.push(c);
+  });
   return out;
 }
 
@@ -1062,7 +1072,7 @@ function parseGrid(grid){
       var key = h[0] + "|" + day + "|" + slot + "|" + cv.text;
       if (seen[key]) return;
       seen[key] = 1;
-      parseCard(cv.text).forEach(function(c){ items[h[0]].push([slot, day, c]); });
+      parseCard(cv.text, cv.hrefs).forEach(function(c){ items[h[0]].push([slot, day, c]); });
     });
   }
   if (!names.some(function(n){ return items[n].length; }))
@@ -1268,7 +1278,8 @@ function card(c, when){
   var room = c.room ? '<span class="room">' + esc(c.room) + '</span>' : '';
   var extra = c.elective ? '<span class="elective-tag">по выбору' + (c.language === "en" ? ' · на английском' : '') + '</span>' : '';
   var links = (c.links || []).map(safeURL).filter(Boolean).map(function(url){
-    return '<a class="join" href="' + esc(url) + '" target="_blank" rel="noopener">' + (c.on ? 'подключиться' : 'о курсе') + '</a>';
+    return '<a class="join" href="' + esc(url) + '" target="_blank" rel="noopener">' +
+      (c.on ? 'подключиться' : c.elective ? 'о курсе' : 'материалы') + '</a>';
   }).join("");
   var warning = c.uncertain || (c.elective && v === "no" ? "В эту дату занятие не идёт" : "");
   return '<div class="' + cls + '"' + (c.elective ? ' data-elective="' + esc(c.courseId) + '"' : '') + '>' + head + extra +
