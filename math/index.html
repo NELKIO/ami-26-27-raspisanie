@@ -293,7 +293,7 @@
 
   <header class="hero">
     <h1 class="group" id="groupName">БСБВЦ262</h1>
-    <p>Факультет математики, 1 курс, 2026/27 — пары выбранной группы. Модуль выбирается по дате, чётность недели — по графику ВШЭ. Английский по умолчанию скрыт: включается кнопкой рядом с датой.</p>
+    <p>Факультет математики, 1 курс, 2026/27 — пары выбранной группы в текущем модуле; прошедшие модули с сайта убраны. Чётность недели — по графику ВШЭ. Английский по умолчанию скрыт: включается кнопкой рядом с датой.</p>
     <div class="modbar" id="modBar"></div>
     <span class="stream" id="groupMeta"></span>
     <div class="status" id="status">
@@ -423,6 +423,9 @@ var MODULES = [
   {n:4, from:"2027-04-01", until:"2027-06-30", week1:"2027-03-29", session:"2027-06-21", skip:["2027-05-03"]}
 ];
 var SEMESTER = {1:1, 2:1, 3:2, 4:2};      // сетку прошлого модуля переносим только внутри семестра
+/* Прошедшие модули с сайта убраны: показываем текущий модуль, но не раньше FIRST_MODULE.
+   2 модуль уже пошёл — 1-й больше не нужен. Дальше граница сдвигается сама по календарю. */
+var FIRST_MODULE = 2;
 var HOLIDAYS = {"2026-11-04":"День народного единства", "2027-02-23":"День защитника Отечества",
   "2027-03-08":"Международный женский день", "2027-05-01":"Праздник Весны и Труда",
   "2027-05-09":"День Победы", "2027-06-12":"День России"};
@@ -695,7 +698,11 @@ var courseSearch = "", coursesOnlySelected = false;
 /* Дата дня недели = ближайшая дата не раньше «отсчёта». Сегодня вторник 01.09 →
    ВТ это 01.09, ЧТ это 03.09, а ПН уже 07.09 (понедельник этой недели прошёл). */
 var TODAY  = startOfDay(new Date());
-var anchor = TODAY;
+var LIVE_FROM = Math.max(FIRST_MODULE, (moduleOf(TODAY) || nearModule(TODAY)).n);
+var START = isoDate(MODULES[LIVE_FROM - 1].from);        // раньше этой даты сайт не показывает
+function homeDate(){ return TODAY < START ? START : TODAY; }
+var anchor = homeDate();
+if (anchor !== TODAY) curDay = dowIndex(anchor) > 5 ? 0 : dowIndex(anchor);
 var YEAR0  = TODAY.getMonth() >= 8 ? TODAY.getFullYear() : TODAY.getFullYear() - 1;
 
 function startOfDay(d){ return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
@@ -758,6 +765,7 @@ function dayInfo(d){
     if (!out.kind){ out.kind = "break"; out.text = "Вне учебного года"; }
     return out;
   }
+  if (m.n < LIVE_FROM && !out.kind){ out.kind = "break"; out.text = m.n + " модуль закончился — его расписание с сайта убрано"; return out; }
   out.src = modSrc(m.n);
   if (!out.kind && !MODS[m.n]){
     out.kind = out.src ? "carry" : "missing";
@@ -923,6 +931,12 @@ function sheetFromZip(buf, gid){
   return Promise.resolve().then(step);
 }
 
+/* Прошлый модуль держим, только если у текущего ещё нет своей вкладки (тогда его сетка —
+   запасная, с предупреждением). has(k) — есть ли данные модуля k. */
+function keepMod(n, has){
+  if (n >= LIVE_FROM) return true;
+  return n === LIVE_FROM - 1 && SEMESTER[n] === SEMESTER[LIVE_FROM] && !has(LIVE_FROM);
+}
 function datesInside(html, m){
   var n = 0, r = /(\d{1,2})\.(\d{2})(?!\d)/g, x;
   while ((x = r.exec(html))){
@@ -950,7 +964,7 @@ function modulesFromZip(buf){
     var mods = {}, errs = [];
     MODULES.forEach(function(m){
       var mine = list.filter(function(c){ return c && c.n === m.n; });
-      if (!mine.length) return;
+      if (!mine.length || !keepMod(m.n, function(k){ return list.some(function(c){ return c && c.n === k; }); })) return;
       var pick = mine.filter(function(c){ return m.gid && c.gid === m.gid; })[0];
       if (!pick){
         mine.forEach(function(c, i){ c.score = datesInside(c.html, m) * 100 + i; });   // при равенстве — вкладка правее
@@ -990,7 +1004,7 @@ function fromZipUrl(url){
 }
 function fromAppsScript(url){
   var mods = {};
-  return Promise.all(MODULES.filter(function(m){ return m.gid; }).map(function(m){
+  return Promise.all(MODULES.filter(function(m){ return m.gid && keepMod(m.n, function(k){ return !!MODULES[k - 1].gid; }); }).map(function(m){
     return withTimeout(url + (url.indexOf("?") < 0 ? "?" : "&") + "gid=" + m.gid, 25000).then(function(t){
       var o = JSON.parse(t);
       if (!o || !o.grid) throw new Error("Apps Script вернул не то");
@@ -1613,7 +1627,8 @@ function renderDayTabs(){
 function renderDateBar(){
   var inp = document.getElementById("datePick");
   if (inp.value !== fmtISO(anchor)) inp.value = fmtISO(anchor);
-  document.getElementById("dateToday").disabled = sameDay(anchor, TODAY);
+  inp.min = fmtISO(START);
+  document.getElementById("dateToday").disabled = sameDay(anchor, homeDate());
   document.getElementById("onlyReal").setAttribute("aria-pressed", String(onlyReal));
   document.getElementById("showEng").setAttribute("aria-pressed", String(showEng));
 }
@@ -1714,7 +1729,7 @@ function renderModBar(vm){
   var today = moduleOf(TODAY), top = vm.n;
   MODULES.forEach(function(m){ if (MODS[m.n] || (today && today.n === m.n)) top = Math.max(top, m.n); });
   var html = '<div class="tabs mods" role="tablist" aria-label="Модуль">';
-  for (var n = 1; n <= top; n++){
+  for (var n = LIVE_FROM; n <= top; n++){
     var m = MODULES[n - 1];
     html += '<button class="tab' + (MODS[n] ? '' : ' nodata') + '" role="tab" data-mod="' + n + '" aria-selected="' + (vm.n === n) + '">' + n + ' модуль' +
       '<span class="sub">' + fmtDM(isoDate(m.from)) + '–' + fmtDM(isoDate(m.until)) + '</span>' +
@@ -1758,7 +1773,7 @@ function renderNotes(){
       (live ? "Страница разбирает HTML-выгрузку вкладок 1 бака: модуль каждой вкладки берётся из её заголовка, объединённые ячейки разворачиваются, поэтому потоковые лекции попадают во все группы. Предмет, преподаватель, аудитория, ссылки и чётность — из таблицы как есть."
             : "Показана встроенная копия от " + SNAPSHOT_DATE + ".") +
     '</p></div>' +
-    '<div class="note"><h2>Модули и чётность</h2><p>1 модуль — 01.09–31.10, 2 модуль — 01.11–30.12 (с 21.12 сессия), 04.11 — выходной. ' +
+    '<div class="note"><h2>Модули и чётность</h2><p>2 модуль — 01.11–30.12 (с 21.12 сессия), 04.11 — выходной. ' +
       'По графику ВШЭ недели в каждом модуле считаются заново: 1-я, 3-я… — нечётные. Поэтому неделя с 02.11 снова нечётная. ' +
       'У пары с пометкой <i class="parkey">чёт</i>/<i class="parkey">нечёт</i> метка <span class="d-yes">зелёная</span>, если на дате дня она идёт, ' +
       '<span class="d-no">красная</span> и карточка приглушена — если нет.</p></div>' +
@@ -1795,7 +1810,8 @@ function stamp(ts){
 /* данные приходят пачкой: пары + список подгрупп + их подписи */
 function applyData(p){
   if (!p || !p.mods) return;
-  MODS = p.mods;
+  MODS = {};                                             // в старом кэше мог остаться прошедший модуль
+  Object.keys(p.mods).forEach(function(n){ if (keepMod(+n, function(k){ return !!p.mods[k]; })) MODS[n] = p.mods[n]; });
   /* подписи, порядок групп и сетка времени — из текущего модуля, иначе из самого свежего */
   var now = moduleOf(TODAY), keys = Object.keys(MODS).map(Number).sort(function(a, b){ return a - b; });
   var base = MODS[now && modSrc(now.n) ? modSrc(now.n) : keys[keys.length - 1]];
@@ -1846,6 +1862,7 @@ document.getElementById("datePick").addEventListener("change", function(){
   if (!v) return;
   var parts = v.split("-");
   anchor = new Date(+parts[0], +parts[1] - 1, +parts[2]);
+  if (anchor < START) anchor = START;
   render();
 });
 document.getElementById("onlyReal").addEventListener("click", function(){
@@ -1859,7 +1876,7 @@ document.getElementById("showEng").addEventListener("click", function(){
   render();
 });
 document.getElementById("dateToday").addEventListener("click", function(){
-  anchor = TODAY;
+  anchor = homeDate();
   render();
 });
 
