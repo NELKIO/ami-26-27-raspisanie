@@ -125,6 +125,7 @@
   .weekpar{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);margin-left:6px}
   /* модули: переключатель, разница с прошлым модулем, пометки дня */
   .modbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:12px 0 2px}
+  .modbar:empty{display:none}
   .tabs.mods .tab{padding:4px 12px;font-size:12px}
   .tabs.mods .tab.nodata .sub::after{content:" · нет вкладки";color:var(--warn)}
   .moddiff{font-size:11.5px;color:var(--muted);line-height:1.5}
@@ -1728,6 +1729,8 @@ function subjectsOf(n){
 function renderModBar(vm){
   var today = moduleOf(TODAY), top = vm.n;
   MODULES.forEach(function(m){ if (MODS[m.n] || (today && today.n === m.n)) top = Math.max(top, m.n); });
+  /* один модуль — переключать нечего, а разницы с прошлым без второго модуля тоже нет */
+  if (top <= LIVE_FROM){ document.getElementById("modBar").innerHTML = ""; return; }
   var html = '<div class="tabs mods" role="tablist" aria-label="Модуль">';
   for (var n = LIVE_FROM; n <= top; n++){
     var m = MODULES[n - 1];
