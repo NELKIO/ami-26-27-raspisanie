@@ -103,7 +103,7 @@
      "typeName": "Семинар",
      "name": "Математическая логика и теория множеств",
      "teacher": "Ковалев",
-     "details": "С 03.11 · D509 · Отмена 10.11",
+     "details": "С 03.11 · R401",
      "online": false,
      "stream": false,
      "sure": true
@@ -356,6 +356,19 @@
      "details": "С 03.11",
      "online": false,
      "stream": true,
+     "sure": true
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математическая логика и теория множеств",
+     "teacher": "Ковалев",
+     "details": "С 03.11 · R401",
+     "online": false,
+     "stream": false,
      "sure": true
     },
     {
@@ -617,7 +630,7 @@
      "typeName": "Семинар",
      "name": "Математическая логика и теория множеств",
      "teacher": "Ковалев",
-     "details": "С 03.11 · D509 · Отмена 10.11",
+     "details": "С 03.11 · R401",
      "online": false,
      "stream": false,
      "sure": true
@@ -945,7 +958,7 @@
      "typeName": "Семинар",
      "name": "Математическая логика и теория множеств",
      "teacher": "Ковалев",
-     "details": "С 03.11 · D509 · Отмена 10.11",
+     "details": "С 03.11 · R401",
      "online": false,
      "stream": false,
      "sure": true
@@ -1221,7 +1234,7 @@
      "typeName": "Семинар",
      "name": "Математическая логика и теория множеств",
      "teacher": "Ковалев",
-     "details": "С 03.11 · D509 · Отмена 10.11",
+     "details": "С 03.11 · R401",
      "online": false,
      "stream": false,
      "sure": true
@@ -1536,7 +1549,7 @@
      "typeName": "Семинар",
      "name": "Математическая логика и теория множеств",
      "teacher": "Ковалев",
-     "details": "С 03.11 · D509 · Отмена 10.11",
+     "details": "С 03.11 · R401",
      "online": false,
      "stream": false,
      "sure": true
@@ -1825,7 +1838,7 @@
      "typeName": "Семинар",
      "name": "Математическая логика и теория множеств",
      "teacher": "Ковалев",
-     "details": "С 03.11 · D509 · Отмена 10.11",
+     "details": "С 03.11 · R401",
      "online": false,
      "stream": false,
      "sure": true
@@ -2115,7 +2128,7 @@
      "typeName": "Семинар",
      "name": "Математическая логика и теория множеств",
      "teacher": "Ковалев",
-     "details": "С 03.11 · D509 · Отмена 10.11",
+     "details": "С 03.11 · R401",
      "online": false,
      "stream": false,
      "sure": false
@@ -2358,7 +2371,7 @@
      "typeName": "Семинар",
      "name": "Математическая логика и теория множеств",
      "teacher": "Ковалев",
-     "details": "С 03.11 · D509 · Отмена 10.11",
+     "details": "С 03.11 · R401",
      "online": false,
      "stream": false,
      "sure": false
