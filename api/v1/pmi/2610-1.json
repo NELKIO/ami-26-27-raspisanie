@@ -1,0 +1,2094 @@
+{
+ "version": 1,
+ "faculty": "ПМИ",
+ "group": "2610-1",
+ "meta": "БПМИ2610 · РУЗ: группа 5, подгруппа 11",
+ "source": {
+  "sheet": "1kgwKRON2tOFtIgcf0OeoHC3WhT6H4s9F4sEtsgYBVbA",
+  "gids": {
+   "2": "306794293"
+  }
+ },
+ "range": {
+  "from": "2026-11-01",
+  "to": "2027-01-13"
+ },
+ "days": [
+  {
+   "date": "2026-11-02",
+   "dow": "ПН",
+   "module": 2,
+   "week": 1,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Авдеев",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Дискретная математика",
+     "teacher": "Вялый",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Юделевич",
+     "details": "02.11, 16.11, 30.11, 14.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-03",
+   "dow": "ВТ",
+   "module": 2,
+   "week": 1,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 03.11",
+     "online": false,
+     "stream": true,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 5,
+     "start": "18:10",
+     "end": "19:30",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 6,
+     "start": "19:40",
+     "end": "21:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Инструменты промышленной разработки",
+     "teacher": "Шитов",
+     "details": "С 03.11",
+     "online": true,
+     "stream": false,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/5900080696"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-04",
+   "dow": "СР",
+   "module": 2,
+   "week": 1,
+   "kind": "holiday",
+   "pairs": [],
+   "note": "День народного единства — нерабочий день, пар нет"
+  },
+  {
+   "date": "2026-11-05",
+   "dow": "ЧТ",
+   "module": 2,
+   "week": 1,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "05.11, 19.11, 03.12, 17.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Юделевич",
+     "details": "С 05.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Стасенко",
+     "details": "С 10.09",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 5,
+     "start": "18:10",
+     "end": "19:30",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Дискретная математика",
+     "teacher": "Валинкин",
+     "details": "05.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-06",
+   "dow": "ПТ",
+   "module": 2,
+   "week": 1,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 06.11",
+     "online": false,
+     "stream": true,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-07",
+   "dow": "СБ",
+   "module": 2,
+   "week": 1,
+   "kind": "",
+   "pairs": []
+  },
+  {
+   "date": "2026-11-09",
+   "dow": "ПН",
+   "module": 2,
+   "week": 2,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Авдеев",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Дискретная математика",
+     "teacher": "Вялый",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-10",
+   "dow": "ВТ",
+   "module": 2,
+   "week": 2,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 03.11",
+     "online": false,
+     "stream": true,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 5,
+     "start": "18:10",
+     "end": "19:30",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 6,
+     "start": "19:40",
+     "end": "21:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Инструменты промышленной разработки",
+     "teacher": "Шитов",
+     "details": "С 03.11",
+     "online": true,
+     "stream": false,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/5900080696"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-11",
+   "dow": "СР",
+   "module": 2,
+   "week": 2,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Дискретная математика",
+     "teacher": "Валинкин",
+     "details": "С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "История России",
+     "teacher": "Смагулов",
+     "details": "группа _33 · С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-12",
+   "dow": "ЧТ",
+   "module": 2,
+   "week": 2,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Юделевич",
+     "details": "С 05.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Стасенко",
+     "details": "С 10.09",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-13",
+   "dow": "ПТ",
+   "module": 2,
+   "week": 2,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 06.11",
+     "online": false,
+     "stream": true,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-14",
+   "dow": "СБ",
+   "module": 2,
+   "week": 2,
+   "kind": "",
+   "pairs": []
+  },
+  {
+   "date": "2026-11-16",
+   "dow": "ПН",
+   "module": 2,
+   "week": 3,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Авдеев",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Дискретная математика",
+     "teacher": "Вялый",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Юделевич",
+     "details": "02.11, 16.11, 30.11, 14.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-17",
+   "dow": "ВТ",
+   "module": 2,
+   "week": 3,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 03.11",
+     "online": false,
+     "stream": true,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 5,
+     "start": "18:10",
+     "end": "19:30",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 6,
+     "start": "19:40",
+     "end": "21:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Инструменты промышленной разработки",
+     "teacher": "Шитов",
+     "details": "С 03.11",
+     "online": true,
+     "stream": false,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/5900080696"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-18",
+   "dow": "СР",
+   "module": 2,
+   "week": 3,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Дискретная математика",
+     "teacher": "Валинкин",
+     "details": "С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "История России",
+     "teacher": "Смагулов",
+     "details": "группа _33 · С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-19",
+   "dow": "ЧТ",
+   "module": 2,
+   "week": 3,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "05.11, 19.11, 03.12, 17.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Юделевич",
+     "details": "С 05.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Стасенко",
+     "details": "С 10.09",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-20",
+   "dow": "ПТ",
+   "module": 2,
+   "week": 3,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 06.11",
+     "online": false,
+     "stream": true,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-21",
+   "dow": "СБ",
+   "module": 2,
+   "week": 3,
+   "kind": "",
+   "pairs": []
+  },
+  {
+   "date": "2026-11-23",
+   "dow": "ПН",
+   "module": 2,
+   "week": 4,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Авдеев",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Дискретная математика",
+     "teacher": "Вялый",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 6,
+     "start": "19:40",
+     "end": "21:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Инструменты промышленной разработки",
+     "teacher": "Шевердов",
+     "details": "23.11, 07.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-24",
+   "dow": "ВТ",
+   "module": 2,
+   "week": 4,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 03.11",
+     "online": false,
+     "stream": true,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 5,
+     "start": "18:10",
+     "end": "19:30",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 6,
+     "start": "19:40",
+     "end": "21:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Инструменты промышленной разработки",
+     "teacher": "Шитов",
+     "details": "С 03.11",
+     "online": true,
+     "stream": false,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/5900080696"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-25",
+   "dow": "СР",
+   "module": 2,
+   "week": 4,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Дискретная математика",
+     "teacher": "Валинкин",
+     "details": "С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "История России",
+     "teacher": "Смагулов",
+     "details": "группа _33 · С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-26",
+   "dow": "ЧТ",
+   "module": 2,
+   "week": 4,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Юделевич",
+     "details": "С 05.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Стасенко",
+     "details": "С 10.09",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-27",
+   "dow": "ПТ",
+   "module": 2,
+   "week": 4,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 06.11",
+     "online": false,
+     "stream": true,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-28",
+   "dow": "СБ",
+   "module": 2,
+   "week": 4,
+   "kind": "",
+   "pairs": []
+  },
+  {
+   "date": "2026-11-30",
+   "dow": "ПН",
+   "module": 2,
+   "week": 5,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Авдеев",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Дискретная математика",
+     "teacher": "Вялый",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Юделевич",
+     "details": "02.11, 16.11, 30.11, 14.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-12-01",
+   "dow": "ВТ",
+   "module": 2,
+   "week": 5,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 03.11",
+     "online": false,
+     "stream": true,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 5,
+     "start": "18:10",
+     "end": "19:30",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 6,
+     "start": "19:40",
+     "end": "21:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Инструменты промышленной разработки",
+     "teacher": "Шитов",
+     "details": "С 03.11",
+     "online": true,
+     "stream": false,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/5900080696"
+    }
+   ]
+  },
+  {
+   "date": "2026-12-02",
+   "dow": "СР",
+   "module": 2,
+   "week": 5,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Дискретная математика",
+     "teacher": "Валинкин",
+     "details": "С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "История России",
+     "teacher": "Смагулов",
+     "details": "группа _33 · С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-12-03",
+   "dow": "ЧТ",
+   "module": 2,
+   "week": 5,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "05.11, 19.11, 03.12, 17.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Юделевич",
+     "details": "С 05.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Стасенко",
+     "details": "С 10.09",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-12-04",
+   "dow": "ПТ",
+   "module": 2,
+   "week": 5,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 06.11",
+     "online": false,
+     "stream": true,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    }
+   ]
+  },
+  {
+   "date": "2026-12-05",
+   "dow": "СБ",
+   "module": 2,
+   "week": 5,
+   "kind": "",
+   "pairs": []
+  },
+  {
+   "date": "2026-12-07",
+   "dow": "ПН",
+   "module": 2,
+   "week": 6,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Авдеев",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Дискретная математика",
+     "teacher": "Вялый",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 6,
+     "start": "19:40",
+     "end": "21:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Инструменты промышленной разработки",
+     "teacher": "Шевердов",
+     "details": "23.11, 07.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-12-08",
+   "dow": "ВТ",
+   "module": 2,
+   "week": 6,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 03.11",
+     "online": false,
+     "stream": true,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 5,
+     "start": "18:10",
+     "end": "19:30",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 6,
+     "start": "19:40",
+     "end": "21:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Инструменты промышленной разработки",
+     "teacher": "Шитов",
+     "details": "С 03.11",
+     "online": true,
+     "stream": false,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/5900080696"
+    }
+   ]
+  },
+  {
+   "date": "2026-12-09",
+   "dow": "СР",
+   "module": 2,
+   "week": 6,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Дискретная математика",
+     "teacher": "Валинкин",
+     "details": "С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "История России",
+     "teacher": "Смагулов",
+     "details": "группа _33 · С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-12-10",
+   "dow": "ЧТ",
+   "module": 2,
+   "week": 6,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Юделевич",
+     "details": "С 05.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Стасенко",
+     "details": "С 10.09",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-12-11",
+   "dow": "ПТ",
+   "module": 2,
+   "week": 6,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 06.11",
+     "online": false,
+     "stream": true,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    }
+   ]
+  },
+  {
+   "date": "2026-12-12",
+   "dow": "СБ",
+   "module": 2,
+   "week": 6,
+   "kind": "",
+   "pairs": []
+  },
+  {
+   "date": "2026-12-14",
+   "dow": "ПН",
+   "module": 2,
+   "week": 7,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Авдеев",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Дискретная математика",
+     "teacher": "Вялый",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Юделевич",
+     "details": "02.11, 16.11, 30.11, 14.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-12-15",
+   "dow": "ВТ",
+   "module": 2,
+   "week": 7,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 03.11",
+     "online": false,
+     "stream": true,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 5,
+     "start": "18:10",
+     "end": "19:30",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 6,
+     "start": "19:40",
+     "end": "21:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Инструменты промышленной разработки",
+     "teacher": "Шитов",
+     "details": "С 03.11",
+     "online": true,
+     "stream": false,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/5900080696"
+    }
+   ]
+  },
+  {
+   "date": "2026-12-16",
+   "dow": "СР",
+   "module": 2,
+   "week": 7,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Дискретная математика",
+     "teacher": "Валинкин",
+     "details": "С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "История России",
+     "teacher": "Смагулов",
+     "details": "группа _33 · С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-12-17",
+   "dow": "ЧТ",
+   "module": 2,
+   "week": 7,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "05.11, 19.11, 03.12, 17.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Юделевич",
+     "details": "С 05.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Стасенко",
+     "details": "С 10.09",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
+  },
+  {
+   "date": "2026-12-18",
+   "dow": "ПТ",
+   "module": 2,
+   "week": 7,
+   "kind": "",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 06.11",
+     "online": false,
+     "stream": true,
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    }
+   ]
+  },
+  {
+   "date": "2026-12-19",
+   "dow": "СБ",
+   "module": 2,
+   "week": 7,
+   "kind": "",
+   "pairs": []
+  },
+  {
+   "date": "2026-12-21",
+   "dow": "ПН",
+   "module": 2,
+   "week": 8,
+   "kind": "session",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Авдеев",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Дискретная математика",
+     "teacher": "Вялый",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    }
+   ],
+   "note": "Неделя сессии по графику ВШЭ: обычные пары обычно не идут, экзамены смотрите в РУЗ"
+  },
+  {
+   "date": "2026-12-22",
+   "dow": "ВТ",
+   "module": 2,
+   "week": 8,
+   "kind": "session",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 03.11",
+     "online": false,
+     "stream": true,
+     "sure": false,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    },
+    {
+     "slot": 5,
+     "start": "18:10",
+     "end": "19:30",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    },
+    {
+     "slot": 6,
+     "start": "19:40",
+     "end": "21:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Инструменты промышленной разработки",
+     "teacher": "Шитов",
+     "details": "С 03.11",
+     "online": true,
+     "stream": false,
+     "sure": false,
+     "url": "https://telemost.360.yandex.ru/j/5900080696"
+    }
+   ],
+   "note": "Неделя сессии по графику ВШЭ: обычные пары обычно не идут, экзамены смотрите в РУЗ"
+  },
+  {
+   "date": "2026-12-23",
+   "dow": "СР",
+   "module": 2,
+   "week": 8,
+   "kind": "session",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Дискретная математика",
+     "teacher": "Валинкин",
+     "details": "С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "История России",
+     "teacher": "Смагулов",
+     "details": "группа _33 · С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    }
+   ],
+   "note": "Неделя сессии по графику ВШЭ: обычные пары обычно не идут, экзамены смотрите в РУЗ"
+  },
+  {
+   "date": "2026-12-24",
+   "dow": "ЧТ",
+   "module": 2,
+   "week": 8,
+   "kind": "session",
+   "pairs": [
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Юделевич",
+     "details": "С 05.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Стасенко",
+     "details": "С 10.09",
+     "online": false,
+     "stream": false,
+     "sure": false
+    }
+   ],
+   "note": "Неделя сессии по графику ВШЭ: обычные пары обычно не идут, экзамены смотрите в РУЗ"
+  },
+  {
+   "date": "2026-12-25",
+   "dow": "ПТ",
+   "module": 2,
+   "week": 8,
+   "kind": "session",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 06.11",
+     "online": false,
+     "stream": true,
+     "sure": false,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    }
+   ],
+   "note": "Неделя сессии по графику ВШЭ: обычные пары обычно не идут, экзамены смотрите в РУЗ"
+  },
+  {
+   "date": "2026-12-26",
+   "dow": "СБ",
+   "module": 2,
+   "week": 8,
+   "kind": "session",
+   "pairs": [],
+   "note": "Неделя сессии по графику ВШЭ: обычные пары обычно не идут, экзамены смотрите в РУЗ"
+  },
+  {
+   "date": "2026-12-28",
+   "dow": "ПН",
+   "module": 2,
+   "week": 9,
+   "kind": "session",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Линейная алгебра и геометрия",
+     "teacher": "Авдеев",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Дискретная математика",
+     "teacher": "Вялый",
+     "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    }
+   ],
+   "note": "Неделя сессии по графику ВШЭ: обычные пары обычно не идут, экзамены смотрите в РУЗ"
+  },
+  {
+   "date": "2026-12-29",
+   "dow": "ВТ",
+   "module": 2,
+   "week": 9,
+   "kind": "session",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Густокашин",
+     "details": "С 03.11",
+     "online": false,
+     "stream": true,
+     "sure": false,
+     "url": "https://telemost.360.yandex.ru/j/7946902528"
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    },
+    {
+     "slot": 5,
+     "start": "18:10",
+     "end": "19:30",
+     "type": "p",
+     "typeName": "Практика",
+     "name": "Алгоритмы и структуры данных",
+     "teacher": "Лоскнутников",
+     "details": "С 03.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    },
+    {
+     "slot": 6,
+     "start": "19:40",
+     "end": "21:00",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Инструменты промышленной разработки",
+     "teacher": "Шитов",
+     "details": "С 03.11",
+     "online": true,
+     "stream": false,
+     "sure": false,
+     "url": "https://telemost.360.yandex.ru/j/5900080696"
+    }
+   ],
+   "note": "Неделя сессии по графику ВШЭ: обычные пары обычно не идут, экзамены смотрите в РУЗ"
+  },
+  {
+   "date": "2026-12-30",
+   "dow": "СР",
+   "module": 2,
+   "week": 9,
+   "kind": "session",
+   "pairs": [
+    {
+     "slot": 1,
+     "start": "11:10",
+     "end": "12:30",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Дискретная математика",
+     "teacher": "Валинкин",
+     "details": "С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "История России",
+     "teacher": "Смагулов",
+     "details": "группа _33 · С 11.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    }
+   ],
+   "note": "Неделя сессии по графику ВШЭ: обычные пары обычно не идут, экзамены смотрите в РУЗ"
+  },
+  {
+   "date": "2026-12-31",
+   "dow": "ЧТ",
+   "module": null,
+   "week": null,
+   "kind": "break",
+   "pairs": [],
+   "note": "Зимние каникулы"
+  },
+  {
+   "date": "2027-01-01",
+   "dow": "ПТ",
+   "module": null,
+   "week": null,
+   "kind": "break",
+   "pairs": [],
+   "note": "Зимние каникулы"
+  },
+  {
+   "date": "2027-01-02",
+   "dow": "СБ",
+   "module": null,
+   "week": null,
+   "kind": "break",
+   "pairs": [],
+   "note": "Зимние каникулы"
+  },
+  {
+   "date": "2027-01-04",
+   "dow": "ПН",
+   "module": null,
+   "week": null,
+   "kind": "break",
+   "pairs": [],
+   "note": "Зимние каникулы"
+  },
+  {
+   "date": "2027-01-05",
+   "dow": "ВТ",
+   "module": null,
+   "week": null,
+   "kind": "break",
+   "pairs": [],
+   "note": "Зимние каникулы"
+  },
+  {
+   "date": "2027-01-06",
+   "dow": "СР",
+   "module": null,
+   "week": null,
+   "kind": "break",
+   "pairs": [],
+   "note": "Зимние каникулы"
+  },
+  {
+   "date": "2027-01-07",
+   "dow": "ЧТ",
+   "module": null,
+   "week": null,
+   "kind": "break",
+   "pairs": [],
+   "note": "Зимние каникулы"
+  },
+  {
+   "date": "2027-01-08",
+   "dow": "ПТ",
+   "module": null,
+   "week": null,
+   "kind": "break",
+   "pairs": [],
+   "note": "Зимние каникулы"
+  },
+  {
+   "date": "2027-01-09",
+   "dow": "СБ",
+   "module": 3,
+   "week": 0,
+   "kind": "missing",
+   "pairs": [],
+   "note": "Расписание 3 модуля в таблице ещё не опубликовано"
+  },
+  {
+   "date": "2027-01-11",
+   "dow": "ПН",
+   "module": 3,
+   "week": 1,
+   "kind": "missing",
+   "pairs": [],
+   "note": "Расписание 3 модуля в таблице ещё не опубликовано"
+  },
+  {
+   "date": "2027-01-12",
+   "dow": "ВТ",
+   "module": 3,
+   "week": 1,
+   "kind": "missing",
+   "pairs": [],
+   "note": "Расписание 3 модуля в таблице ещё не опубликовано"
+  },
+  {
+   "date": "2027-01-13",
+   "dow": "СР",
+   "module": 3,
+   "week": 1,
+   "kind": "missing",
+   "pairs": [],
+   "note": "Расписание 3 модуля в таблице ещё не опубликовано"
+  }
+ ]
+}

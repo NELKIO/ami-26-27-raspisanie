@@ -1887,6 +1887,64 @@ document.getElementById("engSlots").addEventListener("change", function(e){
   if (again) again.focus({preventScroll:true});
 });
 
+/* ------------------------------------------------------------- API для плагина */
+/* Странице не нужен: tools/build_api.py открывает страницу в headless-браузере, ждёт живой
+   загрузки и раскладывает RaspisAPI.build() по api/v1/pmi/*.json. Пары уже разложены по датам
+   той же логикой, что и на экране (календарь, «С 02.11», «Отмена …»): пары с вердиктом «no»
+   выброшены, sure=false — таблица не говорит, идёт ли пара в этот день.
+   Отметки времени нет намеренно: файлы меняются, только когда меняется расписание. */
+window.RaspisAPI = {
+  version: 1,
+  state: function(){ return SOURCE.state; },
+  build: function(){
+    var cur = moduleOf(TODAY) || nearModule(TODAY), last = cur;
+    Object.keys(MODS).forEach(function(n){
+      var m = MODULES[+n - 1];
+      if (m && fmtISO(isoDate(m.until)) > fmtISO(isoDate(last.until))) last = m;
+    });
+    var from = START, end = isoDate(last.until);
+    end = new Date(end.getFullYear(), end.getMonth(), end.getDate() + 14);
+    var dates = [];
+    for (var d = new Date(from); d <= end; d = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1))
+      if (dowIndex(d) <= 5) dates.push(d);
+
+    var gids = {};
+    Object.keys(MODS).forEach(function(n){ if (MODS[n].gid) gids[n] = MODS[n].gid; });
+    var groups = {};
+    GROUP_ORDER.forEach(function(g){
+      groups[g] = {
+        version: 1, faculty: "ПМИ", group: g, meta: (GROUPS[g] || {}).meta || "",
+        source: {sheet: SHEET_ID, gids: gids},
+        range: {from: fmtISO(from), to: fmtISO(end)},
+        days: dates.map(function(when){
+          var info = dayInfo(when), di = dowIndex(when), m = info.mod;
+          var list = info.src == null ? [] : (((MODS[info.src] || {}).items || {})[g] || []);
+          var pairs = (info.kind === "holiday" || info.kind === "break") ? [] : list.filter(function(it){
+            return it[1] === di && verdict(it[2].d, when) !== "no";
+          }).sort(function(a, b){ return a[0] - b[0]; }).map(function(it){
+            var c = it[2], p = {slot: it[0], start: TIMES[it[0]][0], end: TIMES[it[0]][1],
+              type: c.k, typeName: KIND[c.k] || "", name: c.n, teacher: c.w || "", details: c.d || "",
+              online: !!c.on, stream: !!c.st, sure: verdict(c.d, when) === "yes"};
+            if (c.url) p.url = c.url;
+            return p;
+          });
+          var day = {date: fmtISO(when), dow: DAYS[di][0], module: m ? m.n : null,
+            week: m ? weekNo(when, m) : null, kind: info.kind || "", pairs: pairs};
+          if (info.text) day.note = info.text;
+          return day;
+        })
+      };
+    });
+    return {
+      index: {version: 1, faculty: "ПМИ", site: "https://nelkio.github.io/ami-26-27-raspisanie/",
+        pinned: PINNED, times: TIMES.map(function(t){ return [t[0], t[1]]; }),
+        range: {from: fmtISO(from), to: fmtISO(end)},
+        groups: GROUP_ORDER.map(function(g){ return {id: g, meta: (GROUPS[g] || {}).meta || ""}; })},
+      groups: groups
+    };
+  }
+};
+
 var cached = cacheLoad();
 if (cached){ applyData(cached.d); SOURCE = {state:"cache", when: stamp(cached.t)}; }
 render();
