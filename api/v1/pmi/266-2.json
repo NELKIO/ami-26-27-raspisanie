@@ -91,7 +91,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -130,7 +130,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -318,7 +318,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -357,7 +357,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -522,19 +522,6 @@
      "url": "https://telemost.360.yandex.ru/j/7946902528"
     },
     {
-     "slot": 2,
-     "start": "13:00",
-     "end": "14:20",
-     "type": "p",
-     "typeName": "Практика",
-     "name": "Алгоритмы и структуры данных",
-     "teacher": "Панькова",
-     "details": "С 03.11",
-     "online": false,
-     "stream": false,
-     "sure": true
-    },
-    {
      "slot": 3,
      "start": "14:40",
      "end": "16:00",
@@ -555,19 +542,6 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "С 03.11",
-     "online": false,
-     "stream": false,
-     "sure": true
-    },
-    {
-     "slot": 5,
-     "start": "18:10",
-     "end": "19:30",
-     "type": "p",
-     "typeName": "Практика",
-     "name": "Алгоритмы и структуры данных",
-     "teacher": "Панькова",
      "details": "С 03.11",
      "online": false,
      "stream": false,
@@ -780,7 +754,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -819,7 +793,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1018,7 +992,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1057,7 +1031,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1269,7 +1243,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1308,7 +1282,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1480,7 +1454,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1519,7 +1493,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1719,7 +1693,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": false
@@ -1758,7 +1732,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": false
@@ -1936,7 +1910,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": false
@@ -1975,7 +1949,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Панькова",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 17.11",
      "online": false,
      "stream": false,
      "sure": false

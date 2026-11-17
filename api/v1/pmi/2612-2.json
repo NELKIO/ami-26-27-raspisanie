@@ -162,7 +162,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Раровский",
-     "details": "С 05.11",
+     "details": "С 05.11 · Отмена 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -374,7 +374,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Раровский",
-     "details": "С 05.11",
+     "details": "С 05.11 · Отмена 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -612,7 +612,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Раровский",
-     "details": "С 05.11",
+     "details": "С 05.11 · Отмена 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -705,6 +705,19 @@
      "name": "Дискретная математика",
      "teacher": "Вялый",
      "details": "С 02.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Раровский",
+     "details": "23.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -837,7 +850,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Раровский",
-     "details": "С 05.11",
+     "details": "С 05.11 · Отмена 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1075,7 +1088,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Раровский",
-     "details": "С 05.11",
+     "details": "С 05.11 · Отмена 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1300,7 +1313,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Раровский",
-     "details": "С 05.11",
+     "details": "С 05.11 · Отмена 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1507,6 +1520,19 @@
      "online": false,
      "stream": false,
      "sure": true
+    },
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Раровский",
+     "details": "16.12",
+     "online": false,
+     "stream": false,
+     "sure": true
     }
    ]
   },
@@ -1538,7 +1564,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Раровский",
-     "details": "С 05.11",
+     "details": "С 05.11 · Отмена 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1753,7 +1779,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Раровский",
-     "details": "С 05.11",
+     "details": "С 05.11 · Отмена 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": false
