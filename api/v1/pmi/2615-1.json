@@ -175,7 +175,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Числова",
-     "details": "05.11, 19.11, 03.12, 17.12",
+     "details": "05.11, 19.11, 26.11, 03.12, 10.12, 17.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -627,7 +627,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Числова",
-     "details": "05.11, 19.11, 03.12, 17.12",
+     "details": "05.11, 19.11, 26.11, 03.12, 10.12, 17.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -854,6 +854,19 @@
      "name": "Дискретная математика",
      "teacher": "Коган",
      "details": "С 05.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Числова",
+     "details": "05.11, 19.11, 26.11, 03.12, 10.12, 17.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1092,7 +1105,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Числова",
-     "details": "05.11, 19.11, 03.12, 17.12",
+     "details": "05.11, 19.11, 26.11, 03.12, 10.12, 17.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1319,6 +1332,19 @@
      "name": "Дискретная математика",
      "teacher": "Коган",
      "details": "С 05.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 4,
+     "start": "16:20",
+     "end": "17:40",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Числова",
+     "details": "05.11, 19.11, 26.11, 03.12, 10.12, 17.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1557,7 +1583,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Числова",
-     "details": "05.11, 19.11, 03.12, 17.12",
+     "details": "05.11, 19.11, 26.11, 03.12, 10.12, 17.12",
      "online": false,
      "stream": false,
      "sure": true

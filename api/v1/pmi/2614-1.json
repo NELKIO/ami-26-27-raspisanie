@@ -64,7 +64,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Числова",
-     "details": "03.11, 17.11, 01.12, 15.12",
+     "details": "03.11, 17.11, 24.11, 01.12, 08.12, 15.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -327,7 +327,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Гундарев",
-     "details": "С 11.11 · R614",
+     "details": "С 11.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -490,7 +490,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Числова",
-     "details": "03.11, 17.11, 01.12, 15.12",
+     "details": "03.11, 17.11, 24.11, 01.12, 08.12, 15.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -553,7 +553,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Гундарев",
-     "details": "С 11.11 · R614",
+     "details": "С 11.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -735,6 +735,19 @@
    "kind": "",
    "pairs": [
     {
+     "slot": 0,
+     "start": "9:30",
+     "end": "10:50",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Числова",
+     "details": "03.11, 17.11, 24.11, 01.12, 08.12, 15.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
      "slot": 1,
      "start": "11:10",
      "end": "12:30",
@@ -792,7 +805,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Гундарев",
-     "details": "С 11.11 · R614",
+     "details": "С 11.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -955,7 +968,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Числова",
-     "details": "03.11, 17.11, 01.12, 15.12",
+     "details": "03.11, 17.11, 24.11, 01.12, 08.12, 15.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1018,7 +1031,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Гундарев",
-     "details": "С 11.11 · R614",
+     "details": "С 11.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1200,6 +1213,19 @@
    "kind": "",
    "pairs": [
     {
+     "slot": 0,
+     "start": "9:30",
+     "end": "10:50",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Числова",
+     "details": "03.11, 17.11, 24.11, 01.12, 08.12, 15.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
      "slot": 1,
      "start": "11:10",
      "end": "12:30",
@@ -1257,7 +1283,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Гундарев",
-     "details": "С 11.11 · R614",
+     "details": "С 11.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1420,7 +1446,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Числова",
-     "details": "03.11, 17.11, 01.12, 15.12",
+     "details": "03.11, 17.11, 24.11, 01.12, 08.12, 15.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1483,7 +1509,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Гундарев",
-     "details": "С 11.11 · R614",
+     "details": "С 11.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1711,7 +1737,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Гундарев",
-     "details": "С 11.11 · R614",
+     "details": "С 11.11",
      "online": false,
      "stream": false,
      "sure": false
@@ -1930,7 +1956,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Гундарев",
-     "details": "С 11.11 · R614",
+     "details": "С 11.11",
      "online": false,
      "stream": false,
      "sure": false
