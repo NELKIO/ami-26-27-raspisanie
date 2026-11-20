@@ -384,21 +384,7 @@
    "module": 2,
    "week": 2,
    "kind": "",
-   "pairs": [
-    {
-     "slot": 2,
-     "start": "13:00",
-     "end": "14:20",
-     "type": "s",
-     "typeName": "Семинар",
-     "name": "Дискретная математика",
-     "teacher": "Соколов",
-     "details": "(10) · С 11.11",
-     "online": false,
-     "stream": false,
-     "sure": true
-    }
-   ]
+   "pairs": []
   },
   {
    "date": "2026-11-12",
@@ -569,21 +555,7 @@
    "module": 2,
    "week": 3,
    "kind": "",
-   "pairs": [
-    {
-     "slot": 2,
-     "start": "13:00",
-     "end": "14:20",
-     "type": "s",
-     "typeName": "Семинар",
-     "name": "Дискретная математика",
-     "teacher": "Соколов",
-     "details": "(10) · С 11.11",
-     "online": false,
-     "stream": false,
-     "sure": true
-    }
-   ]
+   "pairs": []
   },
   {
    "date": "2026-11-19",
@@ -820,21 +792,7 @@
    "module": 2,
    "week": 4,
    "kind": "",
-   "pairs": [
-    {
-     "slot": 2,
-     "start": "13:00",
-     "end": "14:20",
-     "type": "s",
-     "typeName": "Семинар",
-     "name": "Дискретная математика",
-     "teacher": "Соколов",
-     "details": "(10) · С 11.11",
-     "online": false,
-     "stream": false,
-     "sure": true
-    }
-   ]
+   "pairs": []
   },
   {
    "date": "2026-11-26",
@@ -901,6 +859,19 @@
      "name": "История России",
      "teacher": "Калинин",
      "details": "группа _29 · С 13.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Дискретная математика",
+     "teacher": "Соколов",
+     "details": "(10) · С 27.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1058,21 +1029,7 @@
    "module": 2,
    "week": 5,
    "kind": "",
-   "pairs": [
-    {
-     "slot": 2,
-     "start": "13:00",
-     "end": "14:20",
-     "type": "s",
-     "typeName": "Семинар",
-     "name": "Дискретная математика",
-     "teacher": "Соколов",
-     "details": "(10) · С 11.11",
-     "online": false,
-     "stream": false,
-     "sure": true
-    }
-   ]
+   "pairs": []
   },
   {
    "date": "2026-12-03",
@@ -1139,6 +1096,19 @@
      "name": "История России",
      "teacher": "Калинин",
      "details": "группа _29 · С 13.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Дискретная математика",
+     "teacher": "Соколов",
+     "details": "(10) · С 27.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1309,21 +1279,7 @@
    "module": 2,
    "week": 6,
    "kind": "",
-   "pairs": [
-    {
-     "slot": 2,
-     "start": "13:00",
-     "end": "14:20",
-     "type": "s",
-     "typeName": "Семинар",
-     "name": "Дискретная математика",
-     "teacher": "Соколов",
-     "details": "(10) · С 11.11",
-     "online": false,
-     "stream": false,
-     "sure": true
-    }
-   ]
+   "pairs": []
   },
   {
    "date": "2026-12-10",
@@ -1363,6 +1319,19 @@
      "name": "История России",
      "teacher": "Калинин",
      "details": "группа _29 · С 13.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Дискретная математика",
+     "teacher": "Соколов",
+     "details": "(10) · С 27.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1520,21 +1489,7 @@
    "module": 2,
    "week": 7,
    "kind": "",
-   "pairs": [
-    {
-     "slot": 2,
-     "start": "13:00",
-     "end": "14:20",
-     "type": "s",
-     "typeName": "Семинар",
-     "name": "Дискретная математика",
-     "teacher": "Соколов",
-     "details": "(10) · С 11.11",
-     "online": false,
-     "stream": false,
-     "sure": true
-    }
-   ]
+   "pairs": []
   },
   {
    "date": "2026-12-17",
@@ -1601,6 +1556,19 @@
      "name": "История России",
      "teacher": "Калинин",
      "details": "группа _29 · С 13.11",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Дискретная математика",
+     "teacher": "Соколов",
+     "details": "(10) · С 27.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1760,21 +1728,7 @@
    "module": 2,
    "week": 8,
    "kind": "session",
-   "pairs": [
-    {
-     "slot": 2,
-     "start": "13:00",
-     "end": "14:20",
-     "type": "s",
-     "typeName": "Семинар",
-     "name": "Дискретная математика",
-     "teacher": "Соколов",
-     "details": "(10) · С 11.11",
-     "online": false,
-     "stream": false,
-     "sure": false
-    }
-   ],
+   "pairs": [],
    "note": "Неделя сессии по графику ВШЭ: обычные пары обычно не идут, экзамены смотрите в РУЗ"
   },
   {
@@ -1816,6 +1770,19 @@
      "name": "История России",
      "teacher": "Калинин",
      "details": "группа _29 · С 13.11",
+     "online": false,
+     "stream": false,
+     "sure": false
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Дискретная математика",
+     "teacher": "Соколов",
+     "details": "(10) · С 27.11",
      "online": false,
      "stream": false,
      "sure": false
@@ -1977,21 +1944,7 @@
    "module": 2,
    "week": 9,
    "kind": "session",
-   "pairs": [
-    {
-     "slot": 2,
-     "start": "13:00",
-     "end": "14:20",
-     "type": "s",
-     "typeName": "Семинар",
-     "name": "Дискретная математика",
-     "teacher": "Соколов",
-     "details": "(10) · С 11.11",
-     "online": false,
-     "stream": false,
-     "sure": false
-    }
-   ],
+   "pairs": [],
    "note": "Неделя сессии по графику ВШЭ: обычные пары обычно не идут, экзамены смотрите в РУЗ"
   },
   {
