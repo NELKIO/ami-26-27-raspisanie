@@ -149,7 +149,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 17.12",
+     "details": "05.11, 19.11, 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -599,7 +599,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 17.12",
+     "details": "05.11, 19.11, 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1075,7 +1075,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 17.12",
+     "details": "05.11, 19.11, 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1305,6 +1305,19 @@
    "week": 6,
    "kind": "",
    "pairs": [
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "05.11, 19.11, 03.12, 10.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
     {
      "slot": 4,
      "start": "16:20",
@@ -1543,19 +1556,6 @@
    "week": 7,
    "kind": "",
    "pairs": [
-    {
-     "slot": 2,
-     "start": "13:00",
-     "end": "14:20",
-     "type": "l",
-     "typeName": "Лекция",
-     "name": "Математический анализ",
-     "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 17.12",
-     "online": false,
-     "stream": false,
-     "sure": true
-    },
     {
      "slot": 4,
      "start": "16:20",

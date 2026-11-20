@@ -175,7 +175,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 17.12",
+     "details": "05.11, 19.11, 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -188,7 +188,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 17.12",
+     "details": "05.11, 19.11, 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -572,7 +572,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 17.12",
+     "details": "05.11, 19.11, 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -585,7 +585,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 17.12",
+     "details": "05.11, 19.11, 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1046,7 +1046,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 17.12",
+     "details": "05.11, 19.11, 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1059,7 +1059,7 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 17.12",
+     "details": "05.11, 19.11, 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1287,7 +1287,34 @@
    "module": 2,
    "week": 6,
    "kind": "",
-   "pairs": []
+   "pairs": [
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "05.11, 19.11, 03.12, 10.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
+    {
+     "slot": 3,
+     "start": "14:40",
+     "end": "16:00",
+     "type": "s",
+     "typeName": "Семинар",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "05.11, 19.11, 03.12, 10.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    }
+   ]
   },
   {
    "date": "2026-12-11",
@@ -1497,34 +1524,7 @@
    "module": 2,
    "week": 7,
    "kind": "",
-   "pairs": [
-    {
-     "slot": 2,
-     "start": "13:00",
-     "end": "14:20",
-     "type": "l",
-     "typeName": "Лекция",
-     "name": "Математический анализ",
-     "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 17.12",
-     "online": false,
-     "stream": false,
-     "sure": true
-    },
-    {
-     "slot": 3,
-     "start": "14:40",
-     "end": "16:00",
-     "type": "s",
-     "typeName": "Семинар",
-     "name": "Математический анализ",
-     "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 17.12",
-     "online": false,
-     "stream": false,
-     "sure": true
-    }
-   ]
+   "pairs": []
   },
   {
    "date": "2026-12-18",
