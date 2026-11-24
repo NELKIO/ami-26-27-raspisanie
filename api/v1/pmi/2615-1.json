@@ -78,7 +78,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 24.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -149,7 +149,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 10.12",
+     "details": "05.11, 19.11, 26.11, 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -291,7 +291,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 24.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -504,7 +504,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 24.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -601,7 +601,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 10.12",
+     "details": "05.11, 19.11, 26.11, 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -749,19 +749,6 @@
      "url": "https://telemost.360.yandex.ru/j/7946902528"
     },
     {
-     "slot": 3,
-     "start": "14:40",
-     "end": "16:00",
-     "type": "l",
-     "typeName": "Лекция",
-     "name": "Математический анализ",
-     "teacher": "Промыслов В.В.",
-     "details": "С 03.11",
-     "online": false,
-     "stream": false,
-     "sure": true
-    },
-    {
      "slot": 4,
      "start": "16:20",
      "end": "17:40",
@@ -845,6 +832,19 @@
    "week": 4,
    "kind": "",
    "pairs": [
+    {
+     "slot": 2,
+     "start": "13:00",
+     "end": "14:20",
+     "type": "l",
+     "typeName": "Лекция",
+     "name": "Математический анализ",
+     "teacher": "Промыслов В.В.",
+     "details": "05.11, 19.11, 26.11, 03.12, 10.12",
+     "online": false,
+     "stream": false,
+     "sure": true
+    },
     {
      "slot": 3,
      "start": "14:40",
@@ -982,7 +982,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 24.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1079,7 +1079,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 10.12",
+     "details": "05.11, 19.11, 26.11, 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1234,7 +1234,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 24.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1331,7 +1331,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "05.11, 19.11, 03.12, 10.12",
+     "details": "05.11, 19.11, 26.11, 03.12, 10.12",
      "online": false,
      "stream": false,
      "sure": true
@@ -1473,7 +1473,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 24.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1700,7 +1700,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 24.11",
      "online": false,
      "stream": false,
      "sure": false
@@ -1919,7 +1919,7 @@
      "typeName": "Лекция",
      "name": "Математический анализ",
      "teacher": "Промыслов В.В.",
-     "details": "С 03.11",
+     "details": "С 03.11 · Отмена 24.11",
      "online": false,
      "stream": false,
      "sure": false
