@@ -198,7 +198,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Гундарев",
-     "details": "С 06.11 · S327",
+     "details": "С 06.11 · Отмена 27.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -411,7 +411,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Гундарев",
-     "details": "С 06.11 · S327",
+     "details": "С 06.11 · Отмена 27.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -650,7 +650,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Гундарев",
-     "details": "С 06.11 · S327",
+     "details": "С 06.11 · Отмена 27.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -880,19 +880,6 @@
      "stream": true,
      "sure": true,
      "url": "https://telemost.360.yandex.ru/j/7946902528"
-    },
-    {
-     "slot": 2,
-     "start": "13:00",
-     "end": "14:20",
-     "type": "p",
-     "typeName": "Практика",
-     "name": "Алгоритмы и структуры данных",
-     "teacher": "Гундарев",
-     "details": "С 06.11 · S327",
-     "online": false,
-     "stream": false,
-     "sure": true
     }
    ]
   },
@@ -1128,7 +1115,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Гундарев",
-     "details": "С 06.11 · S327",
+     "details": "С 06.11 · Отмена 27.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1380,7 +1367,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Гундарев",
-     "details": "С 06.11 · S327",
+     "details": "С 06.11 · Отмена 27.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1606,7 +1593,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Гундарев",
-     "details": "С 06.11 · S327",
+     "details": "С 06.11 · Отмена 27.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1823,7 +1810,7 @@
      "typeName": "Практика",
      "name": "Алгоритмы и структуры данных",
      "teacher": "Гундарев",
-     "details": "С 06.11 · S327",
+     "details": "С 06.11 · Отмена 27.11",
      "online": false,
      "stream": false,
      "sure": false

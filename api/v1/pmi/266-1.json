@@ -445,7 +445,7 @@
      "typeName": "Семинар",
      "name": "История России",
      "teacher": "Калинин",
-     "details": "группа _29 · С 13.11",
+     "details": "группа _29 · С 13.11 · Отмена 27.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -680,7 +680,7 @@
      "typeName": "Семинар",
      "name": "История России",
      "teacher": "Калинин",
-     "details": "группа _29 · С 13.11",
+     "details": "группа _29 · С 13.11 · Отмена 27.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -890,19 +890,6 @@
      "name": "Алгоритмы и структуры данных",
      "teacher": "Шайдурова",
      "details": "С 06.11",
-     "online": false,
-     "stream": false,
-     "sure": true
-    },
-    {
-     "slot": 2,
-     "start": "13:00",
-     "end": "14:20",
-     "type": "s",
-     "typeName": "Семинар",
-     "name": "История России",
-     "teacher": "Калинин",
-     "details": "группа _29 · С 13.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1137,7 +1124,7 @@
      "typeName": "Семинар",
      "name": "История России",
      "teacher": "Калинин",
-     "details": "группа _29 · С 13.11",
+     "details": "группа _29 · С 13.11 · Отмена 27.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1385,7 +1372,7 @@
      "typeName": "Семинар",
      "name": "История России",
      "teacher": "Калинин",
-     "details": "группа _29 · С 13.11",
+     "details": "группа _29 · С 13.11 · Отмена 27.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1593,7 +1580,7 @@
      "typeName": "Семинар",
      "name": "История России",
      "teacher": "Калинин",
-     "details": "группа _29 · С 13.11",
+     "details": "группа _29 · С 13.11 · Отмена 27.11",
      "online": false,
      "stream": false,
      "sure": true
@@ -1805,7 +1792,7 @@
      "typeName": "Семинар",
      "name": "История России",
      "teacher": "Калинин",
-     "details": "группа _29 · С 13.11",
+     "details": "группа _29 · С 13.11 · Отмена 27.11",
      "online": false,
      "stream": false,
      "sure": false
