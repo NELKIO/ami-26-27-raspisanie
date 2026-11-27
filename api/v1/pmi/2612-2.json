@@ -436,10 +436,11 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Раровский",
-     "details": "13.11, 27.11, 11.12",
-     "online": false,
+     "details": "13.11, 27.11, 11.12 · 27.11",
+     "online": true,
      "stream": false,
-     "sure": true
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7326542974"
     }
    ]
   },
@@ -912,10 +913,11 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Раровский",
-     "details": "13.11, 27.11, 11.12",
-     "online": false,
+     "details": "13.11, 27.11, 11.12 · 27.11",
+     "online": true,
      "stream": false,
-     "sure": true
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7326542974"
     }
    ]
   },
@@ -1388,10 +1390,11 @@
      "typeName": "Семинар",
      "name": "Математический анализ",
      "teacher": "Раровский",
-     "details": "13.11, 27.11, 11.12",
-     "online": false,
+     "details": "13.11, 27.11, 11.12 · 27.11",
+     "online": true,
      "stream": false,
-     "sure": true
+     "sure": true,
+     "url": "https://telemost.360.yandex.ru/j/7326542974"
     }
    ]
   },
